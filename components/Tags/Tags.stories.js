@@ -9,6 +9,6 @@ export default {
 
 export const tags = () => (
   <ProjectFonts>
-    <Tag label={'#ModifyLocations'} onClick={action('clicked')} />
+    <Tag label="#ModifyLocations" onClick={action('clicked')} />
   </ProjectFonts>
 );

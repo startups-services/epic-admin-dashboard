@@ -10,7 +10,6 @@ const TagsBox = styled.div`
 `;
 
 const TagsEditor = ({ tags, projectId }) => {
-
   const [tagsState, setTagsState] = useState(tags);
   return (
     <TagsBox>

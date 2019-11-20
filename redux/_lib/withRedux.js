@@ -37,8 +37,7 @@ const withRedux = (PageComponent, { ssr = true } = {}) => {
 
   // Make sure people don't use this HOC on _app.js level
   if (process.env.NODE_ENV !== 'production') {
-    const isAppHoc =
-      PageComponent === App || PageComponent.prototype instanceof App;
+    const isAppHoc = PageComponent === App || PageComponent.prototype instanceof App;
     if (isAppHoc) {
       throw new Error('The withRedux HOC only works with PageComponents');
     }
@@ -46,8 +45,7 @@ const withRedux = (PageComponent, { ssr = true } = {}) => {
 
   // Set the correct displayName in development
   if (process.env.NODE_ENV !== 'production') {
-    const displayName =
-      PageComponent.displayName || PageComponent.name || 'Component';
+    const displayName = PageComponent.displayName || PageComponent.name || 'Component';
 
     WithRedux.displayName = `withRedux(${displayName})`;
   }
@@ -59,10 +57,9 @@ const withRedux = (PageComponent, { ssr = true } = {}) => {
       reduxStore = getOrInitializeStore();
 
       // Run getInitialProps from HOCed PageComponent
-      const pageProps =
-        typeof PageComponent.getInitialProps === 'function'
-          ? await PageComponent.getInitialProps({ ...context, reduxStore })
-          : {};
+      const pageProps = typeof PageComponent.getInitialProps === 'function'
+        ? await PageComponent.getInitialProps({ ...context, reduxStore })
+        : {};
 
       // Pass props to PageComponent
       return {
@@ -76,4 +73,3 @@ const withRedux = (PageComponent, { ssr = true } = {}) => {
 };
 
 export default withRedux;
-

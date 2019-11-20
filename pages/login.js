@@ -127,17 +127,17 @@ const Index = () => {
                 <LoginForm>
                   <Label>Epic Admin Dashboard</Label>
                   <Input
-                    value={''}
+                    value=""
                     onChange={() => {}}
-                    label={'email'}
-                    name={'email'}
+                    label="email"
+                    name="email"
                   />
                   <Input
-                    value={''}
+                    value=""
                     onChange={() => {}}
-                    label={'password'}
-                    type={'password'}
-                    name={'password'}
+                    label="password"
+                    type="password"
+                    name="password"
                   />
                   <ErrorBox>
                     {errors}
@@ -146,7 +146,9 @@ const Index = () => {
                 <ButtonBox>
                   <Button
                     onClick={() => {
-                    }} background={COLORS.green1} bordered={false}
+                    }}
+                    background={COLORS.green1}
+                    bordered={false}
                   >
                     {showSignIn ? (
                       'Sign In'

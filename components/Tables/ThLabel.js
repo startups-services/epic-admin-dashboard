@@ -17,7 +17,7 @@ const ThLabel = ({ label = '', sortable = false }) => (
     <span>{label}</span>
     {sortable && (
       <IconBox>
-        <Icon iconName={'upDown'} />
+        <Icon iconName="upDown" />
       </IconBox>
     )}
   </Label>

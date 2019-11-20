@@ -15,7 +15,7 @@ const ProjectFontsStyle = styled.div`
   }
 `;
 
-const ProjectFonts = props => (
+const ProjectFonts = (props) => (
   <>
     <ProjectFontsStyle>
       {props.children}

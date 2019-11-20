@@ -44,26 +44,28 @@ const MessageCard = ({ src }) => (
       <TopBox>
         <UserAvatar
           src={src}
-          name={'Adam Smith'}
-          size={'26px'}
+          name="Adam Smith"
+          size="26px"
         />
         <ButtonsBox>
           <MessageButton background={COLORS.green1} textColor={COLORS.green2}>
-            {'2'} <Icon iconName={'attachmentGreen'} />
+            2
+            {' '}
+            <Icon iconName="attachmentGreen" />
           </MessageButton>
-          <MessageButton dateString={'17 Apr'} background={COLORS.orange1} textColor={COLORS.orange2}>
-            {'17 replies'}
+          <MessageButton dateString="17 Apr" background={COLORS.orange1} textColor={COLORS.orange2}>
+            17 replies
           </MessageButton>
-          <MessageButton dateString={'17 Apr'} background={COLORS.purple} textColor={COLORS.gray}>
-            {'17 Apr'}
+          <MessageButton dateString="17 Apr" background={COLORS.purple} textColor={COLORS.gray}>
+            17 Apr
           </MessageButton>
         </ButtonsBox>
       </TopBox>
       <ProjectDescription>
-        {'Wherein sixth light. Multiply shall. Blessed male made divide set second a evening greater'}
+        Wherein sixth light. Multiply shall. Blessed male made divide set second a evening greater
       </ProjectDescription>
       <SubLabel>
-        {'2 hours ago'}
+        2 hours ago
       </SubLabel>
     </MessageCardStyled>
   </Card>

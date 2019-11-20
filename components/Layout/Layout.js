@@ -28,11 +28,11 @@ const LeftBarTop = styled.div`
   padding: ${topDocumentPadding} 0 0 ${leftDocumentPadding};
 `;
 
-const Layout = props => (
+const Layout = (props) => (
   <Grid>
     <HtmlHead />
     <LeftBarTop>
-      <Icon iconName={'menu'} />
+      <Icon iconName="menu" />
     </LeftBarTop>
     <LeftBarNavMenu />
     <TopBar />

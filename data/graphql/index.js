@@ -114,7 +114,7 @@ export const createTag = `
 
 
 export const removeTagFromProject = async ({ tagName, allTags, projectId }) => {
-  const result = allTags.filter(elem => (elem.name === tagName));
+  const result = allTags.filter((elem) => (elem.name === tagName));
 
   await execQuery(updateTag, {
     id: result[0].id,

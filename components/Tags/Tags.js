@@ -4,7 +4,7 @@ import Tag from './Tag';
 
 const Tags = ({ tags }) => (
   <>
-    {tags.map(tag => (
+    {tags.map((tag) => (
       <Tag key={tag.id} label={tag.name} onClick={action('clicked')} />
     ))}
   </>

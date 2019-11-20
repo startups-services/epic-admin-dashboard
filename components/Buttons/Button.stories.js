@@ -21,7 +21,9 @@ export const buttons = () => {
       <Button onClick={action('clicked')} background={COLORS.purple} bordered={false}>Level Up</Button>
       <Button onClick={action('clicked')} background={COLORS.orange1} bordered={false}>Level Up</Button>
 
-      <br /><br /><br />
+      <br />
+      <br />
+      <br />
       <ToggleCheckBox state={state} setState={setState} />
     </ProjectFonts>
   );

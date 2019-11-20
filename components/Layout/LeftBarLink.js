@@ -35,7 +35,9 @@ const LinkLabel = styled.div`
   letter-spacing: 0.25px;
 `;
 
-const LeftBarLink = ({ href, iconName, label, dropDown = false }) => (
+const LeftBarLink = ({
+  href, iconName, label, dropDown = false,
+}) => (
   <Link href={href}>
     <StyledLink>
       <IconBoxBefore>
@@ -46,7 +48,7 @@ const LeftBarLink = ({ href, iconName, label, dropDown = false }) => (
       </LinkLabel>
       { dropDown && (
         <IconBoxAfter>
-          <Icon iconName={'dropDownMenu'} height={'7px'} />
+          <Icon iconName="dropDownMenu" height="7px" />
         </IconBoxAfter>
       )}
     </StyledLink>

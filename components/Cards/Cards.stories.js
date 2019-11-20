@@ -32,8 +32,8 @@ const IntegrationsContainer = styled.div`
 export const messageCards = () => (
   <ProjectBackground>
     <ProjectFonts>
-      <CardContainer width={'450px'}>
-        <MessageCard src={'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg?s=200'} />
+      <CardContainer width="450px">
+        <MessageCard src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg?s=200" />
       </CardContainer>
     </ProjectFonts>
   </ProjectBackground>
@@ -43,7 +43,7 @@ export const projectsCards = () => (
   <ProjectBackground>
     <ProjectFonts>
       <CardContainer>
-        <ProjectCard label={'Holo Card Products'} />
+        <ProjectCard label="Holo Card Products" />
       </CardContainer>
     </ProjectFonts>
   </ProjectBackground>
@@ -53,7 +53,7 @@ export const statisticsCards = () => (
   <ProjectBackground>
     <ProjectFonts>
       <CardContainer>
-        <StatisticCard label={'Adam Smith'} />
+        <StatisticCard label="Adam Smith" />
       </CardContainer>
     </ProjectFonts>
   </ProjectBackground>
@@ -65,37 +65,37 @@ export const integrationCards = () => (
       <IntegrationsGrid>
         <IntegrationsContainer>
           <IntegrationCard
-            label={'Slack'}
+            label="Slack"
             src={integrationsIndex.slack}
-            status={'disconnected'}
+            status="disconnected"
           />
         </IntegrationsContainer>
         <IntegrationsContainer>
           <IntegrationCard
-            label={'GitHub'}
+            label="GitHub"
             src={integrationsIndex.github}
-            status={'connected'}
+            status="connected"
           />
         </IntegrationsContainer>
         <IntegrationsContainer>
           <IntegrationCard
-            label={'Trello'}
+            label="Trello"
             src={integrationsIndex.trello}
-            status={'auth'}
+            status="auth"
           />
         </IntegrationsContainer>
         <IntegrationsContainer>
           <IntegrationCard
-            label={'Slack'}
+            label="Slack"
             src={integrationsIndex.slack}
-            status={'connected'}
+            status="connected"
           />
         </IntegrationsContainer>
         <IntegrationsContainer>
           <IntegrationCard
-            label={'Slack'}
+            label="Slack"
             src={integrationsIndex.slack}
-            status={'connected'}
+            status="connected"
           />
         </IntegrationsContainer>
       </IntegrationsGrid>

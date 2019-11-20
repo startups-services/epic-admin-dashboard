@@ -39,18 +39,18 @@ const Index = () => (
       </Label>
     </LabelBox>
     <OverviewCardBox>
-      {[false, true, false, true].map(elem =>
+      {[false, true, false, true].map((elem) => (
         <CardBox>
           <OverviewCard
             number={`${Math.floor(Math.random() * 100) + 1}K`}
             delta={`${Math.floor(Math.random() * 1000)}`}
-            label={'month revenue'}
+            label="month revenue"
             increasing={elem}
-            iconName={'user'}
+            iconName="user"
             backgroundColor={COLORS.green1}
           />
-        </CardBox>,
-      )}
+        </CardBox>
+      ))}
     </OverviewCardBox>
     <LabelBox>
       <Label>

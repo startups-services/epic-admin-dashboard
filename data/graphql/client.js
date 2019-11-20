@@ -83,4 +83,3 @@ export const isomorphicGetTokenFromCookie = (req) => {
   }
   return Cookies.get(COOKIE_TOKEN_NAME);
 };
-

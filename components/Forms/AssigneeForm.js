@@ -5,7 +5,7 @@ import Select, { components } from 'react-select';
 import Icon from '../Icons/Icon';
 import customStyles from './selectCustomStyles';
 
-const Placeholder = props => <components.Placeholder {...props} />;
+const Placeholder = (props) => <components.Placeholder {...props} />;
 
 const AssigneeFormStyled = styled.div`
   display: inline-block;
@@ -37,7 +37,7 @@ const AssigneeForm = ({ size = '48px', ...rest }) => (
       isClearable
       components={{ Placeholder }}
       placeholder={
-        <Icon iconName={'addNewUser'} height={size} />
+        <Icon iconName="addNewUser" height={size} />
       }
       styles={customStyles}
       {...rest}

@@ -54,12 +54,14 @@ const IconArea = styled.div`
 `;
 
 
-const OverviewCard = ({ iconName, number, label, delta, increasing = false, backgroundColor = COLORS.gray2 }) => (
+const OverviewCard = ({
+  iconName, number, label, delta, increasing = false, backgroundColor = COLORS.gray2,
+}) => (
   <Card>
     <OverviewCardStyled>
       <ImageBox>
         <IconArea color={backgroundColor}>
-          <Icon iconName={iconName} height={'20px'} />
+          <Icon iconName={iconName} height="20px" />
         </IconArea>
       </ImageBox>
       <OverviewCardNumber>
@@ -71,12 +73,12 @@ const OverviewCard = ({ iconName, number, label, delta, increasing = false, back
       <Delta>
         {increasing ? (
           <>
-            <Icon iconName={'upRectangle'} height={'7px'} />
+            <Icon iconName="upRectangle" height="7px" />
             <Number color={COLORS.green2}>{delta}</Number>
           </>
         ) : (
           <>
-            <Icon iconName={'downRectangle'} height={'7px'} />
+            <Icon iconName="downRectangle" height="7px" />
             <Number color={COLORS.red}>{delta}</Number>
           </>
         )}

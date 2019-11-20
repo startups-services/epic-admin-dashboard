@@ -27,7 +27,7 @@ export const icons = () => (
     <ProjectFonts>
       <Card>
         <div>
-          {Object.keys(iconsIndex).sort((a, b) => ((a > b) ? 1 : -1)).map(name => (
+          {Object.keys(iconsIndex).sort((a, b) => ((a > b) ? 1 : -1)).map((name) => (
             <PresentableIconContainer key={name} iconName={name} />
           ))}
         </div>

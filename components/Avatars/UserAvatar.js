@@ -22,7 +22,9 @@ const UserName = styled.div`
   margin-left: 8px;
 `;
 
-const UserAvatar = ({ square = false, size = '16px', name, src, borderRadius = '16px' }) =>
+const UserAvatar = ({
+  square = false, size = '16px', name, src, borderRadius = '16px',
+}) => (
   <UserAvatarContainer>
     <UserAvatarStyled
       borderRadius={borderRadius}
@@ -36,7 +38,8 @@ const UserAvatar = ({ square = false, size = '16px', name, src, borderRadius = '
         {name}
       </UserName>
     )}
-  </UserAvatarContainer>;
+  </UserAvatarContainer>
+);
 
 UserAvatar.propTypes = {
   src: PropTypes.string.isRequired,

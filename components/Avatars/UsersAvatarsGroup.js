@@ -14,10 +14,11 @@ const UserAvaContainer = styled.div`
 
 const UsersAvatarsGroup = ({ userArray }) => (
   <UsersAvatarGroupStyled>
-    {userArray.map((user =>
+    {userArray.map(((user) => (
       <UserAvaContainer key={user.name ? user.name : user.email}>
         <UserAvatar src={user.ava} />
       </UserAvaContainer>
+    )
     ))}
   </UsersAvatarGroupStyled>
 );

@@ -22,4 +22,3 @@ export default function debounce(f, ms = 300) {
     globalDebounceTimer.set(f, window.setTimeout(onComplete, ms));
   };
 }
-

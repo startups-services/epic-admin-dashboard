@@ -18,15 +18,15 @@ export const inputs = () => {
   return (
     <Card>
       <ProjectFonts>
-        <Input value={state} onChange={setValue} label={'label for input'} />
+        <Input value={state} onChange={setValue} label="label for input" />
       </ProjectFonts>
 
       <ProjectFonts>
-        <LiveEditTextArea ideaId={'QWERTY123'} user={{}} ideaValue={''} />
+        <LiveEditTextArea ideaId="QWERTY123" user={{}} ideaValue="" />
       </ProjectFonts>
 
       <ProjectFonts>
-        <AssigneeForm size={'48px'} />
+        <AssigneeForm size="48px" />
       </ProjectFonts>
     </Card>
   );

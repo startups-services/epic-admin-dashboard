@@ -26,13 +26,13 @@ const InnerBar = styled.div`
 `;
 
 
-const ProgressBar = ({ percent }) =>
+const ProgressBar = ({ percent }) => (
   <BarContainer>
     <OuterBar>
       <InnerBar percent={percent} />
     </OuterBar>
   </BarContainer>
-;
+);
 
 ProgressBar.propTypes = {
   percent: PropTypes.number.isRequired,

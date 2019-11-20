@@ -43,20 +43,20 @@ const StatisticCard = () => (
     <IntegrationCardStyled>
       <TopBox>
         <UserAvatar
-          src={'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg?s=200'}
+          src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg?s=200"
           square
-          size={'48px'}
+          size="48px"
         />
-        <Icon iconName={'details'} />
+        <Icon iconName="details" />
       </TopBox>
       <LabelBox>
         <Label>
-          {'Adam Smith'}
+          Adam Smith
         </Label>
       </LabelBox>
       <SubLabelBox>
         <SubLabel>
-          {'manager'}
+          manager
         </SubLabel>
       </SubLabelBox>
     </IntegrationCardStyled>

@@ -1,3 +1,2 @@
 export const GET_INITIAL_USER_DATA = 'GET_INITIAL_USER_DATA';
 export const SET_USER_FIELD = 'SET_USER_FIELD';
-

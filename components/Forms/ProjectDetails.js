@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import styled from '@emotion/styled';
 
 import PropTypes from 'prop-types';
-import Label from '../Labels/Label';
+import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 import SubLabel from '../Labels/SubLabel';
-import Tags from '../Tags/Tags';
 import LiveEditTextArea from '../Inputs/TextArea';
 import AssigneeForm from './AssigneeForm';
 import DateInput from '../Inputs/DatePicker';
@@ -13,8 +13,11 @@ import Icon from '../Icons/Icon';
 import MessageCard from '../Cards/MessageCard';
 import COLORS from '../constants';
 import DefaultAssigneeItem from './DefaultAssigneeItem';
-import TagsInput from '../Tags/TagsInput';
 import TagsEditor from '../Tags/TagsEditor';
+import LiveInput from '../Inputs/LiveInput';
+import { setUserField } from '../../redux/activeUser/actions';
+import { setProjectField } from '../../redux/projects/actions';
+import findProjectNumber from '../../redux/_lib/findProjById';
 
 const Columns = styled.div`
   display: flex;
@@ -45,11 +48,8 @@ const Column = styled.div`
 
 const LabelBox = styled.div`
   margin-bottom: 15px;
-  display: flex;
-  align-items: center;
-  & div[class*="-LabelStyled"] {
-    margin-right: 35px;
-  }
+  max-width: 300px;
+ 
 `;
 
 const SubLabelBox = styled.div`
@@ -100,94 +100,110 @@ const TagsEditorBox = styled.div`
 
 const options = [
   { value: 'null', label: 'unset assignee' },
-  { value: 'user0', label: <DefaultAssigneeItem name={'Robert Paulson'} /> },
-  { value: 'user1', label: <DefaultAssigneeItem name={'Tom Andersen'} /> },
-  { value: 'user2', label: <DefaultAssigneeItem name={'Alex Simonyan'} /> },
-  { value: 'user3', label: <DefaultAssigneeItem name={'Emanuel Kant'} /> },
+  { value: 'user0', label: <DefaultAssigneeItem name="Robert Paulson" /> },
+  { value: 'user1', label: <DefaultAssigneeItem name="Tom Andersen" /> },
+  { value: 'user2', label: <DefaultAssigneeItem name="Alex Simonyan" /> },
+  { value: 'user3', label: <DefaultAssigneeItem name="Emanuel Kant" /> },
 ];
 
-const ProjectDetails = ({ props: { description, name, users, tags, picture, status, id } }) => {
+const ProjectDetails = () => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const {
+    id, name, description, tags,
+  } = useSelector((store) => {
+    debugger;
+    if (store.projects.items.length > 0) {
+      return (store.projects.items[findProjectNumber(router.query.id, store.projects.items)]);
+    }
+    return {
+      id: '', name: '', description: '', tags: [],
+    };
+  });
+
+
   const [option, setOption] = useState(null);
+  const updateField = (name, value) => {
+    dispatch(setProjectField(id, name, value));
+  };
+
   return (
-  <>
-    <HeadersBelt>
-      <LabelBox>
-        <Label>
-          {name}
-        </Label>
-        <Icon height={'16px'} iconName={'edit'} />
-      </LabelBox>
-      <SubLabelBox>
-        <SubLabel>
-          {'department'}
-        </SubLabel>
-        <Icon height={'16px'} iconName={'edit'} />
-      </SubLabelBox>
-    </HeadersBelt>
+    <>
+      <HeadersBelt>
+        <LabelBox>
+          <LiveInput name="name" value={name} onSubmit={updateField} />
+        </LabelBox>
+        <SubLabelBox>
+          <SubLabel>
+          department
+          </SubLabel>
+          <Icon height="16px" iconName="edit" />
+        </SubLabelBox>
+      </HeadersBelt>
 
-    <Columns>
+      <Columns>
 
-      <Column>
-        <TagsEditorBox>
-          <TagsEditor tags={tags} projectId={id} />
-        </TagsEditorBox>
-        <TextAreaBox>
-          <InputLabel>
-            {'Description'}
-          </InputLabel>
-          <LiveEditTextArea id={id} defaultValue={description} />
-        </TextAreaBox>
-        <AssigneeBox>
-          <InputLabel>
-            {'Members'}
-          </InputLabel>
-          <AssigneeForm size={'48px'} options={options} onChange={val => setOption(val)} value={option} />
-          <AssigneeForm size={'48px'} options={options} onChange={val => setOption(val)} value={option} />
-          <AssigneeForm size={'48px'} options={options} onChange={val => setOption(val)} value={option} />
-        </AssigneeBox>
-        <DateBox>
-          <Icon iconName={'calendarGreen'} />
-          <DateInput />
-          <DateInput />
-        </DateBox>
-      </Column>
+        <Column>
+          <TagsEditorBox>
+            <TagsEditor tags={tags} projectId={id} />
+          </TagsEditorBox>
+          <TextAreaBox>
+            <InputLabel>
+            Description
+            </InputLabel>
+            <LiveEditTextArea id={id} defaultValue={description} />
+          </TextAreaBox>
+          <AssigneeBox>
+            <InputLabel>
+            Members
+            </InputLabel>
+            <AssigneeForm size="48px" options={options} onChange={(val) => setOption(val)} value={option} />
+            <AssigneeForm size="48px" options={options} onChange={(val) => setOption(val)} value={option} />
+            <AssigneeForm size="48px" options={options} onChange={(val) => setOption(val)} value={option} />
+          </AssigneeBox>
+          <DateBox>
+            <Icon iconName="calendarGreen" />
+            <DateInput />
+            <DateInput />
+          </DateBox>
+        </Column>
 
-      <Column>
-        <ButtonsBox>
-          <div>
-            <Icon iconName={'attachment'} />
-            {'Add attachments'}
-          </div>
-          <div>
-            <Icon iconName={'arrow'} />
-            {'Move up'}
-          </div>
-          <div>
-            <Icon iconName={'subscribe'} />
-            {'Subscribe'}
-          </div>
-          <div>
-            <Icon iconName={'archive'} />
-            {'Archive'}
-          </div>
-        </ButtonsBox>
-        <MessageBox>
-          <InputLabel style={{ marginBottom: '18px' }}>
-            {'Discussion'}
-          </InputLabel>
-          <MessageCard src={'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg?s=50'} />
-          <MessageCard src={'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg?s=50'} />
-          <MessageCard src={'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg?s=50'} />
+        <Column>
+          <ButtonsBox>
+            <div>
+              <Icon iconName="attachment" />
+            Add attachments
+            </div>
+            <div>
+              <Icon iconName="arrow" />
+            Move up
+            </div>
+            <div>
+              <Icon iconName="subscribe" />
+            Subscribe
+            </div>
+            <div>
+              <Icon iconName="archive" />
+            Archive
+            </div>
+          </ButtonsBox>
+          <MessageBox>
+            <InputLabel style={{ marginBottom: '18px' }}>
+            Discussion
+            </InputLabel>
+            <MessageCard src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg?s=50" />
+            <MessageCard src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg?s=50" />
+            <MessageCard src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg?s=50" />
 
-        </MessageBox>
-      </Column>
-    </Columns>
-  </>
+          </MessageBox>
+        </Column>
+      </Columns>
+    </>
   );
 };
 
 ProjectDetails.propTypes = {
-  props: PropTypes.string.isRequired,
+  props: PropTypes.object.isRequired,
 };
 
 

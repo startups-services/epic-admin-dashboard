@@ -52,27 +52,27 @@ const IconBox = styled.div`
 const TopBar = () => (
   <TopBarStyled>
     <Logotype>
-      <Icon iconName={'logo'} height={'16px'} />
+      <Icon iconName="logo" height="16px" />
       <LogoLabel>
-        {'Epic Admin Dashboard'}
+        Epic Admin Dashboard
       </LogoLabel>
     </Logotype>
     <TopLeftMenu>
       <IconBox>
-        <Icon iconName={'bell'} />
+        <Icon iconName="bell" />
         <StatusIcon color={COLORS.red} />
       </IconBox>
-      {[1, 2, 3, 4].map(elem =>
+      {[1, 2, 3, 4].map((elem) => (
         <AvaBox key={elem}>
           <UserAvatar
-            src={'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg?s=200'}
+            src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg?s=200"
             square
-            borderRadius={'10px'}
-            size={'26px'}
+            borderRadius="10px"
+            size="26px"
           />
           <StatusIcon color={COLORS.green2} />
-        </AvaBox>,
-      )}
+        </AvaBox>
+      ))}
     </TopLeftMenu>
   </TopBarStyled>
 );

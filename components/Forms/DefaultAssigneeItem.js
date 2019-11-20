@@ -13,16 +13,17 @@ const DefaultAssigneeItemStyled = styled.div`
   cursor: pointer;
 `;
 
-const DefaultAssigneeItem = ({ name }) =>
+const DefaultAssigneeItem = ({ name }) => (
   <DefaultAssigneeItemStyled>
     <UserAvatar
       src={`https://secure.gravatar.com/avatar/ac59a8c${Math.floor(Math.random() * 101)}1f2f64f6d3f329610c3aed?s=48&d=retro`} /* eslint-disable-line max-len */
-      size={'48px'}
+      size="48px"
     />
     <UserName>
       {name}
     </UserName>
-  </DefaultAssigneeItemStyled>;
+  </DefaultAssigneeItemStyled>
+);
 
 DefaultAssigneeItem.propTypes = {
   name: PropTypes.string.isRequired,

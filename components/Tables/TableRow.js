@@ -23,7 +23,9 @@ const ProgressBarBox = styled.div`
   width: 75%;
 `;
 
-const TableRow = ({ avatarLabel, name, status, userArray, costs, percent }) => (
+const TableRow = ({
+  avatarLabel, name, status, userArray, costs, percent,
+}) => (
   <tr>
     <TdStyled>
       <ProjectAvatar label={avatarLabel} />
@@ -43,7 +45,7 @@ const TableRow = ({ avatarLabel, name, status, userArray, costs, percent }) => (
     <TdStyled>{costs}</TdStyled>
     <TdStyled>
       <IconBox>
-        <Icon iconName={'details'} />
+        <Icon iconName="details" />
       </IconBox>
     </TdStyled>
   </tr>

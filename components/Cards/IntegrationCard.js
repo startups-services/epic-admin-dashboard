@@ -52,14 +52,16 @@ const statuses = {
   },
 };
 
-const IntegrationCard = ({ src, status = 'connected', label, onClick }) => {
+const IntegrationCard = ({
+  src, status = 'connected', label, onClick,
+}) => {
   IntegrationCard.propTypes = {};
 
   return (
     <Card>
       <IntegrationCardStyled>
         <ImageBox>
-          <img src={src} alt={'label'} />
+          <img src={src} alt="label" />
         </ImageBox>
         <IntegrationLabel>
           {label}

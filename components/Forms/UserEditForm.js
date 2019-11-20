@@ -81,12 +81,14 @@ const NamesContainer = styled.div`
 
 const UserEditForm = () => {
   const dispatch = useDispatch();
-  const { name, company, email, dateFormat, timeFormat, timeZone,
+  const {
+    name, company, email, dateFormat, timeFormat, timeZone,
     sendEmails, sendNotifications, sendPushes,
-  } = useSelector(state => state.activeUser.data);
+  } = useSelector((state) => state.activeUser.data);
 
   const updateString = debounce((eName, eValue) => { dispatch(setUserField(eName, eValue)); }, 600);
   const updateToggler = (eName, eValue) => { dispatch(setUserField(eName, eValue)); };
+  const onChange = (e) => updateString(e.target.name, e.target.value);
 
   return (
     <>
@@ -95,28 +97,28 @@ const UserEditForm = () => {
           <NamesContainer>
             <InputBox>
               <Input
-                name={'name'}
-                label={'user name'}
-                onChange={e => updateString(e.target.name, e.target.value)}
+                name="name"
+                label="user name"
+                onChange={onChange}
                 value={name}
-                type={'text'}
+                type="text"
               />
             </InputBox>
             <InputBox>
               <Input
-                label={'company'}
-                onChange={e => updateString(e.target.name, e.target.value)}
+                label="company"
+                onChange={onChange}
                 value={company}
-                name={'company'}
-                type={'text'}
+                name="company"
+                type="text"
               />
             </InputBox>
             <InputBox>
               <Input
-                label={'email'}
+                label="email"
                 onChange={() => { }}
                 value={email}
-                name={'email'}
+                name="email"
               />
             </InputBox>
           </NamesContainer>
@@ -124,7 +126,7 @@ const UserEditForm = () => {
         <Col>
           <UserAvaBlock>
             <UserAvatar
-              size={'100px'}
+              size="100px"
               src={`https://secure.gravatar.com/avatar/${
                 md5(email.trim().toLocaleLowerCase())
               }?s=120&d=retro`}
@@ -138,25 +140,25 @@ const UserEditForm = () => {
       <div>
         <PasswordForm>
           <Input
-            label={'Current Password'}
+            label="Current Password"
             onChange={() => {}}
-            value={''}
-            type={'password'}
-            name={''}
+            value=""
+            type="password"
+            name=""
           />
           <Input
-            label={'New Password'}
+            label="New Password"
             onChange={() => {}}
-            value={''}
-            type={'password'}
-            name={'newPass'}
+            value=""
+            type="password"
+            name="newPass"
           />
           <Input
-            label={'Confirm Password'}
+            label="Confirm Password"
             onChange={() => {}}
-            value={''}
-            type={'password'}
-            name={'confirmPass'}
+            value=""
+            type="password"
+            name="confirmPass"
           />
           {/* eslint-disable-next-line no-alert */}
           <Button onClick={() => { alert('mock password changes'); }} background={COLORS.green1} bordered={false}>
@@ -168,37 +170,37 @@ const UserEditForm = () => {
         <InputBox>
           <Select
             defaultValue={dateFormat}
-            label={'Date Format'}
-            onChange={e => updateString(e.target.name, e.target.value)}
+            label="Date Format"
+            onChange={(e) => updateString(e.target.name, e.target.value)}
             options={[
               { value: 'DD/MM/YY', name: 'DD/MM/YY' },
               { value: 'MM/DD/YY', name: 'MM/DD/YY' },
             ]}
-            name={'dateFormat'}
+            name="dateFormat"
           />
         </InputBox>
         <InputBox>
           <Select
-            label={'Time Format'}
+            label="Time Format"
             defaultValue={timeFormat}
-            onChange={e => updateString(e.target.name, e.target.value)}
+            onChange={(e) => updateString(e.target.name, e.target.value)}
             options={[
               { value: 'hh:mm:ss', name: 'hh:mm:ss' },
               { value: 'h.mm', name: 'h.mm' },
             ]}
-            name={'timeFormat'}
+            name="timeFormat"
           />
         </InputBox>
         <InputBox>
           <Select
-            label={'Time Zone'}
+            label="Time Zone"
             defaultValue={timeZone}
-            onChange={e => updateString(e.target.name, e.target.value)}
+            onChange={(e) => updateString(e.target.name, e.target.value)}
             options={[
               { value: '0 GMT', name: '0 GMT' },
               { value: '-1 GMT', name: '-1 GMT' },
             ]}
-            name={'timeZone'}
+            name="timeZone"
           />
         </InputBox>
       </TimeContainer>
@@ -213,22 +215,22 @@ const UserEditForm = () => {
           </SubLabel>
         </div>
         <SubscriptionToggle
-          onChange={e => updateToggler(e.target.name, e.target.checked)}
+          onChange={(e) => updateToggler(e.target.name, e.target.checked)}
           checked={sendEmails}
-          name={'sendEmails'}
-          label={'Send Emails'}
+          name="sendEmails"
+          label="Send Emails"
         />
         <SubscriptionToggle
-          name={'sendPushes'}
-          label={'Phone Pushes'}
+          name="sendPushes"
+          label="Phone Pushes"
           checked={sendPushes}
-          onChange={e => updateToggler(e.target.name, e.target.checked)}
+          onChange={(e) => updateToggler(e.target.name, e.target.checked)}
         />
         <SubscriptionToggle
           checked={sendNotifications}
-          onChange={e => updateToggler(e.target.name, e.target.checked)}
-          name={'sendNotifications'}
-          label={'Site Notifications'}
+          onChange={(e) => updateToggler(e.target.name, e.target.checked)}
+          name="sendNotifications"
+          label="Site Notifications"
         />
       </div>
     </>

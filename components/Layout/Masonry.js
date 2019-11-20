@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 import breakPoints from '../breakPoints';
 
-const Column = styled.div `
+const Column = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -21,11 +21,11 @@ const ColumnContainer = styled.div`
 const getColNumber = (width) => {
   if (width >= breakPoints.xl) {
     return 4;
-  } else if (breakPoints.lg <= width && width < breakPoints.xl) {
+  } if (breakPoints.lg <= width && width < breakPoints.xl) {
     return 3;
-  } else if (breakPoints.md <= width && width < breakPoints.lg) {
+  } if (breakPoints.md <= width && width < breakPoints.lg) {
     return 2;
-  } else if (width <= breakPoints.md) {
+  } if (width <= breakPoints.md) {
     return 1;
   }
   return 1;

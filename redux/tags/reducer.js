@@ -16,4 +16,3 @@ export default produce((state = initialState, action) => {
       return state || null;
   }
 });
-

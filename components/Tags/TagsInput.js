@@ -26,21 +26,21 @@ const TagInputStyled = styled.input`
 const TagsInput = ({ setTagsState, projectId }) => {
   const inputEl = useRef(null);
   const [show, setShow] = useState(false);
-  const allTags = useSelector(state => state.tags.items);
+  const allTags = useSelector((state) => state.tags.items);
 
   const updateOrCreateTag = async (newTagName) => {
-    const result = allTags.filter(elem => elem.name === newTagName);
+    const result = allTags.filter((elem) => elem.name === newTagName);
     setShow(false);
     if (result.length > 0) {
-      setTagsState(prev => ([...prev, { id: result[0].id, name: newTagName }]));
+      setTagsState((prev) => ([...prev, { id: result[0].id, name: newTagName }]));
       await execQuery(updateTag, {
         id: result[0].id,
         name: newTagName,
-        projectsIds: [...result[0].projects.map(elem => elem.id), projectId],
+        projectsIds: [...result[0].projects.map((elem) => elem.id), projectId],
       });
     } else {
       const { createTag: { id } } = await execQuery(createTag, { name: newTagName, projectsIds: [projectId] });
-      setTagsState(prev => ([...prev, { id, name: newTagName }]));
+      setTagsState((prev) => ([...prev, { id, name: newTagName }]));
     }
   };
 
@@ -59,11 +59,11 @@ const TagsInput = ({ setTagsState, projectId }) => {
             await updateOrCreateTag(e.target[0].value);
           }}
         >
-          <TagInputStyled ref={inputEl} type="text" placeholder={'add tag'} onBlur={() => setShow(false)} />
+          <TagInputStyled ref={inputEl} type="text" placeholder="add tag" onBlur={() => setShow(false)} />
         </form>
       ) : (
         <EditButtonBox onClick={() => { setShow(true); }}>
-          <Icon iconName={'addTag'} />
+          <Icon iconName="addTag" />
         </EditButtonBox>
       )}
     </>

@@ -15,14 +15,18 @@ export const setProjectFieldRedux = (id, field, value) => ({
   value,
 });
 
-export const getInitialProjects = (token, res) => async (dispatch, state) => {
+export const getInitialProjects = (token, res) => async (dispatch, getState) => {
   if (token) {
     const projects = await execQuery(getProjectsQuery);
     if (!projects) {
       isomorphicRedirectToLogin(res);
     } else {
       const result = await dispatch(setInitialProjects(projects.allProjects));
+      console.log(getState());
+      debugger;
+      //PAVLIK 1 in this line we have projects in store. We may check it by getState()
       return result;
+      
     }
   }
 };

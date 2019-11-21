@@ -126,6 +126,7 @@ const ProjectDetails = (prop1,prop2,prop3) => {
     id, name, description, tags, subLabel,
   } = useSelector((store) => {
     debugger;
+    //PAVLIK 3 this store not have ours project... so from where useSelect get state ?
     if (store.projects.items.length > 0) {
       return (store.projects.items[findProjectNumber(router.query.id, store.projects.items)]);
     }

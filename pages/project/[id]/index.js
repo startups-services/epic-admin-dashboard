@@ -14,7 +14,7 @@ const Index = () => (
   </App>
 );
 Index.getInitialProps = async ({
-  reduxStore: { dispatch }, res, req,
+  reduxStore: { dispatch, getState }, res, req,
 }) => {
   const tokenCookie = isomorphicGetTokenFromCookie(req);
   if (tokenCookie) {
@@ -23,7 +23,10 @@ Index.getInitialProps = async ({
   } else {
     isomorphicRedirectToLogin(res);
   }
-
+  
+  console.log(getState());
+  debugger;
+  //PAVLIK 2 it this line we have store too. You may check it by getState()
   return {};
 };
 

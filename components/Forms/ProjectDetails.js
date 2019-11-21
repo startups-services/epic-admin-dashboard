@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 
-import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import SubLabel from '../Labels/SubLabel';
@@ -15,9 +14,9 @@ import COLORS from '../constants';
 import DefaultAssigneeItem from './DefaultAssigneeItem';
 import TagsEditor from '../Tags/TagsEditor';
 import LiveInput from '../Inputs/LiveInput';
-import { setUserField } from '../../redux/activeUser/actions';
 import { setProjectField } from '../../redux/projects/actions';
 import findProjectNumber from '../../redux/_lib/findProjById';
+import Label from '../Labels/Label';
 
 const Columns = styled.div`
   display: flex;
@@ -50,15 +49,6 @@ const LabelBox = styled.div`
   margin-bottom: 15px;
   max-width: 300px;
  
-`;
-
-const SubLabelBox = styled.div`
-  margin-bottom: 30px;
-  display: flex;
-  align-items: center;
-  & div {
-    margin-right: 35px;
-  }
 `;
 
 const TextAreaBox = styled.div`
@@ -110,35 +100,39 @@ const ProjectDetails = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const {
-    id, name, description, tags,
+    id, name, description, tags, subLabel,
   } = useSelector((store) => {
-    debugger;
     if (store.projects.items.length > 0) {
       return (store.projects.items[findProjectNumber(router.query.id, store.projects.items)]);
     }
     return {
-      id: '', name: '', description: '', tags: [],
+      id: '', subLabel: '', name: '', description: '', tags: [],
     };
   });
 
 
   const [option, setOption] = useState(null);
-  const updateField = (name, value) => {
-    dispatch(setProjectField(id, name, value));
+  const updateField = (fieldName, fieldValue) => {
+    dispatch(setProjectField(id, fieldName, fieldValue));
   };
 
   return (
     <>
       <HeadersBelt>
         <LabelBox>
-          <LiveInput name="name" value={name} onSubmit={updateField} />
+          <LiveInput label="enter project name" name="name" value={name} onSubmit={updateField}>
+            <Label>
+              {name}
+            </Label>
+          </LiveInput>
         </LabelBox>
-        <SubLabelBox>
-          <SubLabel>
-          department
-          </SubLabel>
-          <Icon height="16px" iconName="edit" />
-        </SubLabelBox>
+        <LabelBox>
+          <LiveInput label="enter project sub label" name="subLabel" value={subLabel} onSubmit={updateField}>
+            <SubLabel>
+              {subLabel}
+            </SubLabel>
+          </LiveInput>
+        </LabelBox>
       </HeadersBelt>
 
       <Columns>
@@ -201,10 +195,5 @@ const ProjectDetails = () => {
     </>
   );
 };
-
-ProjectDetails.propTypes = {
-  props: PropTypes.object.isRequired,
-};
-
 
 export default ProjectDetails;

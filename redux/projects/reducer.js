@@ -12,7 +12,6 @@ const getProjectNumber = (id, projects) => projects.findIndex((elem) => elem.id 
 export default produce((state = initialState, action) => {
   switch (action.type) {
     case 'SET_PROJECT_FIELD':
-      debugger;
       const number = getProjectNumber(action.id, state.items);
       state.items[number][action.field] = action.value;
       return;

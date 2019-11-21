@@ -1,9 +1,7 @@
-import execQuery from '../../data/graphql/client';
+import execQuery, { isomorphicRedirectToLogin } from '../../data/graphql/client';
 import { SET_INITIAL_PROJECTS, SET_PROJECT_FIELD } from './constants';
-
 import { getProjectsQuery } from '../../data/graphql';
-import { updateUserQueries } from '../../data/graphql/User';
-import { setUserFieldRedux } from '../activeUser/actions';
+import { updateProjectQueries } from '../../data/graphql/Project';
 
 export const setInitialProjects = (projects) => ({
   type: SET_INITIAL_PROJECTS,
@@ -17,18 +15,21 @@ export const setProjectFieldRedux = (id, field, value) => ({
   value,
 });
 
-export const getInitialProjects = (token) => async (dispatch) => {
+export const getInitialProjects = (token, res) => async (dispatch) => {
   if (token) {
     const projects = await execQuery(getProjectsQuery);
-    return await dispatch(setInitialProjects(projects.allProjects));
+    if (!projects) {
+      isomorphicRedirectToLogin(res);
+    } else {
+      const result = await dispatch(setInitialProjects(projects.allProjects));
+      return result;
+    }
   }
 };
 
-export const setProjectField = (projectId, name, value) => async (dispatch, getState) => {
+export const setProjectField = (projectId, name, value) => async (dispatch) => {
   if (value || value === false || value === 0) {
     dispatch(setProjectFieldRedux(projectId, name, value));
-
-    const { activeUser: { data: { id } } } = getState();
-    await execQuery(updateUserQueries[name], { id, value });
+    await execQuery(updateProjectQueries[name], { id: projectId, value });
   }
 };

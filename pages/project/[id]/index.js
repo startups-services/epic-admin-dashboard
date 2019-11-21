@@ -17,10 +17,9 @@ Index.getInitialProps = async ({
   reduxStore: { dispatch }, res, req,
 }) => {
   const tokenCookie = isomorphicGetTokenFromCookie(req);
-
   if (tokenCookie) {
     const token = Token.checkAndUpdateToken(tokenCookie);
-    await dispatch(getInitialProjects(token));
+    await dispatch(getInitialProjects(token, res));
   } else {
     isomorphicRedirectToLogin(res);
   }

@@ -18,33 +18,7 @@ export const getProjectsQuery = `
     allProjects {
       id
       name
-      description
-      tags {
-        id
-        name
-        projects {
-          id
-          name
-        }
-      }
-      users {
-        id
-        name
-        ava
-      }
-      picture
-      status
-    }
-  }
-`;
-
-export const getProjectById = `
-  query getProjectById(
-    $id: ID!
-  ) {
-    Project(id: $id) {
-      id
-      name
+      subLabel
       description
       tags {
         id

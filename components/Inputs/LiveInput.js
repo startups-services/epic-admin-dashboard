@@ -1,9 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useState, useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
-import Label from '../Labels/Label';
 import Icon from '../Icons/Icon';
-import Input from './Input';
 import InputLabel from '../Labels/InputLabel';
 import COLORS from '../constants';
 import InputContainer from './InputContainer';
@@ -30,7 +28,7 @@ const InputField = styled.input`
 
 
 const LiveInput = ({
-  value = '', label = 'input label', onSubmit, type, disabled, name,
+  value = '', label = 'input label', onSubmit, type, disabled, name, children,
 }) => {
   const inputEl = useRef(null);
   const [isEdited, setIsEdited] = useState(false);
@@ -40,7 +38,11 @@ const LiveInput = ({
     e.preventDefault();
     e.stopPropagation();
     toggleLiveInput();
-    onSubmit(e.target[0].name, e.target[0].value);
+    if (e.target.length) {
+      onSubmit(e.target[0].name, e.target[0].value);
+    } else {
+      onSubmit(e.target.name, e.target.value);
+    }
   };
 
   useEffect(() => {
@@ -65,9 +67,7 @@ const LiveInput = ({
         </InputContainer>
       ) : (
         <LiveInputLabel>
-          <Label>
-            {value}
-          </Label>
+          {children}
           <EditButton onClick={toggleLiveInput}>
             <Icon height="16px" iconName="edit" />
           </EditButton>
@@ -80,10 +80,11 @@ const LiveInput = ({
 LiveInput.propTypes = {
   value: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
   type: PropTypes.string,
   disabled: PropTypes.string,
   name: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 LiveInput.defaultProps = {

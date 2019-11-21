@@ -12,7 +12,7 @@ Token.value = '';
 Token.checkAndUpdateToken = (userToken) => {
   if (userToken.length > 0) {
     Token.value = userToken;
-    return Token;
+    return Token.value;
   }
   return null;
 };

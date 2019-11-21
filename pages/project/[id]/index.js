@@ -19,7 +19,7 @@ Index.getInitialProps = async ({
   const tokenCookie = isomorphicGetTokenFromCookie(req);
   if (tokenCookie) {
     const token = Token.checkAndUpdateToken(tokenCookie);
-    await dispatch(getInitialProjects(token, res));
+    const result = await dispatch(getInitialProjects(token, res));
   } else {
     isomorphicRedirectToLogin(res);
   }

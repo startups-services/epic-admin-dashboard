@@ -14,9 +14,9 @@ const customStyles = {
   dropdownIndicator: (provided) => ({
     ...provided, display: 'none',
   }),
-  placeholder: (provided) => ({
-    ...provided, top: 'none', transform: 'none', position: 'none', margin: 0, display: 'flex',
-  }),
+  // placeholder: (provided) => ({
+  //   ...provided, top: 'none', transform: 'none', position: 'none', margin: 0, display: 'flex',
+  // }),
   menu: (provided) => ({
     ...provided, width: 'none',
   }),

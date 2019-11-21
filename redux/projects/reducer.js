@@ -16,6 +16,7 @@ export default produce((state = initialState, action) => {
       state.items[number][action.field] = action.value;
       return;
     case 'SET_INITIAL_PROJECTS':
+      debugger;
       state.items = action.projects;
       return;
     default:

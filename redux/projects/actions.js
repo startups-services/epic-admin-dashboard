@@ -15,7 +15,7 @@ export const setProjectFieldRedux = (id, field, value) => ({
   value,
 });
 
-export const getInitialProjects = (token, res) => async (dispatch) => {
+export const getInitialProjects = (token, res) => async (dispatch, state) => {
   if (token) {
     const projects = await execQuery(getProjectsQuery);
     if (!projects) {

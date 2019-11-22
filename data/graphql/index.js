@@ -1,17 +1,33 @@
 import execQuery from './client';
 
-export const getProjectTags = `
-  query{
-    allTags {
-      name
-      id
-      projects {
+export const deleteTagFromProjectQ = `
+  mutation (
+    $tagId: ID!
+    $projectId: ID!
+  ) {
+    removeFromProjectOnTag(
+      tagsTagId: $tagId
+      projectsProjectId: $projectId
+    ) {
+      projectsProject {
         id
+        tags {
+          id
+          name
+          projects {
+            id
+          }
+        }
+      }
+      tagsTag {
+        id
+        projects {
+          id
+        }
       }
     }
   }
 `;
-
 
 export const getProjectsQuery = `
   query {
@@ -25,7 +41,6 @@ export const getProjectsQuery = `
         name
         projects {
           id
-          name
         }
       }
       users {
@@ -92,6 +107,8 @@ export const removeTagFromProject = async ({ tagName, allTags, projectId }) => {
 
   await execQuery(updateTag, {
     id: result[0].id,
-    projectsIds: [...result[0].projects.filter(({ id }) => (id !== projectId)).map(({ id }) => (id))],
+    projectsIds: [...result[0].projects
+      .filter(({ id }) => (id !== projectId))
+      .map(({ id }) => (id))],
   });
 };

@@ -8,7 +8,7 @@ import initializeStore from '../store';
 let reduxStore;
 const getOrInitializeStore = (initialState) => {
   // Always make a new store if server, otherwise state is shared between requests
-  debugger;
+
   if (typeof window === 'undefined') {
     return initializeStore(initialState);
   }
@@ -23,17 +23,18 @@ const getOrInitializeStore = (initialState) => {
 
 
 const withRedux = (PageComponent, { ssr = true } = {}) => {
-  debugger;
   const WithRedux = ({ initialReduxState, ...props }) => {
     const store = getOrInitializeStore(initialReduxState);
     return (
       <Provider store={store}>
+        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <PageComponent {...props} />
       </Provider>
     );
   };
 
   WithRedux.propTypes = {
+    // eslint-disable-next-line react/forbid-prop-types
     initialReduxState: PropTypes.object.isRequired,
   };
 

@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
-import CreatableSelect from 'react-select/creatable';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import SubLabel from '../Labels/SubLabel';
@@ -19,7 +17,6 @@ import { setProjectField } from '../../redux/projects/actions';
 import findProjectNumber from '../../redux/_lib/findProjById';
 import Label from '../Labels/Label';
 import TagsEditorNEW from '../Tags/TagsEditorNEW';
-import withRedux from '../../redux/_lib/withRedux';
 
 const Columns = styled.div`
   display: flex;
@@ -119,14 +116,12 @@ const options = [
   { value: 'user3', label: <DefaultAssigneeItem name="Emanuel Kant" /> },
 ];
 
-const ProjectDetails = (prop1,prop2,prop3) => {
+const ProjectDetails = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const {
     id, name, description, tags, subLabel,
   } = useSelector((store) => {
-    debugger;
-    //PAVLIK 3 this store not have ours project... so from where useSelect get state ?
     if (store.projects.items.length > 0) {
       return (store.projects.items[findProjectNumber(router.query.id, store.projects.items)]);
     }
@@ -139,7 +134,6 @@ const ProjectDetails = (prop1,prop2,prop3) => {
   const updateField = (fieldName, fieldValue) => {
     dispatch(setProjectField(id, fieldName, fieldValue));
   };
-
   return (
     <>
       <HeadersBelt>
@@ -160,10 +154,9 @@ const ProjectDetails = (prop1,prop2,prop3) => {
       </HeadersBelt>
 
       <Columns>
-
         <Column>
           <TagsEditorBox>
-            <TagsEditorNEW options={tags} />
+            <TagsEditorNEW tags={tags} projectId={id} />
             <TagsEditor tags={tags} projectId={id} />
           </TagsEditorBox>
           <TextAreaBox>
@@ -221,4 +214,4 @@ const ProjectDetails = (prop1,prop2,prop3) => {
   );
 };
 
-export default withRedux(ProjectDetails);
+export default ProjectDetails;

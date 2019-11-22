@@ -12,11 +12,14 @@ const getProjectNumber = (id, projects) => projects.findIndex((elem) => elem.id 
 export default produce((state = initialState, action) => {
   switch (action.type) {
     case 'SET_PROJECT_FIELD':
-      const number = getProjectNumber(action.id, state.items);
-      state.items[number][action.field] = action.value;
+      state.items[getProjectNumber(action.id, state.items)][action.field] = action.value;
+      return;
+    case 'ADD_TAG_TO_PROJECT':
+
+
+      state.items[getProjectNumber(action.id, state.items)].tags.push(action.tag);
       return;
     case 'SET_INITIAL_PROJECTS':
-      debugger;
       state.items = action.projects;
       return;
     default:

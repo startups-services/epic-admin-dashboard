@@ -1,6 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import App from '../components/App';
-import withRedux from '../redux/_lib/withRedux';
 import { getInitialProjects } from '../redux/projects/actions';
 import Projects from '../components/PageComponents/Projects';
 import { isomorphicGetTokenFromCookie, isomorphicRedirectToLogin, Token } from '../data/graphql/client';
@@ -26,4 +26,4 @@ Index.getInitialProps = async ({ reduxStore, res, req }) => {
   return {};
 };
 
-export default withRedux(Index);
+export default connect()(Index);

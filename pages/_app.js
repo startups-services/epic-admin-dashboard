@@ -1,5 +1,7 @@
-import React from 'react';
 import App from 'next/app';
+import React from 'react';
+import { Provider } from 'react-redux';
+import withReduxStore from '../redux/_lib/with-redux-store';
 import './empty.css';
 
 class MyApp extends App {
@@ -16,9 +18,14 @@ class MyApp extends App {
   // }
 
   render() {
-    const { Component, pageProps } = this.props;
-    return <Component {...pageProps} />;
+    const { Component, pageProps, reduxStore } = this.props;
+    return (
+      <Provider store={reduxStore}>
+        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+        <Component {...pageProps} />
+      </Provider>
+    );
   }
 }
 
-export default MyApp;
+export default withReduxStore(MyApp);

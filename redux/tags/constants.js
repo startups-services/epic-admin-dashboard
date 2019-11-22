@@ -1,1 +1,3 @@
-export const GET_ALL_TAGS = 'GET_ALL_TAGS';
+export const SET_ALL_TAGS = 'SET_ALL_TAGS';
+export const ADD_TAG_TO_ALL_TAGS = 'ADD_TAG_TO_ALL_TAGS';
+export const DELETE_TAG_FROM_ALL_TAGS = 'DELETE_TAG_FROM_ALL_TAGS';

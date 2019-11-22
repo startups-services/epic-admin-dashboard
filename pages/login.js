@@ -3,7 +3,6 @@ import { useCookies } from 'react-cookie';
 import { css, Global } from '@emotion/core';
 import styled from '@emotion/styled';
 import Router from 'next/router';
-import withRedux from '../redux/_lib/withRedux';
 import execQuery, { createUserQ, signInUserQ } from '../data/graphql/client';
 import COLORS, { COOKIE_TOKEN_NAME } from '../components/constants';
 import Card from '../components/Cards/Card';
@@ -175,4 +174,4 @@ const Index = () => {
   );
 };
 
-export default withRedux(Index);
+export default Index;

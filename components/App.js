@@ -6,7 +6,6 @@ import { css, Global } from '@emotion/core';
 import Layout from './Layout/Layout';
 import COLORS, { COOKIE_TOKEN_NAME } from './constants';
 import { checkCurrUser } from '../redux/activeUser/actions';
-import withRedux from '../redux/_lib/withRedux';
 
 
 const Grid = css`
@@ -51,4 +50,4 @@ App.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default withRedux(App);
+export default App;

@@ -1,10 +1,11 @@
+/* eslint-disable no-underscore-dangle */
 import CreatableSelect from 'react-select/creatable';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import COLORS from '../constants';
 import { createNewTag, getAllTags } from '../../redux/tags/actions';
-import { addTagToProject, deleteTagFromProject } from '../../redux/projects/actions';
+import { addTagToProject, addTagToProjectRedux, deleteTagFromProject } from '../../redux/projects/actions';
 
 const tagStyles = {
   control: (styles) => ({ ...styles, backgroundColor: 'white', borderColor: COLORS.gray2 }),
@@ -69,24 +70,27 @@ const TagsEditorNEW = ({ tags, projectId }) => {
         return [];
       }
       if (prevState.length === 0) {
-        // TODO resolve collision here. new tag and existing tag went here
-        newTag = [...currTags[0]];
+        // eslint-disable-next-line prefer-destructuring
+        newTag = currTags[0]; // because currTag[0] is not iterable
       } else {
-        // eslint-disable-next-line no-underscore-dangle
         newTag = currTags.find((elem) => (elem.__isNew__ === true));
       }
 
-      if (newTag) {
+      if (newTag && newTag.__isNew__) {
         (async () => {
           const createTag = await dispatch(createNewTag(projectId, newTag.value));
-          dispatch(addTagToProject(projectId, createTag));
+          dispatch(addTagToProjectRedux(projectId, createTag));
+          currTags[currTags.length - 1] = createTag; // eslint-disable-line no-param-reassign
         })();
       } else if (prevState.length > currTags.length) {
         const deletedTag = prevState.find((elem, id) => (!currTags[id]));
         dispatch(deleteTagFromProject(projectId, deletedTag.id));
+      } else if (prevState.length < currTags.length) {
+        const addedTag = currTags.find((elem, id) => (!prevState[id]));
+        dispatch(addTagToProject(projectId, addedTag));
       } else {
-        // add tag to proj
-        // TODO:
+        // eslint-disable-next-line no-console
+        console.error('Error: impossible situation');
       }
       return currTags;
     }));

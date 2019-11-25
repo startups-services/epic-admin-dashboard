@@ -29,6 +29,35 @@ export const deleteTagFromProjectQ = `
   }
 `;
 
+export const addTagToProjectQ = `
+   mutation (
+    $tagId: ID!
+    $projectId: ID!
+  ) {
+    addToProjectOnTag(
+      tagsTagId: $tagId
+      projectsProjectId: $projectId
+    ) {
+      projectsProject {
+        id
+        tags {
+          id
+          name
+          projects {
+            id
+          }
+        }
+      }
+      tagsTag {
+        id
+        projects {
+          id
+        }
+      }
+    }
+  }
+`;
+
 export const getProjectsQuery = `
   query {
     allProjects {

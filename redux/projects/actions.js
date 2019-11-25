@@ -1,6 +1,6 @@
 import execQuery, { isomorphicRedirectToLogin } from '../../data/graphql/client';
 import { ADD_TAG_TO_PROJECT, SET_INITIAL_PROJECTS, SET_PROJECT_FIELD } from './constants';
-import { deleteTagFromProjectQ, getProjectsQuery } from '../../data/graphql';
+import { addTagToProjectQ, deleteTagFromProjectQ, getProjectsQuery } from '../../data/graphql';
 import { updateProjectQueries } from '../../data/graphql/Project';
 import { deleteTag } from '../tags/actions';
 
@@ -9,7 +9,7 @@ export const setInitialProjects = (projects) => ({
   projects,
 });
 
-export const addTagToProject = (id, tag) => ({
+export const addTagToProjectRedux = (id, tag) => ({
   type: ADD_TAG_TO_PROJECT,
   id,
   tag,
@@ -50,4 +50,9 @@ export const deleteTagFromProject = (projectId, tagId) => async (dispatch) => {
   if (projectsProject && projectsProject.tags && projectsProject.tags.length === 0) {
     dispatch(deleteTag(tagsTag.id));
   }
+};
+
+export const addTagToProject = (projectId, tag) => async (dispatch) => {
+  dispatch(addTagToProjectRedux(projectId, tag));
+  await execQuery(addTagToProjectQ, { projectId, tagId: tag.id });
 };

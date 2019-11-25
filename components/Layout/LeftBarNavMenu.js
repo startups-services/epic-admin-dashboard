@@ -21,7 +21,6 @@ export default function LeftBarNavMenu() {
       <LeftBarLink href="/integrations" iconName="integrations" label="Integrations" />
       <LeftBarLink href="/table" iconName="table" label="Table" />
       <LeftBarLink href="/calendar" iconName="calendar" label="Calendar" />
-      <LeftBarLink href="/project-details" iconName="timeline" label="Project details" />
       <LeftBarLink href="/user-edit" iconName="user" label="User edit" />
     </LeftBarNavMenuStyled>
   );

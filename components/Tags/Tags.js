@@ -18,7 +18,7 @@ Tags.propTypes = {
 };
 
 Tags.defaultProps = {
-  color: null,
+  color: undefined,
 };
 
 export default Tags;

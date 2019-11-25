@@ -11,12 +11,11 @@ import Icon from '../Icons/Icon';
 import MessageCard from '../Cards/MessageCard';
 import COLORS from '../constants';
 import DefaultAssigneeItem from './DefaultAssigneeItem';
-import TagsEditor from '../Tags/TagsEditor';
 import LiveInput from '../Inputs/LiveInput';
 import { setProjectField } from '../../redux/projects/actions';
 import findProjectNumber from '../../redux/_lib/findProjById';
 import Label from '../Labels/Label';
-import TagsEditorNEW from '../Tags/TagsEditorNEW';
+import TagsLiveEdit from '../Tags/TagsLiveEdit';
 
 const Columns = styled.div`
   display: flex;
@@ -88,26 +87,6 @@ const TagsEditorBox = styled.div`
   margin-bottom: 24px;
 `;
 
-export const colourOptions = [
-  {
-    value: 'ocean', label: 'Ocean', color: '#00B8D9', isFixed: true, myTestProp: 'test',
-  },
-  {
-    value: 'blue', label: 'Blue', color: '#0052CC', isDisabled: true,
-  },
-  { value: 'purple', label: 'Purple', color: '#5243AA' },
-  {
-    value: 'red', label: 'Red', color: '#FF5630', isFixed: true,
-  },
-  { value: 'orange', label: 'Orange', color: '#FF8B00' },
-  { value: 'yellow', label: 'Yellow', color: '#FFC400' },
-  { value: 'green', label: 'Green', color: '#36B37E' },
-  { value: 'forest', label: 'Forest', color: '#00875A' },
-  { value: 'slate', label: 'Slate', color: '#253858' },
-  { value: 'silver', label: 'Silver', color: '#666666' },
-];
-
-
 const options = [
   { value: 'null', label: 'unset assignee' },
   { value: 'user0', label: <DefaultAssigneeItem name="Robert Paulson" /> },
@@ -156,18 +135,17 @@ const ProjectDetails = () => {
       <Columns>
         <Column>
           <TagsEditorBox>
-            <TagsEditorNEW tags={tags} projectId={id} />
-            <TagsEditor tags={tags} projectId={id} />
+            <TagsLiveEdit tags={tags} projectId={id} />
           </TagsEditorBox>
           <TextAreaBox>
             <InputLabel>
-            Description
+              Description
             </InputLabel>
             <LiveEditTextArea id={id} defaultValue={description} />
           </TextAreaBox>
           <AssigneeBox>
             <InputLabel>
-            Members
+              Members
             </InputLabel>
             <AssigneeForm size="48px" options={options} onChange={(val) => setOption(val)} value={option} />
             <AssigneeForm size="48px" options={options} onChange={(val) => setOption(val)} value={option} />

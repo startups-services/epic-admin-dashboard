@@ -6,7 +6,7 @@ import COLORS from '../constants';
 
 const TagStyled = styled.button`
   background: ${COLORS.white};
-  border: 1px solid #32DC9B;
+  border: 1px solid ${({ color }) => color};
   box-sizing: border-box;
   border-radius: 3px;
   cursor: pointer;
@@ -20,7 +20,7 @@ const Label = styled.div`
   /* identical to box height */
   text-align: center;
   letter-spacing: 1.5px;
-  color: #32DC9B;
+  color: ${({ color }) => color};
   padding: 7px 8px;
 `;
 
@@ -29,10 +29,11 @@ const Tag = (
   {
     label,
     onClick,
+    color = COLORS.green3,
   },
 ) => (
-  <TagStyled onClick={onClick}>
-    <Label>
+  <TagStyled onClick={onClick} color={color}>
+    <Label color={color}>
       {label}
     </Label>
   </TagStyled>
@@ -41,10 +42,12 @@ const Tag = (
 Tag.propTypes = {
   label: PropTypes.string,
   onClick: PropTypes.func.isRequired,
+  color: PropTypes.string,
 };
 
 Tag.defaultProps = {
   label: '',
+  color: COLORS.green3,
 };
 
 export default Tag;

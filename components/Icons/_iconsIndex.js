@@ -12,6 +12,7 @@ import calendarGrey from './svg/calendar/grey.svg';
 import bell from './svg/bell.svg';
 import check from './svg/check.svg';
 import close from './svg/close.svg';
+import closeRed from './svg/close_red.svg';
 import collapseUp from './svg/collapse_up.svg';
 import dashboard from './svg/dashboard.svg';
 import details from './svg/details.svg';
@@ -48,12 +49,13 @@ const iconsIndex = {
   attachment,
   attachmentGreen,
   attachmentGrey,
+  bell,
   calendar,
   calendarGreen,
   calendarGrey,
-  bell,
   check,
   close,
+  closeRed,
   collapseUp,
   dashboard,
   details,

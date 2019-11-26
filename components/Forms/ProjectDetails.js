@@ -10,12 +10,13 @@ import InputLabel from '../Labels/InputLabel';
 import Icon from '../Icons/Icon';
 import MessageCard from '../Cards/MessageCard';
 import COLORS from '../constants';
-import DefaultAssigneeItem from './DefaultAssigneeItem';
+import AssigneeItem from './AssigneeItem';
 import LiveInput from '../Inputs/LiveInput';
 import { setProjectField } from '../../redux/projects/actions';
 import findProjectNumber from '../../redux/_lib/findProjById';
 import Label from '../Labels/Label';
 import TagsLiveEdit from '../Tags/TagsLiveEdit';
+import AssigneeEditor from './AssigneeEditor';
 
 const Columns = styled.div`
   display: flex;
@@ -89,17 +90,17 @@ const TagsEditorBox = styled.div`
 
 const options = [
   { value: 'null', label: 'unset assignee' },
-  { value: 'user0', label: <DefaultAssigneeItem name="Robert Paulson" /> },
-  { value: 'user1', label: <DefaultAssigneeItem name="Tom Andersen" /> },
-  { value: 'user2', label: <DefaultAssigneeItem name="Alex Simonyan" /> },
-  { value: 'user3', label: <DefaultAssigneeItem name="Emanuel Kant" /> },
+  { value: 'user0', label: <AssigneeItem name="Robert Paulson" /> },
+  { value: 'user1', label: <AssigneeItem name="Tom Andersen" /> },
+  { value: 'user2', label: <AssigneeItem name="Alex Simonyan" /> },
+  { value: 'user3', label: <AssigneeItem name="Emanuel Kant" /> },
 ];
 
 const ProjectDetails = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const {
-    id, name, description, tags, subLabel,
+    id, name, description, tags, subLabel, users,
   } = useSelector((store) => {
     if (store.projects.items.length > 0) {
       return (store.projects.items[findProjectNumber(router.query.id, store.projects.items)]);
@@ -109,7 +110,6 @@ const ProjectDetails = () => {
     };
   });
 
-  const [option, setOption] = useState(null);
   const updateField = (fieldName, fieldValue) => {
     dispatch(setProjectField(id, fieldName, fieldValue));
   };
@@ -147,9 +147,7 @@ const ProjectDetails = () => {
             <InputLabel>
               Members
             </InputLabel>
-            <AssigneeForm size="48px" options={options} onChange={(val) => setOption(val)} value={option} />
-            <AssigneeForm size="48px" options={options} onChange={(val) => setOption(val)} value={option} />
-            <AssigneeForm size="48px" options={options} onChange={(val) => setOption(val)} value={option} />
+            <AssigneeEditor projectUsers={users}/>
           </AssigneeBox>
           <DateBox>
             <Icon iconName="calendarGreen" />

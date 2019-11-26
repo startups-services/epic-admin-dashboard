@@ -9,7 +9,9 @@ const Placeholder = (props) => <components.Placeholder {...props} />;
 
 const AssigneeFormStyled = styled.div`
   display: inline-block;
+  position: relative;
   cursor: pointer;
+  margin-right: 10px;
   & div[class*="-control"] > div { // fix strange div without any classes
     padding: 0;
   }
@@ -26,22 +28,46 @@ const AssigneeFormStyled = styled.div`
     display: none;
   }
 
+  & :hover {
+    & div[class*="-singleValue"] {
+      opacity: 0.3;
+    }
+    & div[class*="-CustomClose"] {
+      display: block;
+    }
+  }
+`;
+
+const SelectContainer = styled.div`
+
+`;
+
+const CustomClose = styled.div`
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: none;
 `;
 
 const AssigneeForm = ({ size = '48px', ...rest }) => (
   <AssigneeFormStyled>
-    <Select
+    <SelectContainer>
+      <Select
       // defaultMenuIsOpen
-      isSearchable={false}
-      defaultValue={null}
-      isClearable
-      components={{ Placeholder }}
-      placeholder={
-        <Icon iconName="addNewUser" height={size} />
+        isSearchable={false}
+        defaultValue={null}
+        isClearable
+        components={{ Placeholder }}
+        placeholder={
+          <Icon iconName="addNewUser" height={size} />
       }
-      styles={customStyles}
-      {...rest}
-    />
+        styles={customStyles}
+        {...rest}
+      />
+    </SelectContainer>
+    <CustomClose>
+      <Icon iconName="close" />
+    </CustomClose>
   </AssigneeFormStyled>
 );
 AssigneeForm.propTypes = {

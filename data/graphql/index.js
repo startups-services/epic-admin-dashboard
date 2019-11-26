@@ -76,6 +76,7 @@ export const getProjectsQuery = `
         id
         name
         ava
+        email
       }
       picture
       status

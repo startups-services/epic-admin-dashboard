@@ -114,3 +114,19 @@ export const getActiveUser = `
     }
   }
 `;
+
+export const getAllUsersQ = `
+  query{
+  allUsers{
+    id
+    name
+    email
+    ava
+    company
+    
+    projects {
+      id
+    }
+  }
+}
+`;

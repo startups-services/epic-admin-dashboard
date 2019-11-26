@@ -88,11 +88,9 @@ const ProjectCard = ({
 ProjectCard.propTypes = {
   status: PropTypes.string,
   label: PropTypes.string.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
   tags: PropTypes.array.isRequired,
   src: PropTypes.string,
   description: PropTypes.string,
-  // eslint-disable-next-line react/forbid-prop-types
   users: PropTypes.array,
   id: PropTypes.string.isRequired,
 };

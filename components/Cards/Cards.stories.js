@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { action } from '@storybook/addon-actions';
 import ProjectFonts from '../Utility/ProjectFonts';
 import Card from './Card';
 import ProjectBackground from '../Utility/ProjectBackground';
@@ -33,7 +34,7 @@ export const messageCards = () => (
   <ProjectBackground>
     <ProjectFonts>
       <CardContainer width="450px">
-        <MessageCard src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg?s=200" />
+        <MessageCard email="supertest@email.com" />
       </CardContainer>
     </ProjectFonts>
   </ProjectBackground>
@@ -43,7 +44,7 @@ export const projectsCards = () => (
   <ProjectBackground>
     <ProjectFonts>
       <CardContainer>
-        <ProjectCard label="Holo Card Products" />
+        <ProjectCard id="" tags={[]} label="Holo Card Products" />
       </CardContainer>
     </ProjectFonts>
   </ProjectBackground>
@@ -68,6 +69,7 @@ export const integrationCards = () => (
             label="Slack"
             src={integrationsIndex.slack}
             status="disconnected"
+            onClick={action('clicked')}
           />
         </IntegrationsContainer>
         <IntegrationsContainer>
@@ -75,6 +77,7 @@ export const integrationCards = () => (
             label="GitHub"
             src={integrationsIndex.github}
             status="connected"
+            onClick={action('clicked')}
           />
         </IntegrationsContainer>
         <IntegrationsContainer>
@@ -82,6 +85,7 @@ export const integrationCards = () => (
             label="Trello"
             src={integrationsIndex.trello}
             status="auth"
+            onClick={action('clicked')}
           />
         </IntegrationsContainer>
         <IntegrationsContainer>
@@ -89,6 +93,7 @@ export const integrationCards = () => (
             label="Slack"
             src={integrationsIndex.slack}
             status="connected"
+            onClick={action('clicked')}
           />
         </IntegrationsContainer>
         <IntegrationsContainer>
@@ -96,6 +101,7 @@ export const integrationCards = () => (
             label="Slack"
             src={integrationsIndex.slack}
             status="connected"
+            onClick={action('clicked')}
           />
         </IntegrationsContainer>
       </IntegrationsGrid>

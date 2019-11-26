@@ -1,6 +1,7 @@
 {
   "rules": {
-    "react/jsx-filename-extension" : "off"
+    "react/jsx-filename-extension" : "off",
+    "react/forbid-prop-types": "off"
   },
   "parser": "babel-eslint",
   "extends": "airbnb"

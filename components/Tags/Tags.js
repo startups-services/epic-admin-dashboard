@@ -12,7 +12,6 @@ const Tags = ({ tags, color }) => (
 );
 
 Tags.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
   tags: PropTypes.array.isRequired,
   color: PropTypes.string,
 };

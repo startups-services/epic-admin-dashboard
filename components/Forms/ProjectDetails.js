@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import SubLabel from '../Labels/SubLabel';
 import LiveEditTextArea from '../Inputs/TextArea';
-import AssigneeForm from './AssigneeForm';
 import DateInput from '../Inputs/DatePicker';
 import InputLabel from '../Labels/InputLabel';
 import Icon from '../Icons/Icon';
 import MessageCard from '../Cards/MessageCard';
 import COLORS from '../constants';
-import AssigneeItem from './AssigneeItem';
 import LiveInput from '../Inputs/LiveInput';
 import { setProjectField } from '../../redux/projects/actions';
 import findProjectNumber from '../../redux/_lib/findProjById';
@@ -88,14 +86,6 @@ const TagsEditorBox = styled.div`
   margin-bottom: 24px;
 `;
 
-const options = [
-  { value: 'null', label: 'unset assignee' },
-  { value: 'user0', label: <AssigneeItem name="Robert Paulson" /> },
-  { value: 'user1', label: <AssigneeItem name="Tom Andersen" /> },
-  { value: 'user2', label: <AssigneeItem name="Alex Simonyan" /> },
-  { value: 'user3', label: <AssigneeItem name="Emanuel Kant" /> },
-];
-
 const ProjectDetails = () => {
   const dispatch = useDispatch();
   const router = useRouter();
@@ -147,7 +137,7 @@ const ProjectDetails = () => {
             <InputLabel>
               Members
             </InputLabel>
-            <AssigneeEditor projectUsers={users} projectId={id}/>
+            <AssigneeEditor projectUsers={users} projectId={id} />
           </AssigneeBox>
           <DateBox>
             <Icon iconName="calendarGreen" />
@@ -179,9 +169,9 @@ const ProjectDetails = () => {
             <InputLabel style={{ marginBottom: '18px' }}>
             Discussion
             </InputLabel>
-            <MessageCard src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg?s=50" />
-            <MessageCard src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg?s=50" />
-            <MessageCard src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg?s=50" />
+            <MessageCard email="test1@ya.ru" />
+            <MessageCard email="test2@gmail.ru" />
+            <MessageCard email="test3@test.ru" />
 
           </MessageBox>
         </Column>

@@ -12,7 +12,6 @@ const ItemBox = styled.div`
 
 const Projects = () => {
   const projects = useSelector((state) => state.projects.items);
-
   const { width } = useWindowSize();
   return (
     <Masonry width={width}>

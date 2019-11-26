@@ -118,7 +118,6 @@ const TagsEditor = ({ tags, projectId }) => {
 };
 
 TagsEditor.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
   tags: PropTypes.array.isRequired,
   projectId: PropTypes.string.isRequired,
 };

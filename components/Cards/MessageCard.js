@@ -38,12 +38,12 @@ const ButtonsBox = styled.div`
   }
 `;
 
-const MessageCard = ({ src }) => (
+const MessageCard = ({ email }) => (
   <Card>
     <MessageCardStyled>
       <TopBox>
         <UserAvatar
-          src={src}
+          email={email}
           name="Adam Smith"
           size="26px"
         />
@@ -72,7 +72,7 @@ const MessageCard = ({ src }) => (
 );
 
 MessageCard.propTypes = {
-  src: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
 };
 
 export default MessageCard;

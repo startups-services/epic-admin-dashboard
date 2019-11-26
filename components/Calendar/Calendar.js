@@ -30,9 +30,9 @@ const CustomizedCalendar = ({ users, events }) => (
       startAccessor="start"
       endAccessor="end"
 
-      resources={users.map(({ name, src, id }) => ({
+      resources={users.map(({ name, id, email }) => ({
         resourceId: id,
-        resourceTitle: <UserAvatar src={src} name={name} />,
+        resourceTitle: <UserAvatar email={email} name={name} />,
       }))}
       resourceIdAccessor="resourceId"
       resourceTitleAccessor="resourceTitle"

@@ -1,6 +1,5 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import md5 from 'md5';
 import { action } from '@storybook/addon-actions';
 import styled from '@emotion/styled';
 import Input from '../Inputs/Input';
@@ -127,9 +126,7 @@ const UserEditForm = () => {
           <UserAvaBlock>
             <UserAvatar
               size="100px"
-              src={`https://secure.gravatar.com/avatar/${
-                md5(email.trim().toLocaleLowerCase())
-              }?s=120&d=retro`}
+              email={email}
             />
             <UploadButton onClick={action('clicked')}>
               upload image
@@ -160,7 +157,7 @@ const UserEditForm = () => {
             type="password"
             name="confirmPass"
           />
-          {/* eslint-disable-next-line no-alert */}
+          {/* eslint-disable-next-line no-alert,no-undef */}
           <Button onClick={() => { alert('mock password changes'); }} background={COLORS.green1} bordered={false}>
             Change Password
           </Button>

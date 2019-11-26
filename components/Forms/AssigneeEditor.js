@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import AssigneeForm from './AssigneeForm';
 import AssigneeItem from './AssigneeItem';
 import { addUserToProject, deleteUserFromProject, setProjectField } from '../../redux/projects/actions';
+
 
 const AssigneeEditor = ({ projectId, projectUsers }) => {
   const users = useSelector((store) => store.users.items);
   const dispatch = useDispatch();
 
   const userOptions = (projectUsersKey) => {
-    const unusedUsers = users.filter((elem) => !projectUsers.find((prjUser) => elem.id === prjUser.id));
-    const options = unusedUsers.map((user, key) => (
+    const unusedUsers = users
+      .filter((elem) => !projectUsers
+        .find((prjUser) => elem.id === prjUser.id));
+    const options = unusedUsers.map((user) => (
       {
         value: user.id,
         label: <AssigneeItem email={user.email} name={user.name ? user.name : user.email} />,
@@ -25,7 +29,6 @@ const AssigneeEditor = ({ projectId, projectUsers }) => {
   };
 
   const updateExistingAssignee = (val) => {
-    debugger;
     if (val.value) {
       const newUsers = [...projectUsers];
       newUsers[val.projUserKey] = val.user;
@@ -49,10 +52,14 @@ const AssigneeEditor = ({ projectId, projectUsers }) => {
           size="48px"
           options={userOptions(key)}
           onChange={updateExistingAssignee}
-          value={{ value: projUser.id, label: <AssigneeItem email={projUser.email} name={projUser.name} /> }}
+          value={{
+            value: projUser.id,
+            label: <AssigneeItem email={projUser.email} name={projUser.name} />,
+          }}
         />
       ))}
       <AssigneeForm
+        key={Date()}
         size="48px"
         options={userOptions(projectUsers.length)}
         onChange={updateExistingAssignee}
@@ -60,6 +67,11 @@ const AssigneeEditor = ({ projectId, projectUsers }) => {
       />
     </>
   );
+};
+
+AssigneeEditor.propTypes = {
+  projectId: PropTypes.string.isRequired,
+  projectUsers: PropTypes.array.isRequired,
 };
 
 export default AssigneeEditor;

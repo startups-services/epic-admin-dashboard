@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { useSelector } from 'react-redux';
-import md5 from 'md5';
 import COLORS from '../constants';
 import { contentPadding } from './Content';
 import Icon from '../Icons/Icon';
@@ -69,9 +68,7 @@ const TopBar = () => {
         {users.length && users.map((elem) => (
           <AvaBox key={elem}>
             <UserAvatar
-              src={`https://secure.gravatar.com/avatar/${
-                md5(elem.email.trim().toLocaleLowerCase())
-              }?s=120&d=retro`}
+              email={elem.email}
               square
               borderRadius="10px"
               size="26px"

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
+import md5 from 'md5';
 
 const UserAvatarContainer = styled.div`
   display: inline-flex;
@@ -23,7 +24,7 @@ const UserName = styled.div`
 `;
 
 const UserAvatar = ({
-  square = false, size = '16px', name, src, borderRadius = '16px',
+  square = false, size = '16px', name, borderRadius = '16px', email = '',
 }) => (
   <UserAvatarContainer>
     <UserAvatarStyled
@@ -31,7 +32,9 @@ const UserAvatar = ({
       size={size}
       square={square}
       style={{ display: 'flex' }}
-      src={src}
+      src={`https://secure.gravatar.com/avatar/${
+        md5(email.trim().toLocaleLowerCase())
+      }?s=120&d=retro`}
     />
     {(name) && (
       <UserName>
@@ -42,11 +45,11 @@ const UserAvatar = ({
 );
 
 UserAvatar.propTypes = {
-  src: PropTypes.string.isRequired,
   name: PropTypes.string,
   square: PropTypes.bool,
   size: PropTypes.string,
   borderRadius: PropTypes.string,
+  email: PropTypes.string.isRequired,
 };
 
 UserAvatar.defaultProps = {

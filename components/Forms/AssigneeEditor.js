@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import AssigneeForm from './AssigneeForm';
 import AssigneeItem from './AssigneeItem';
 import { addUserToProject, deleteUserFromProject, setProjectField } from '../../redux/projects/actions';
-import { deleteUserFromProjectQ } from '../../data/graphql';
 
 const AssigneeEditor = ({ projectId, projectUsers }) => {
   const users = useSelector((store) => store.users.items);
   const dispatch = useDispatch();
 
   const userOptions = (projectUsersKey) => {
-    const options = users.map((user, key) => (
+    const unusedUsers = users.filter((elem) => !projectUsers.find((prjUser) => elem.id === prjUser.id));
+    const options = unusedUsers.map((user, key) => (
       {
         value: user.id,
         label: <AssigneeItem email={user.email} name={user.name ? user.name : user.email} />,

@@ -27,7 +27,6 @@ const AssigneeFormStyled = styled.div`
   & div[class*="-singleValue"] div[class*="-UserName"] { // hide single name from chosen user
     display: none;
   }
-
 `;
 
 

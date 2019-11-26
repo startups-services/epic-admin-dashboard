@@ -21,6 +21,7 @@ const Table = () => {
             costs={`${(Math.random() * 1000).toFixed(0)} $`}
             name={project.name}
             status={project.status}
+            id={project.id}
           />
         ))}
       </tbody>

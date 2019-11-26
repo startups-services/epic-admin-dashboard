@@ -49,6 +49,7 @@ const AssigneeEditor = ({ projectId, projectUsers }) => {
     <>
       {projectUsers.map((projUser, key) => (
         <AssigneeForm
+          key={projUser.email}
           size="48px"
           options={userOptions(key)}
           onChange={updateExistingAssignee}

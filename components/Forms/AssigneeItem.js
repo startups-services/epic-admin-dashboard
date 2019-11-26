@@ -14,10 +14,10 @@ const AssigneeItemStyled = styled.div`
   cursor: pointer;
 `;
 
-const AssigneeItem = ({ name, email="" }) => (
+const AssigneeItem = ({ name, email = "" }) => (
   <AssigneeItemStyled>
     <UserAvatar
-      size="40px"
+      size="48px"
       src={`https://secure.gravatar.com/avatar/${
         md5(email.trim().toLocaleLowerCase())
       }?s=120&d=retro`}

@@ -123,7 +123,6 @@ export const getAllUsersQ = `
     email
     ava
     company
-    
     projects {
       id
     }

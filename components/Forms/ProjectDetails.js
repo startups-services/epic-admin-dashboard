@@ -147,7 +147,7 @@ const ProjectDetails = () => {
             <InputLabel>
               Members
             </InputLabel>
-            <AssigneeEditor projectUsers={users}/>
+            <AssigneeEditor projectUsers={users} projectId={id}/>
           </AssigneeBox>
           <DateBox>
             <Icon iconName="calendarGreen" />

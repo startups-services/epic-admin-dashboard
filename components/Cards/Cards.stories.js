@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { action } from '@storybook/addon-actions';
-import ProjectFonts from '../Utility/ProjectFonts';
+import ProjectFonts from '../_Utility/ProjectFonts';
 import Card from './Card';
-import ProjectBackground from '../Utility/ProjectBackground';
+import ProjectBackground from '../_Utility/ProjectBackground';
 import IntegrationCard from './IntegrationCard';
 import integrationsIndex from '../Icons/_integrationsIndex';
 import ProjectCard from './ProjectCard';

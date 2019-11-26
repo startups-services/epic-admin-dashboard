@@ -6,7 +6,7 @@ import { contentPadding } from './Content';
 import Icon from '../Icons/Icon';
 import UserAvatar from '../Avatars/UserAvatar';
 import StatusIcon from '../Statuses/StatusIcon';
-import { topDocumentPadding } from '../Utility/constants';
+import { topDocumentPadding } from '../_Utility/constants';
 
 const TopBarStyled = styled.div`
   background-color: ${COLORS.white};
@@ -66,7 +66,7 @@ const TopBar = () => {
           <StatusIcon color={COLORS.red} />
         </IconBox>
         {users.length && users.map((elem) => (
-          <AvaBox key={elem}>
+          <AvaBox key={elem.email}>
             <UserAvatar
               email={elem.email}
               square

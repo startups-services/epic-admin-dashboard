@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import ProjectFonts from '../Utility/ProjectFonts';
+import ProjectFonts from '../_Utility/ProjectFonts';
 import Tag from './Tag';
 
 export default {

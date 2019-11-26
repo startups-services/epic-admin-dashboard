@@ -32,7 +32,7 @@ const TableRow = ({
     </TdStyled>
     <TdStyled>{name}</TdStyled>
     <TdStyled>
-      <ProjectStatus status={status} />
+      <ProjectStatus status={status} key={`status${name}`} />
     </TdStyled>
     <TdStyled>
       <ProgressBarBox>
@@ -57,7 +57,7 @@ TableRow.propTypes = {
   status: PropTypes.string.isRequired,
   userArray: PropTypes.array.isRequired,
   costs: PropTypes.string.isRequired,
-  percent: PropTypes.number.isRequired,
+  percent: PropTypes.string.isRequired,
 };
 
 export default TableRow;

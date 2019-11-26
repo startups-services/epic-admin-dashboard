@@ -3,7 +3,7 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 
 import DescriptionForm from './DescriptionForm';
-import debounce from '../Utility/debounce';
+import debounce from '../_Utility/debounce';
 import { updateProjectDescription } from '../../data/graphql';
 import execQuery from '../../data/graphql/client';
 

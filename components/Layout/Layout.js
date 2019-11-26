@@ -6,7 +6,7 @@ import HtmlHead from './HtmlHead';
 import Content from './Content';
 import COLORS from '../constants';
 import LeftBarNavMenu from './LeftBarNavMenu';
-import { leftDocumentPadding, topDocumentPadding } from '../Utility/constants';
+import { leftDocumentPadding, topDocumentPadding } from '../_Utility/constants';
 
 const Grid = styled.div`
   display: grid;

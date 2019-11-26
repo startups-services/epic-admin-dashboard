@@ -6,7 +6,7 @@ import Input from '../Inputs/Input';
 import Button from '../Buttons/Button';
 import COLORS from '../constants';
 import UserAvatar from '../Avatars/UserAvatar';
-import debounce from '../Utility/debounce';
+import debounce from '../_Utility/debounce';
 import { setUserField } from '../../redux/activeUser/actions';
 import Select from '../Inputs/Select';
 import Label from '../Labels/Label';

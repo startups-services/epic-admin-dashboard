@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ProjectFonts from '../Utility/ProjectFonts';
-import ProjectBackground from '../Utility/ProjectBackground';
+import ProjectFonts from '../_Utility/ProjectFonts';
+import ProjectBackground from '../_Utility/ProjectBackground';
 import Card from '../Cards/Card';
 
 import Icon from './Icon';

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 
 const ProjectFontsStyle = styled.div`
@@ -15,12 +16,16 @@ const ProjectFontsStyle = styled.div`
   }
 `;
 
-const ProjectFonts = (props) => (
+const ProjectFonts = ({ children }) => (
   <>
     <ProjectFontsStyle>
-      {props.children}
+      {children}
     </ProjectFontsStyle>
   </>
 );
+
+ProjectFonts.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default ProjectFonts;

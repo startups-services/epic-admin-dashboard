@@ -14,12 +14,13 @@ const Table = () => {
       <tbody>
         {projects.map((project) => (
           <TableRow
+            key={project.name}
             userArray={project.users}
-            percent={0}
+            percent={(Math.random() * 100).toFixed(0)}
             avatarLabel={project.name.charAt(0)}
-            costs="2000$"
+            costs={`${(Math.random() * 1000).toFixed(0)} $`}
             name={project.name}
-            status="progress"
+            status={project.status}
           />
         ))}
       </tbody>

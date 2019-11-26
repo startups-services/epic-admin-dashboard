@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import App from '../components/App';
 import Projects from '../components/PageComponents/Projects';
-import pageInitialData from '../components/Utility/pageInitialData';
+import pageInitialData from '../components/_Utility/pageInitialData';
 
 const Index = () => (
   <App>

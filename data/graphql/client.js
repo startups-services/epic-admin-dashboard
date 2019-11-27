@@ -59,17 +59,23 @@ const execQuery = async (query, variables) => {
 
 export default execQuery;
 
+export const execQueryWithNoToken = async (query, variables) => {
+  try {
+    const graphQLClient = new GraphQLClient(endpoint);
+    return await graphQLClient.request(query, variables);
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.error(e);
+    return null;
+  }
+};
+
 export const signInUserQ = `
 mutation ($email: String!, $password: String!) {
   signinUser(email: { email: $email, password:$password }) {
     token
     user {
       id
-      password
-      name
-      projects {
-        id
-      }
     }
   }
 }

@@ -1,6 +1,7 @@
 import { ADD_TAG_TO_ALL_TAGS, DELETE_TAG_FROM_ALL_TAGS, SET_ALL_TAGS } from './constants';
 import execQuery from '../../data/graphql/client';
 import { createNewTagQ, deleteTagQ, getAllTagsQ } from '../../data/graphql/Tag';
+import { addTagToProjectRedux } from '../projects/actions';
 
 export const setAllTags = (tags) => ({
   type: SET_ALL_TAGS,
@@ -32,4 +33,10 @@ export const createNewTag = (projectId, name) => async (dispatch) => {
 export const deleteTag = (id) => async (dispatch) => {
   await execQuery(deleteTagQ, { id });
   dispatch(deleteTagFromAllTags(id));
+};
+
+export const createTag = (projectId, newTag, currTags) => async (dispatch) => {
+  const createdTag = await dispatch(createNewTag(projectId, newTag.value));
+  dispatch(addTagToProjectRedux(projectId, createdTag));
+  currTags[currTags.length - 1] = createdTag; // eslint-disable-line no-param-reassign
 };

@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import COLORS from '../constants';
-import { getAllTags } from '../../redux/tags/actions';
+import { createTag, getAllTags } from '../../redux/tags/actions';
 import { addTagToProject, deleteTagFromProject } from '../../redux/projects/actions';
-import { createTag } from '../../redux/tags/complicateActions';
+
 
 const tagStyles = {
   control: (styles) => ({ ...styles, backgroundColor: 'white', borderColor: COLORS.gray2 }),

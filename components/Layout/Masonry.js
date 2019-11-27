@@ -21,11 +21,14 @@ const ColumnContainer = styled.div`
 const getColNumber = (width) => {
   if (width >= breakPoints.xl) {
     return 4;
-  } if (breakPoints.lg <= width && width < breakPoints.xl) {
+  }
+  if (breakPoints.lg <= width && width < breakPoints.xl) {
     return 3;
-  } if (breakPoints.md <= width && width < breakPoints.lg) {
+  }
+  if (breakPoints.md <= width && width < breakPoints.lg) {
     return 2;
-  } if (width <= breakPoints.md) {
+  }
+  if (width <= breakPoints.md) {
     return 1;
   }
   return 1;

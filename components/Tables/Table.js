@@ -18,7 +18,7 @@ const Table = () => {
             userArray={project.users}
             percent={(Math.random() * 100).toFixed(0)}
             avatarLabel={project.name.charAt(0)}
-            costs={`${(Math.random() * 1000).toFixed(0)} $`}
+            costs={`${project.costs} $`}
             name={project.name}
             status={project.status}
             id={project.id}

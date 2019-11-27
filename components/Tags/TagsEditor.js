@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import COLORS from '../constants';
-import { createNewTag, getAllTags } from '../../redux/tags/actions';
-import { addTagToProject, addTagToProjectRedux, deleteTagFromProject } from '../../redux/projects/actions';
+import { getAllTags } from '../../redux/tags/actions';
+import { addTagToProject, deleteTagFromProject } from '../../redux/projects/actions';
+import { createTag } from '../../redux/tags/complicateActions';
 
 const tagStyles = {
   control: (styles) => ({ ...styles, backgroundColor: 'white', borderColor: COLORS.gray2 }),
@@ -46,7 +47,7 @@ const tagStyles = {
   }),
 };
 
-const translateToSelectFormat = (arr) => (arr.map((elem) => {
+const convertToSelectFormat = (arr) => (arr.map((elem) => {
   const translatedElem = { ...elem };
   if (!translatedElem.value) {
     translatedElem.value = elem.name;
@@ -81,15 +82,11 @@ const TagsEditor = ({ tags, projectId }) => {
         // eslint-disable-next-line prefer-destructuring
         newTag = currTags[0]; // because currTag[0] is not iterable
       } else {
-        newTag = currTags.find((elem) => (elem.__isNew__ === true));
+        newTag = currTags.find((elem) => elem.__isNew__);
       }
 
       if (newTag && newTag.__isNew__) {
-        (async () => {
-          const createTag = await dispatch(createNewTag(projectId, newTag.value));
-          dispatch(addTagToProjectRedux(projectId, createTag));
-          currTags[currTags.length - 1] = createTag; // eslint-disable-line no-param-reassign
-        })();
+        dispatch(createTag(projectId, newTag, currTags));
       } else if (prevState.length > currTags.length) {
         const deletedTag = prevState.find((elem, id) => (!currTags[id]));
         dispatch(deleteTagFromProject(projectId, deletedTag.id));
@@ -109,8 +106,8 @@ const TagsEditor = ({ tags, projectId }) => {
         isClearable
         isMulti
         onChange={onChange}
-        value={translateToSelectFormat(value || [])}
-        options={translateToSelectFormat(allTags || [])}
+        value={convertToSelectFormat(value || [])}
+        options={convertToSelectFormat(allTags || [])}
         styles={tagStyles}
       />
     </>

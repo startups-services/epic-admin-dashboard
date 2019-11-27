@@ -23,3 +23,15 @@ updateProjectQueries.subLabel = `
     }
   }
 `;
+
+updateProjectQueries.costs = `
+  mutation (
+    $id: ID!
+    $value: String!
+  ) {
+    updateProject(id: $id, costs: $value) {
+      id
+      costs
+    }
+  }
+`;

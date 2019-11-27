@@ -10,7 +10,7 @@ const AssigneeEditor = ({ projectId, projectUsers }) => {
   const users = useSelector((store) => store.users.items);
   const dispatch = useDispatch();
 
-  const userOptions = (projectUsersKey) => {
+  const userOptions = (projUserKey) => {
     const unusedUsers = users
       .filter((elem) => !projectUsers
         .find((prjUser) => elem.id === prjUser.id));
@@ -19,11 +19,11 @@ const AssigneeEditor = ({ projectId, projectUsers }) => {
         value: user.id,
         label: <AssigneeItem email={user.email} name={user.name ? user.name : user.email} />,
         user,
-        projUserKey: projectUsersKey,
+        projUserKey,
       }
 
     ));
-    options.unshift({ value: false, label: 'unset assignee', projUserKey: projectUsersKey });
+    options.unshift({ value: false, label: 'unset assignee', projUserKey });
 
     return options;
   };

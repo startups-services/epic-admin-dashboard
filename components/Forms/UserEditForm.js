@@ -97,7 +97,7 @@ const UserEditForm = () => {
             <InputBox>
               <Input
                 name="name"
-                label="user name"
+                label="username"
                 onChange={onChange}
                 value={name}
                 type="text"
@@ -168,7 +168,7 @@ const UserEditForm = () => {
           <Select
             defaultValue={dateFormat}
             label="Date Format"
-            onChange={(e) => updateString(e.target.name, e.target.value)}
+            onChange={onChange}
             options={[
               { value: 'DD/MM/YY', name: 'DD/MM/YY' },
               { value: 'MM/DD/YY', name: 'MM/DD/YY' },
@@ -180,7 +180,7 @@ const UserEditForm = () => {
           <Select
             label="Time Format"
             defaultValue={timeFormat}
-            onChange={(e) => updateString(e.target.name, e.target.value)}
+            onChange={onChange}
             options={[
               { value: 'hh:mm:ss', name: 'hh:mm:ss' },
               { value: 'h.mm', name: 'h.mm' },
@@ -192,7 +192,7 @@ const UserEditForm = () => {
           <Select
             label="Time Zone"
             defaultValue={timeZone}
-            onChange={(e) => updateString(e.target.name, e.target.value)}
+            onChange={onChange}
             options={[
               { value: '0 GMT', name: '0 GMT' },
               { value: '-1 GMT', name: '-1 GMT' },

@@ -104,6 +104,7 @@ export const getProjectsQuery = `
       name
       subLabel
       description
+      costs
       tags {
         id
         name

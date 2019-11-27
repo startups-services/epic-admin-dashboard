@@ -11,7 +11,7 @@ import MessageCard from '../Cards/MessageCard';
 import COLORS from '../constants';
 import LiveInput from '../Inputs/LiveInput';
 import { setProjectField } from '../../redux/projects/actions';
-import findProjectNumber from '../../redux/_lib/findProjById';
+import findProjectIndex from '../../redux/_lib/findProjById';
 import Label from '../Labels/Label';
 import TagsLiveEdit from '../Tags/TagsLiveEdit';
 import AssigneeEditor from './AssigneeEditor';
@@ -90,10 +90,10 @@ const ProjectDetails = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const {
-    id, name, description, tags, subLabel, users,
+    id, name, description, tags, subLabel, users, costs,
   } = useSelector((store) => {
     if (store.projects.items.length > 0) {
-      return (store.projects.items[findProjectNumber(router.query.id, store.projects.items)]);
+      return (store.projects.items[findProjectIndex(router.query.id, store.projects.items)]);
     }
     return {
       id: '', subLabel: '', name: '', description: '', tags: [],
@@ -132,6 +132,11 @@ const ProjectDetails = () => {
               Description
             </InputLabel>
             <LiveEditTextArea id={id} defaultValue={description} />
+          </TextAreaBox>
+          <TextAreaBox>
+            <LiveInput label="costs" name="costs" value={costs} onSubmit={updateField} showLabel>
+              {`${costs} $`}
+            </LiveInput>
           </TextAreaBox>
           <AssigneeBox>
             <InputLabel>

@@ -28,7 +28,7 @@ const InputField = styled.input`
 
 
 const LiveInput = ({
-  value = '', label = 'input label', onSubmit, type, disabled, name, children,
+  value = '', label = 'input label', onSubmit, type, disabled, name, children, showLabel = false,
 }) => {
   const inputEl = useRef(null);
   const [isEdited, setIsEdited] = useState(false);
@@ -66,12 +66,15 @@ const LiveInput = ({
           </form>
         </InputContainer>
       ) : (
-        <LiveInputLabel>
-          {children}
-          <EditButton onClick={toggleLiveInput}>
-            <Icon height="16px" iconName="edit" />
-          </EditButton>
-        </LiveInputLabel>
+        <>
+          {showLabel && <InputLabel>{label}</InputLabel>}
+          <LiveInputLabel>
+            {children}
+            <EditButton onClick={toggleLiveInput}>
+              <Icon height="16px" iconName="edit" />
+            </EditButton>
+          </LiveInputLabel>
+        </>
       )}
     </>
   );
@@ -85,11 +88,13 @@ LiveInput.propTypes = {
   disabled: PropTypes.string,
   name: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
+  showLabel: PropTypes.bool,
 };
 
 LiveInput.defaultProps = {
   type: 'text',
   disabled: false,
+  showLabel: false,
 };
 
 export default LiveInput;

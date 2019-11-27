@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import ProgressIcon from '../Icons/ProgressIcon';
 import COLORS from '../constants';
@@ -34,12 +35,19 @@ const Label = styled.div`
 const ProjectStatus = ({ status = 'completed' }) => (
   <>
     <div style={{ display: 'flex', alignItems: 'center', height: '16px' }}>
-      <ProgressIcon color={statuses[status] ? statuses[status].color : COLORS.red} />
+      <ProgressIcon
+        color={statuses[status] ? statuses[status].color : COLORS.red}
+        status={status}
+      />
       <Label>
         {statuses[status] ? statuses[status].name : 'progress error!'}
       </Label>
     </div>
   </>
 );
+
+ProjectStatus.propTypes = {
+  status: PropTypes.string.isRequired,
+};
 
 export default ProjectStatus;

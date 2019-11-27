@@ -6,8 +6,7 @@ import HtmlHead from './HtmlHead';
 import Content from './Content';
 import COLORS from '../constants';
 import LeftBarNavMenu from './LeftBarNavMenu';
-import Icon from '../Icons/Icon';
-import { leftDocumentPadding, topDocumentPadding } from '../Utility/constants';
+import { leftDocumentPadding, topDocumentPadding } from '../_Utility/constants';
 
 const Grid = styled.div`
   display: grid;
@@ -28,16 +27,14 @@ const LeftBarTop = styled.div`
   padding: ${topDocumentPadding} 0 0 ${leftDocumentPadding};
 `;
 
-const Layout = props => (
+const Layout = ({ children }) => (
   <Grid>
     <HtmlHead />
-    <LeftBarTop>
-      <Icon iconName={'menu'} />
-    </LeftBarTop>
+    <LeftBarTop />
     <LeftBarNavMenu />
     <TopBar />
     <Content>
-      {props.children}
+      {children}
     </Content>
   </Grid>
 );

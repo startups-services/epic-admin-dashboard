@@ -3,7 +3,6 @@ import { useCookies } from 'react-cookie';
 import { css, Global } from '@emotion/core';
 import styled from '@emotion/styled';
 import Router from 'next/router';
-import withRedux from '../redux/_lib/withRedux';
 import execQuery, { createUserQ, signInUserQ } from '../data/graphql/client';
 import COLORS, { COOKIE_TOKEN_NAME } from '../components/constants';
 import Card from '../components/Cards/Card';
@@ -127,17 +126,17 @@ const Index = () => {
                 <LoginForm>
                   <Label>Epic Admin Dashboard</Label>
                   <Input
-                    value={''}
+                    value=""
                     onChange={() => {}}
-                    label={'email'}
-                    name={'email'}
+                    label="email"
+                    name="email"
                   />
                   <Input
-                    value={''}
+                    value=""
                     onChange={() => {}}
-                    label={'password'}
-                    type={'password'}
-                    name={'password'}
+                    label="password"
+                    type="password"
+                    name="password"
                   />
                   <ErrorBox>
                     {errors}
@@ -146,7 +145,9 @@ const Index = () => {
                 <ButtonBox>
                   <Button
                     onClick={() => {
-                    }} background={COLORS.green1} bordered={false}
+                    }}
+                    background={COLORS.green1}
+                    bordered={false}
                   >
                     {showSignIn ? (
                       'Sign In'
@@ -173,4 +174,4 @@ const Index = () => {
   );
 };
 
-export default withRedux(Index);
+export default Index;

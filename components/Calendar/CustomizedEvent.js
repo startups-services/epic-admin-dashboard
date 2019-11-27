@@ -32,11 +32,14 @@ const EventTime = styled.div`
   display: none;
 `;
 
-const CustomizedEvent = ({ start, end, background, color, text }) =>
+const CustomizedEvent = ({
+  start, end, background, color, text,
+}) => (
   <CustomizedEventStyled background={background} color={color}>
     <EventLabel>{text}</EventLabel>
     <EventTime>{`${moment(start).format('HH:mm')} - ${moment(end).format('HH:mm')}`}</EventTime>
-  </CustomizedEventStyled>;
+  </CustomizedEventStyled>
+);
 
 CustomizedEvent.propTypes = {
   background: PropTypes.string.isRequired,

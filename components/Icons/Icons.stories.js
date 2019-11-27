@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ProjectFonts from '../Utility/ProjectFonts';
-import ProjectBackground from '../Utility/ProjectBackground';
+import ProjectFonts from '../_Utility/ProjectFonts';
+import ProjectBackground from '../_Utility/ProjectBackground';
 import Card from '../Cards/Card';
 
 import Icon from './Icon';
@@ -27,7 +27,7 @@ export const icons = () => (
     <ProjectFonts>
       <Card>
         <div>
-          {Object.keys(iconsIndex).sort((a, b) => ((a > b) ? 1 : -1)).map(name => (
+          {Object.keys(iconsIndex).sort((a, b) => ((a > b) ? 1 : -1)).map((name) => (
             <PresentableIconContainer key={name} iconName={name} />
           ))}
         </div>

@@ -1,37 +1,25 @@
 import React from 'react';
-import execQuery,
-{ isomorphicGetTokenFromCookie, isomorphicRedirectToLogin, Token }
-  from '../../../data/graphql/client';
+import { connect } from 'react-redux';
+import { isomorphicGetTokenFromCookie, isomorphicRedirectToLogin, Token } from '../../../data/graphql/client';
 import App from '../../../components/App';
 import Card from '../../../components/Cards/Card';
 import ProjectDetails from '../../../components/Forms/ProjectDetails';
-import { getProjectsQuery } from '../../../data/graphql';
-import withRedux from '../../../redux/_lib/withRedux';
 import { getInitialProjects } from '../../../redux/projects/actions';
 
-const Index = props => (
+const Index = () => (
   <App>
     <Card>
-      <ProjectDetails props={props} />
+      <ProjectDetails />
     </Card>
   </App>
 );
-
-Index.getInitialProps = async ({ reduxStore, res, req, query, ...other }) => {
+Index.getInitialProps = async ({
+  reduxStore: { dispatch }, res, req,
+}) => {
   const tokenCookie = isomorphicGetTokenFromCookie(req);
-
   if (tokenCookie) {
-    const token = Token.checkAndUpdateToken(tokenCookie, res);
-    if (token) {
-      const { dispatch } = reduxStore;
-      const projects = await execQuery(getProjectsQuery);
-      const result = await dispatch(getInitialProjects(projects.allProjects));
-
-      const selectedProject = result.projects.find(elem =>
-        elem.id === query.id,
-      );
-      return (selectedProject);
-    }
+    const token = Token.checkAndUpdateToken(tokenCookie);
+    await dispatch(getInitialProjects(token, res));
   } else {
     isomorphicRedirectToLogin(res);
   }
@@ -39,5 +27,4 @@ Index.getInitialProps = async ({ reduxStore, res, req, query, ...other }) => {
   return {};
 };
 
-export default withRedux(Index);
-
+export default connect()(Index);

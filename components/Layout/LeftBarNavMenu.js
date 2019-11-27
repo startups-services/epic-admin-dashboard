@@ -16,13 +16,12 @@ const LeftBarNavMenuStyled = styled.div`
 export default function LeftBarNavMenu() {
   return (
     <LeftBarNavMenuStyled>
-      <LeftBarLink href={'/'} iconName={'dashboard'} label={'Dash Home'} dropDown />
-      <LeftBarLink href={'/projects'} iconName={'project'} label={'Projects'} />
-      <LeftBarLink href={'/integrations'} iconName={'integrations'} label={'Integrations'} />
-      <LeftBarLink href={'/table'} iconName={'table'} label={'Table'} />
-      <LeftBarLink href={'/calendar'} iconName={'calendar'} label={'Calendar'} />
-      <LeftBarLink href={'/project-details'} iconName={'timeline'} label={'Project details'} />
-      <LeftBarLink href={'/user-edit'} iconName={'user'} label={'User edit'} />
+      <LeftBarLink href="/" iconName="dashboard" label="Dash Home" dropDown />
+      <LeftBarLink href="/projects" iconName="project" label="Projects" />
+      <LeftBarLink href="/integrations" iconName="integrations" label="Integrations" />
+      <LeftBarLink href="/table" iconName="table" label="Table" />
+      <LeftBarLink href="/calendar" iconName="calendar" label="Calendar" />
+      <LeftBarLink href="/user-edit" iconName="user" label="User edit" />
     </LeftBarNavMenuStyled>
   );
 }

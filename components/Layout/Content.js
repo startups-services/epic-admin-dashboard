@@ -10,7 +10,7 @@ const ContentStyled = styled.div`
   background: ${COLORS.purple};
 `;
 
-const Content = props => (
+const Content = (props) => (
   <ContentStyled>
     {props.children}
   </ContentStyled>

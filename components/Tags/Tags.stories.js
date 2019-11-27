@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import ProjectFonts from '../Utility/ProjectFonts';
+import ProjectFonts from '../_Utility/ProjectFonts';
 import Tag from './Tag';
 
 export default {
@@ -9,6 +9,6 @@ export default {
 
 export const tags = () => (
   <ProjectFonts>
-    <Tag label={'#ModifyLocations'} onClick={action('clicked')} />
+    <Tag label="#ModifyLocations" onClick={action('clicked')} />
   </ProjectFonts>
 );

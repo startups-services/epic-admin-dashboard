@@ -1,10 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import App from '../components/App';
-import withRedux from '../redux/_lib/withRedux';
-import { getInitialProjects } from '../redux/projects/actions';
 import Projects from '../components/PageComponents/Projects';
-import { getProjectsQuery } from '../data/graphql';
-import execQuery, { isomorphicGetTokenFromCookie, isomorphicRedirectToLogin, Token } from '../data/graphql/client';
+import pageInitialData from '../components/_Utility/pageInitialData';
 
 const Index = () => (
   <App>
@@ -12,20 +10,7 @@ const Index = () => (
   </App>
 );
 
-Index.getInitialProps = async ({ reduxStore, res, req }) => {
-  const tokenCookie = isomorphicGetTokenFromCookie(req);
+Index
+  .getInitialProps = async ({ reduxStore, res, req }) => pageInitialData({ reduxStore, res, req });
 
-  if (tokenCookie) {
-    const token = Token.checkAndUpdateToken(tokenCookie);
-    if (token) {
-      const { dispatch } = reduxStore;
-      const projects = await execQuery(getProjectsQuery);
-      await dispatch(getInitialProjects(projects.allProjects));
-    }
-  } else {
-    isomorphicRedirectToLogin(res);
-  }
-  return {};
-};
-
-export default withRedux(Index);
+export default connect()(Index);

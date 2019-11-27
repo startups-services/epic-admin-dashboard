@@ -2,11 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import COLORS from '../constants';
-
-const InputContainer = styled.div`
-  display: inline-block;
-  width: 100%;
-`;
+import InputContainer from './InputContainer';
 
 const SelectLabel = styled.div`
   font-weight: 500;
@@ -30,15 +26,17 @@ const Label = styled.select`
   width: 100%;
 `;
 
-const Select = ({ options = [], label = 'input label', onChange, name, defaultValue }) => (
+const Select = ({
+  options = [], label = 'input label', onChange, name, defaultValue,
+}) => (
   <InputContainer>
     <SelectLabel>{label}</SelectLabel>
     <Label onChange={onChange} name={name}>
-      {options.map(elem =>
+      {options.map((elem) => (
         <option key={`${elem.value}`} value={elem.value} selected={defaultValue === elem.value}>
           {elem.name}
-        </option>,
-      )}
+        </option>
+      ))}
     </Label>
   </InputContainer>
 );

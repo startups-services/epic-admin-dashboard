@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Input from './Input';
-import ProjectFonts from '../Utility/ProjectFonts';
+import ProjectFonts from '../_Utility/ProjectFonts';
 import LiveEditTextArea from './TextArea';
 import Card from '../Cards/Card';
 import AssigneeForm from '../Forms/AssigneeForm';
@@ -18,15 +18,15 @@ export const inputs = () => {
   return (
     <Card>
       <ProjectFonts>
-        <Input value={state} onChange={setValue} label={'label for input'} />
+        <Input name="name" value={state} onChange={setValue} label="label for input" />
       </ProjectFonts>
 
       <ProjectFonts>
-        <LiveEditTextArea ideaId={'QWERTY123'} user={{}} ideaValue={''} />
+        <LiveEditTextArea id="" ideaId="QWERTY123" user={{}} ideaValue="" />
       </ProjectFonts>
 
       <ProjectFonts>
-        <AssigneeForm size={'48px'} />
+        <AssigneeForm size="48px" />
       </ProjectFonts>
     </Card>
   );

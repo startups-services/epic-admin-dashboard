@@ -14,7 +14,9 @@ const SubscriptionToggleStyled = styled.div`
   border-bottom: 1px solid #F5F4F6;
 `;
 
-const SubscriptionToggle = ({ label, checked, name, onChange = () => {} }) => (
+const SubscriptionToggle = ({
+  label, checked, name, onChange = () => {},
+}) => (
   <SubscriptionToggleStyled>
     <div>
       {label}

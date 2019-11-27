@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import Cookies from 'js-cookie';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { css, Global } from '@emotion/core';
 import Layout from './Layout/Layout';
 import COLORS, { COOKIE_TOKEN_NAME } from './constants';
 import { checkCurrUser } from '../redux/activeUser/actions';
-import withRedux from '../redux/_lib/withRedux';
+import { getAllUsers } from '../redux/users/actions';
 
 
 const Grid = css`
@@ -18,9 +18,11 @@ const Grid = css`
 
 const App = ({ children }) => {
   const dispatch = useDispatch();
+  const users = useSelector((store) => store.users);
 
   useEffect(() => {
     dispatch(checkCurrUser(Cookies.get(COOKIE_TOKEN_NAME)));
+    if (users.items.length === 0) dispatch(getAllUsers());
   }, []);
   return (
     <div>
@@ -51,4 +53,4 @@ App.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default withRedux(App);
+export default App;

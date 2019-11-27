@@ -46,28 +46,28 @@ const SubLabelBox = styled.div`
 const CompanyEditForm = () => (
   <>
     <InputBox>
-      <Input label={'company name'} onChange={() => {}} value={'UI Inc'} />
+      <Input label="company name" onChange={() => {}} value="UI Inc" />
     </InputBox>
     <InputBox>
-      <Input label={'branch'} onChange={() => {}} value={'Web Design'} />
+      <Input label="branch" onChange={() => {}} value="Web Design" />
     </InputBox>
     <InputBox>
-      <Input label={'email'} onChange={() => {}} value={'example@example.com'} />
+      <Input label="email" onChange={() => {}} value="example@example.com" />
     </InputBox>
     <InputBox>
-      <Input label={'company name'} onChange={() => {}} value={'UI Inc'} />
+      <Input label="company name" onChange={() => {}} value="UI Inc" />
     </InputBox>
     <PasswordForm>
-      <Input label={'Current Password'} onChange={() => {}} value={''} type={'password'} />
-      <Input label={'New Password'} onChange={() => {}} value={''} type={'password'} />
-      <Input label={'Confirm Password'} onChange={() => {}} value={''} type={'password'} />
+      <Input label="Current Password" onChange={() => {}} value="" type="password" />
+      <Input label="New Password" onChange={() => {}} value="" type="password" />
+      <Input label="Confirm Password" onChange={() => {}} value="" type="password" />
       <Button onClick={action('clicked')} background={COLORS.green1} bordered={false}>
         Change Password
       </Button>
     </PasswordForm>
     <InputBox>
       <Select
-        label={'DateFormat'}
+        label="DateFormat"
         onChange={() => {}}
         options={[
           { value: '1', name: 'DD/MM/YY' },
@@ -77,7 +77,7 @@ const CompanyEditForm = () => (
     </InputBox>
     <InputBox>
       <Select
-        label={'TimeFormat'}
+        label="TimeFormat"
         onChange={() => {}}
         options={[
           { value: '1', name: 'hh:mm:ss' },
@@ -87,7 +87,7 @@ const CompanyEditForm = () => (
     </InputBox>
     <InputBox>
       <Select
-        label={'Time Zone'}
+        label="Time Zone"
         onChange={() => {}}
         options={[
           { value: '1', name: '0 GMT' },
@@ -106,9 +106,9 @@ const CompanyEditForm = () => (
         </SubLabel>
       </SubLabelBox>
     </NotificationsBox>
-    <SubscriptionToggle label={'Send Emails'} />
-    <SubscriptionToggle label={'Phone Pushes'} defaultState />
-    <SubscriptionToggle label={'Site Notifications'} />
+    <SubscriptionToggle label="Send Emails" />
+    <SubscriptionToggle label="Phone Pushes" defaultState />
+    <SubscriptionToggle label="Site Notifications" />
   </>
 );
 

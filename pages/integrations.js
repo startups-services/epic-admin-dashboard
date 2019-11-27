@@ -27,36 +27,36 @@ const Index = () => (
     <CardsBox>
       <IntegrationsContainer>
         <IntegrationCard
-          label={'Slack'}
+          label="Slack"
           src={integrationsIndex.slack}
-          status={'connected'}
+          status="connected"
           onClick={() => {}}
           key={1}
         />
       </IntegrationsContainer>
       <IntegrationsContainer>
         <IntegrationCard
-          label={'Trello'}
+          label="Trello"
           src={integrationsIndex.trello}
-          status={'auth'}
+          status="auth"
           onClick={() => {}}
           key={2}
         />
       </IntegrationsContainer>
       <IntegrationsContainer>
         <IntegrationCard
-          label={'Google Analytics'}
+          label="Google Analytics"
           src={integrationsIndex.googleAnalytics}
-          status={'disconnected'}
+          status="disconnected"
           onClick={() => {}}
           key={3}
         />
       </IntegrationsContainer>
       <IntegrationsContainer>
         <IntegrationCard
-          label={'Google Sheets'}
+          label="Google Sheets"
           src={integrationsIndex.googleSheets}
-          status={'connected'}
+          status="connected"
           onClick={() => {}}
           key={4}
         />

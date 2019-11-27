@@ -53,7 +53,9 @@ const ButtonBox = styled.span`
   }
 `;
 
-const ProjectCard = ({ status = 'completed', label, tags, src, description = '', users, id }) => (
+const ProjectCard = ({
+  status = 'completed', label, tags, src, description = '', users, id,
+}) => (
   <Card>
     <TopImage src={src} />
     <IntegrationCardStyled>
@@ -70,15 +72,13 @@ const ProjectCard = ({ status = 'completed', label, tags, src, description = '',
       <ProjectStatusBox>
         <ProjectStatus status={status} />
       </ProjectStatusBox>
-      <ProjectDescription>
-        {description}
-      </ProjectDescription>
+      <ProjectDescription dangerouslySetInnerHTML={{ __html: description }} />
       <div>
         <Tags tags={tags} />
       </div>
       <ButtonBox>
         <Button bordered={false} background={COLORS.orange1} onClick={() => {}}>
-          {'Level up'}
+          Level up
         </Button>
       </ButtonBox>
     </IntegrationCardStyled>

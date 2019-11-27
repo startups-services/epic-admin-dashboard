@@ -13,7 +13,7 @@ const Image = styled.img`
 `;
 
 const Icon = ({ iconName = 'close', height = '16px' }) => (
-  <IconBox >
+  <IconBox>
     <Image height={height} src={iconsIndex[iconName]} />
   </IconBox>
 );

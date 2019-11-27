@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import ProjectFonts from '../Utility/ProjectFonts';
+import { action } from '@storybook/addon-actions';
+import ProjectFonts from '../_Utility/ProjectFonts';
 import Card from './Card';
-import ProjectBackground from '../Utility/ProjectBackground';
+import ProjectBackground from '../_Utility/ProjectBackground';
 import IntegrationCard from './IntegrationCard';
 import integrationsIndex from '../Icons/_integrationsIndex';
 import ProjectCard from './ProjectCard';
@@ -32,8 +33,8 @@ const IntegrationsContainer = styled.div`
 export const messageCards = () => (
   <ProjectBackground>
     <ProjectFonts>
-      <CardContainer width={'450px'}>
-        <MessageCard src={'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg?s=200'} />
+      <CardContainer width="450px">
+        <MessageCard email="supertest@email.com" />
       </CardContainer>
     </ProjectFonts>
   </ProjectBackground>
@@ -43,7 +44,7 @@ export const projectsCards = () => (
   <ProjectBackground>
     <ProjectFonts>
       <CardContainer>
-        <ProjectCard label={'Holo Card Products'} />
+        <ProjectCard id="" tags={[]} label="Holo Card Products" />
       </CardContainer>
     </ProjectFonts>
   </ProjectBackground>
@@ -53,7 +54,7 @@ export const statisticsCards = () => (
   <ProjectBackground>
     <ProjectFonts>
       <CardContainer>
-        <StatisticCard label={'Adam Smith'} />
+        <StatisticCard label="Adam Smith" />
       </CardContainer>
     </ProjectFonts>
   </ProjectBackground>
@@ -65,37 +66,42 @@ export const integrationCards = () => (
       <IntegrationsGrid>
         <IntegrationsContainer>
           <IntegrationCard
-            label={'Slack'}
+            label="Slack"
             src={integrationsIndex.slack}
-            status={'disconnected'}
+            status="disconnected"
+            onClick={action('clicked')}
           />
         </IntegrationsContainer>
         <IntegrationsContainer>
           <IntegrationCard
-            label={'GitHub'}
+            label="GitHub"
             src={integrationsIndex.github}
-            status={'connected'}
+            status="connected"
+            onClick={action('clicked')}
           />
         </IntegrationsContainer>
         <IntegrationsContainer>
           <IntegrationCard
-            label={'Trello'}
+            label="Trello"
             src={integrationsIndex.trello}
-            status={'auth'}
+            status="auth"
+            onClick={action('clicked')}
           />
         </IntegrationsContainer>
         <IntegrationsContainer>
           <IntegrationCard
-            label={'Slack'}
+            label="Slack"
             src={integrationsIndex.slack}
-            status={'connected'}
+            status="connected"
+            onClick={action('clicked')}
           />
         </IntegrationsContainer>
         <IntegrationsContainer>
           <IntegrationCard
-            label={'Slack'}
+            label="Slack"
             src={integrationsIndex.slack}
-            status={'connected'}
+            status="connected"
+            onClick={action('clicked')}
           />
         </IntegrationsContainer>
       </IntegrationsGrid>

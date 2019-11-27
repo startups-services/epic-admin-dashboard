@@ -20,19 +20,19 @@ const TableHead = () => (
   <TrStyled>
     <ThStyled />
     <ThStyled>
-      <ThLabel label={'Project Name'} sortable />
+      <ThLabel label="Project Name" sortable />
     </ThStyled>
     <ThStyled>
-      <ThLabel label={'Status'} sortable />
+      <ThLabel label="Status" sortable />
     </ThStyled>
     <ThStyled>
-      <ThLabel label={'Progress'} sortable />
+      <ThLabel label="Progress" sortable />
     </ThStyled>
     <ThStyled>
-      <ThLabel label={'Users'} />
+      <ThLabel label="Users" />
     </ThStyled>
     <ThStyled>
-      <ThLabel label={'Budget'} sortable />
+      <ThLabel label="Budget" sortable />
     </ThStyled>
   </TrStyled>
 );

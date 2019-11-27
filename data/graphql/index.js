@@ -1,11 +1,95 @@
 import execQuery from './client';
 
-export const getProjectTags = `
-  query{
-    allTags {
-      name
-      id
-      projects {
+export const deleteTagFromProjectQ = `
+  mutation (
+    $tagId: ID!
+    $projectId: ID!
+  ) {
+    removeFromProjectOnTag(
+      tagsTagId: $tagId
+      projectsProjectId: $projectId
+    ) {
+      projectsProject {
+        id
+        tags {
+          id
+          name
+          projects {
+            id
+          }
+        }
+      }
+      tagsTag {
+        id
+        projects {
+          id
+        }
+      }
+    }
+  }
+`;
+
+export const addTagToProjectQ = `
+   mutation (
+    $tagId: ID!
+    $projectId: ID!
+  ) {
+    addToProjectOnTag(
+      tagsTagId: $tagId
+      projectsProjectId: $projectId
+    ) {
+      projectsProject {
+        id
+        tags {
+          id
+          name
+          projects {
+            id
+          }
+        }
+      }
+      tagsTag {
+        id
+        projects {
+          id
+        }
+      }
+    }
+  }
+`;
+
+export const addUserToProjectQ = `
+   mutation (
+    $userId: ID!
+    $projectId: ID!
+  ) {
+    addToProjectOnUser(
+      usersUserId: $userId
+      projectsProjectId: $projectId
+    ) {
+      projectsProject {
+        id
+      }
+      usersUser {
+        id
+      }
+    }
+  }
+`;
+
+export const deleteUserFromProjectQ = `
+   mutation (
+    $userId: ID!
+    $projectId: ID!
+  ) {
+    removeFromProjectOnUser(
+      usersUserId: $userId
+      projectsProjectId: $projectId
+    ) {
+      projectsProject {
+        id
+      }
+      usersUser {
         id
       }
     }
@@ -18,46 +102,21 @@ export const getProjectsQuery = `
     allProjects {
       id
       name
+      subLabel
       description
+      costs
       tags {
         id
         name
         projects {
           id
-          name
         }
       }
       users {
         id
         name
         ava
-      }
-      picture
-      status
-    }
-  }
-`;
-
-export const getProjectById = `
-  query getProjectById(
-    $id: ID!
-  ) {
-    Project(id: $id) {
-      id
-      name
-      description
-      tags {
-        id
-        name
-        projects {
-          id
-          name
-        }
-      }
-      users {
-        id
-        name
-        ava
+        email
       }
       picture
       status
@@ -114,10 +173,12 @@ export const createTag = `
 
 
 export const removeTagFromProject = async ({ tagName, allTags, projectId }) => {
-  const result = allTags.filter(elem => (elem.name === tagName));
+  const result = allTags.filter((elem) => (elem.name === tagName));
 
   await execQuery(updateTag, {
     id: result[0].id,
-    projectsIds: [...result[0].projects.filter(({ id }) => (id !== projectId)).map(({ id }) => (id))],
+    projectsIds: [...result[0].projects
+      .filter(({ id }) => (id !== projectId))
+      .map(({ id }) => (id))],
   });
 };

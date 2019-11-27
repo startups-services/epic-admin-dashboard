@@ -8,12 +8,18 @@ import BigChart from '../components/Charts/BigChart';
 import Label from '../components/Labels/Label';
 import Table from '../components/Tables/Table';
 
+const SpaceBetweenCards = 12;
+
 const LabelBox = styled.div`
   margin-bottom: 30px;
 `;
 
 const OverviewCardBox = styled.div`
   margin-bottom: 60px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -${SpaceBetweenCards}px;
+  margin-right: -${SpaceBetweenCards}px;
 `;
 
 const ElemBox = styled.div`
@@ -21,13 +27,11 @@ const ElemBox = styled.div`
 `;
 
 const CardBox = styled.div`
-  min-width: 260px;
-  width: calc(25% - 18px) ;
-  display: inline-block;
-  margin: 0 24px 24px 0;
-  & :last-child {
-    margin: 0 0 24px 0;
-  }
+  min-width: 200px;
+  width: auto;
+  flex-grow: 1;
+  display: flex;
+  margin: ${SpaceBetweenCards}px;
 `;
 
 
@@ -39,18 +43,18 @@ const Index = () => (
       </Label>
     </LabelBox>
     <OverviewCardBox>
-      {[false, true, false, true].map(elem =>
+      {[false, true, false, true].map((elem) => (
         <CardBox>
           <OverviewCard
             number={`${Math.floor(Math.random() * 100) + 1}K`}
             delta={`${Math.floor(Math.random() * 1000)}`}
-            label={'month revenue'}
+            label="month revenue"
             increasing={elem}
-            iconName={'user'}
+            iconName="user"
             backgroundColor={COLORS.green1}
           />
-        </CardBox>,
-      )}
+        </CardBox>
+      ))}
     </OverviewCardBox>
     <LabelBox>
       <Label>

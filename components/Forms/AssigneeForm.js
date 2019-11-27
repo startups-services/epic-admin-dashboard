@@ -5,11 +5,13 @@ import Select, { components } from 'react-select';
 import Icon from '../Icons/Icon';
 import customStyles from './selectCustomStyles';
 
-const Placeholder = props => <components.Placeholder {...props} />;
+const Placeholder = (props) => <components.Placeholder {...props} />;
 
 const AssigneeFormStyled = styled.div`
   display: inline-block;
+  position: relative;
   cursor: pointer;
+  margin-right: 10px;
   & div[class*="-control"] > div { // fix strange div without any classes
     padding: 0;
   }
@@ -25,8 +27,8 @@ const AssigneeFormStyled = styled.div`
   & div[class*="-singleValue"] div[class*="-UserName"] { // hide single name from chosen user
     display: none;
   }
-
 `;
+
 
 const AssigneeForm = ({ size = '48px', ...rest }) => (
   <AssigneeFormStyled>
@@ -37,11 +39,12 @@ const AssigneeForm = ({ size = '48px', ...rest }) => (
       isClearable
       components={{ Placeholder }}
       placeholder={
-        <Icon iconName={'addNewUser'} height={size} />
+        <Icon iconName="addNewUser" height={size} />
       }
       styles={customStyles}
       {...rest}
     />
+
   </AssigneeFormStyled>
 );
 AssigneeForm.propTypes = {

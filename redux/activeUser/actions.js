@@ -3,12 +3,12 @@ import { GET_INITIAL_USER_DATA, SET_USER_FIELD } from './constants';
 import execQuery, { Token } from '../../data/graphql/client';
 import { getActiveUser, updateUserQueries } from '../../data/graphql/User';
 
-export const getInitialUserData = userData => ({
+export const getInitialUserData = (userData) => ({
   type: GET_INITIAL_USER_DATA,
   userData,
 });
 
-export const checkCurrUser = token => async (dispatch) => {
+export const checkCurrUser = (token) => async (dispatch) => {
   if (token) {
     Token.checkAndUpdateToken(token);
     const data = await execQuery(getActiveUser);
@@ -35,4 +35,3 @@ export const setUserField = (name, value) => async (dispatch, getState) => {
     await execQuery(updateUserQueries[name], { id, value });
   }
 };
-

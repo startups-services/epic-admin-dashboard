@@ -10,6 +10,10 @@ const CardStyled = styled.div`
   border-radius: ${cardBoardRadius};
   padding: ${cardPadding};
   background: #FFF;
+  display: flex;
+  flex-basis: 100%;
+  justify-content: center;
+  flex-direction: column;
 `;
 
 const Card = ({ children }) => (

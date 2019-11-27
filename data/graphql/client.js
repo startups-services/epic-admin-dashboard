@@ -12,24 +12,49 @@ Token.value = '';
 Token.checkAndUpdateToken = (userToken) => {
   if (userToken.length > 0) {
     Token.value = userToken;
-    return Token;
+    return Token.value;
   }
+  return null;
+};
+Token.getToken = () => {
+  if (Token.value.length > 0) {
+    return Token.value;
+  }
+
+  const cookiesToken = Cookies.get(COOKIE_TOKEN_NAME);
+  if (cookiesToken) {
+    Token.value = cookiesToken;
+    return cookiesToken;
+  }
+
+  if (Router) {
+    Router.push('/login');
+  } else {
+    // eslint-disable-next-line no-console
+    console.error('Token error on server side');
+    return null;
+  }
+
   return null;
 };
 
 const execQuery = async (query, variables) => {
-  try {
-    const graphQLClient = new GraphQLClient(endpoint, {
-      headers: {
-        authorization: `Bearer ${Token.value}`,
-      },
-    });
-    return await graphQLClient.request(query, variables);
-  } catch (e) {
-    // eslint-disable-next-line no-console
-    console.log(e);
-    return null;
+  const token = Token.getToken();
+  if (token) {
+    try {
+      const graphQLClient = new GraphQLClient(endpoint, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
+      return await graphQLClient.request(query, variables);
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error(e);
+      return null;
+    }
   }
+  return null;
 };
 
 export default execQuery;
@@ -83,4 +108,3 @@ export const isomorphicGetTokenFromCookie = (req) => {
   }
   return Cookies.get(COOKIE_TOKEN_NAME);
 };
-

@@ -21,4 +21,3 @@ const COLORS = Object.freeze({
 export default COLORS;
 
 export const COOKIE_TOKEN_NAME = 'graphCoolToken';
-

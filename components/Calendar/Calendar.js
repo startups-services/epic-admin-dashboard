@@ -9,7 +9,7 @@ import UserAvatar from '../Avatars/UserAvatar';
 
 const localizer = momentLocalizer(moment);
 
-const CustomizedCalendar = ({ users, events }) =>
+const CustomizedCalendar = ({ users, events }) => (
   <CustomizedCalendarStyled>
     <Calendar
       culture="en-GB"
@@ -18,26 +18,27 @@ const CustomizedCalendar = ({ users, events }) =>
         day: true,
       }}
       step={15}
-      defaultView={'day'}
+      defaultView="day"
       timeslots={4}
       localizer={localizer}
       events={events}
       titleAccessor={
-        ({ start, end, resource: { background, color, text } }) =>
-          CustomizedEvent({ start, end, background, color, text })
+        ({ start, end, resource: { background, color, text } }) => CustomizedEvent({
+          start, end, background, color, text,
+        })
       }
       startAccessor="start"
       endAccessor="end"
 
-      resources={users.map(({ name, src, id }) => ({
+      resources={users.map(({ name, id, email }) => ({
         resourceId: id,
-        resourceTitle: <UserAvatar src={src} name={name} />,
+        resourceTitle: <UserAvatar email={email} name={name} />,
       }))}
       resourceIdAccessor="resourceId"
       resourceTitleAccessor="resourceTitle"
     />
   </CustomizedCalendarStyled>
-;
+);
 
 CustomizedCalendar.propTypes = {
   users: PropTypes.array.isRequired,

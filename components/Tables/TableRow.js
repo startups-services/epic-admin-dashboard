@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
+import Link from 'next/link';
 import ProjectAvatar from '../Avatars/ProjectAvatar';
 import ProjectStatus from '../Statuses/ProjectStatus';
 import UsersAvatarsGroup from '../Avatars/UsersAvatarsGroup';
-import Icon from '../Icons/Icon';
 import ProgressBar from '../Statuses/ProgressBar';
+import ProjectActions from '../Inputs/ProjectActions';
 
 const TdStyled = styled.td`
   padding: 14px 0;
@@ -23,14 +24,31 @@ const ProgressBarBox = styled.div`
   width: 75%;
 `;
 
-const TableRow = ({ avatarLabel, name, status, userArray, costs, percent }) => (
+const LinkConatainer = styled.div`
+  text-decoration: unset;
+  
+  & * {
+    text-decoration: unset;
+    color: black;
+  }
+`;
+
+const TableRow = ({
+  avatarLabel, name, status, userArray, costs, percent, id,
+}) => (
   <tr>
     <TdStyled>
       <ProjectAvatar label={avatarLabel} />
     </TdStyled>
-    <TdStyled>{name}</TdStyled>
     <TdStyled>
-      <ProjectStatus status={status} />
+      <LinkConatainer>
+        <Link href="/project/[id]" as={`/project/${id}`}>
+          {name}
+        </Link>
+      </LinkConatainer>
+    </TdStyled>
+    <TdStyled>
+      <ProjectStatus status={status} key={`status${name}`} />
     </TdStyled>
     <TdStyled>
       <ProgressBarBox>
@@ -43,7 +61,7 @@ const TableRow = ({ avatarLabel, name, status, userArray, costs, percent }) => (
     <TdStyled>{costs}</TdStyled>
     <TdStyled>
       <IconBox>
-        <Icon iconName={'details'} />
+        <ProjectActions />
       </IconBox>
     </TdStyled>
   </tr>
@@ -55,7 +73,8 @@ TableRow.propTypes = {
   status: PropTypes.string.isRequired,
   userArray: PropTypes.array.isRequired,
   costs: PropTypes.string.isRequired,
-  percent: PropTypes.number.isRequired,
+  percent: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 export default TableRow;

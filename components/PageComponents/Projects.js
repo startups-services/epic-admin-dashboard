@@ -11,12 +11,11 @@ const ItemBox = styled.div`
 `;
 
 const Projects = () => {
-  const projects = useSelector(state => state.projects.items);
-
+  const projects = useSelector((state) => state.projects.items);
   const { width } = useWindowSize();
   return (
     <Masonry width={width}>
-      {projects && projects.map(elem =>
+      {projects && projects.map((elem) => (
         <ItemBox key={elem.name}>
           <ProjectCard
             label={elem.name}
@@ -27,8 +26,8 @@ const Projects = () => {
             users={elem.users}
             id={elem.id}
           />
-        </ItemBox>,
-      )}
+        </ItemBox>
+      ))}
     </Masonry>
   );
 };

@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { useSelector } from 'react-redux';
 import COLORS from '../constants';
 import { contentPadding } from './Content';
 import Icon from '../Icons/Icon';
 import UserAvatar from '../Avatars/UserAvatar';
 import StatusIcon from '../Statuses/StatusIcon';
-import { topDocumentPadding } from '../Utility/constants';
+import { topDocumentPadding } from '../_Utility/constants';
 
 const TopBarStyled = styled.div`
   background-color: ${COLORS.white};
@@ -49,32 +50,36 @@ const IconBox = styled.div`
   position: relative;
 `;
 
-const TopBar = () => (
-  <TopBarStyled>
-    <Logotype>
-      <Icon iconName={'logo'} height={'16px'} />
-      <LogoLabel>
-        {'Epic Admin Dashboard'}
-      </LogoLabel>
-    </Logotype>
-    <TopLeftMenu>
-      <IconBox>
-        <Icon iconName={'bell'} />
-        <StatusIcon color={COLORS.red} />
-      </IconBox>
-      {[1, 2, 3, 4].map(elem =>
-        <AvaBox key={elem}>
-          <UserAvatar
-            src={'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg?s=200'}
-            square
-            borderRadius={'10px'}
-            size={'26px'}
-          />
-          <StatusIcon color={COLORS.green2} />
-        </AvaBox>,
-      )}
-    </TopLeftMenu>
-  </TopBarStyled>
-);
+const TopBar = () => {
+  const users = useSelector((store) => store.users.items);
+  return (
+    <TopBarStyled>
+      <Logotype>
+        <Icon iconName="logo" height="16px" />
+        <LogoLabel>
+          Epic Admin Dashboard
+        </LogoLabel>
+      </Logotype>
+      <TopLeftMenu>
+        <IconBox>
+          <Icon iconName="bell" />
+          <StatusIcon color={COLORS.red} />
+        </IconBox>
+        {users.length && users.map((elem) => (
+          <AvaBox key={elem.email}>
+            <UserAvatar
+              email={elem.email}
+              square
+              borderRadius="10px"
+              size="26px"
+            />
+            <StatusIcon color={COLORS.green2} />
+          </AvaBox>
+
+        ))}
+      </TopLeftMenu>
+    </TopBarStyled>
+  );
+};
 
 export default TopBar;

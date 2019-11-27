@@ -1,7 +1,7 @@
 import React from 'react';
-import ProjectFonts from '../Utility/ProjectFonts';
+import ProjectFonts from '../_Utility/ProjectFonts';
 import Card from '../Cards/Card';
-import ProjectBackground from '../Utility/ProjectBackground';
+import ProjectBackground from '../_Utility/ProjectBackground';
 import ProjectStatus from './ProjectStatus';
 import IntegrationsStatus from './IntegrationsStatus';
 import ProgressBar from './ProgressBar';
@@ -22,17 +22,17 @@ export const Status = () => (
         <br />
         <ProgressBar percent={100} />
         <br />
-        <ProjectStatus status={'progress'} />
+        <ProjectStatus status="progress" />
         <br />
-        <ProjectStatus status={'completed'} />
+        <ProjectStatus status="completed" />
         <br />
-        <ProjectStatus status={'pending'} />
+        <ProjectStatus status="pending" />
         <br />
-        <ProjectStatus status={'canceled'} />
+        <ProjectStatus status="canceled" />
         <br />
-        <IntegrationsStatus status={'synced'} />
+        <IntegrationsStatus status="synced" />
         <br />
-        <IntegrationsStatus status={'inactive'} />
+        <IntegrationsStatus status="inactive" />
         <br />
       </Card>
     </ProjectBackground>

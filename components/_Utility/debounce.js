@@ -19,7 +19,7 @@ export default function debounce(f, ms = 300) {
     if (globalDebounceTimer.has(f)) {
       clearTimeout(globalDebounceTimer.get(f));
     }
+    // eslint-disable-next-line no-undef
     globalDebounceTimer.set(f, window.setTimeout(onComplete, ms));
   };
 }
-

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import COLORS from '../constants';
 
-const ProgressIconStyled = styled.div `
+const ProgressIconStyled = styled.div`
   display: flex;
   justify-content: left;
   align-items: center;

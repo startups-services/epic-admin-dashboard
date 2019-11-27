@@ -22,10 +22,13 @@ const App = ({ children }) => {
   const dispatch = useDispatch();
   const users = useSelector((store) => store.users);
   const notify = () => toast('Wow so easy !');
+  const token = useSelector((store) => store.activeUser.token);
 
   useEffect(() => {
     dispatch(checkCurrUser(Cookies.get(COOKIE_TOKEN_NAME)));
-    if (users.items.length === 0) dispatch(getAllUsers());
+    if (token && users.items.length === 0) {
+      dispatch(getAllUsers());
+    }
   }, []);
   return (
     <div>

@@ -7,6 +7,8 @@ import Card from '../components/Cards/Card';
 import BigChart from '../components/Charts/BigChart';
 import Label from '../components/Labels/Label';
 import Table from '../components/Tables/Table';
+import pageInitialData from '../components/_Utility/pageInitialData';
+import {connect} from 'react-redux';
 
 const SpaceBetweenCards = 12;
 
@@ -76,5 +78,7 @@ const Index = () => (
     </Card>
   </App>
 );
+Index
+  .getInitialProps = async ({ reduxStore, res, req }) => pageInitialData({ reduxStore, res, req });
 
-export default Index;
+export default connect()(Index);

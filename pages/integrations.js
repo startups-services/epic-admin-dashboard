@@ -5,6 +5,8 @@ import App from '../components/App';
 import IntegrationCard from '../components/Cards/IntegrationCard';
 import integrationsIndex from '../components/Icons/_integrationsIndex';
 import Button from '../components/Buttons/Button';
+import pageInitialData from '../components/_Utility/pageInitialData';
+import {connect} from 'react-redux';
 
 const IntegrationsContainer = styled.div`
   width: 260px;
@@ -68,4 +70,7 @@ const Index = () => (
   </App>
 );
 
-export default Index;
+Index
+  .getInitialProps = async ({ reduxStore, res, req }) => pageInitialData({ reduxStore, res, req });
+
+export default connect()(Index);

@@ -1,9 +1,11 @@
 import React from 'react';
 import moment from 'moment';
+import { connect } from 'react-redux';
 import App from '../components/App';
 import Card from '../components/Cards/Card';
 import CustomizedCalendar from '../components/Calendar/Calendar';
 import COLORS from '../components/constants';
+import pageInitialData from '../components/_Utility/pageInitialData';
 
 const users = [
   {
@@ -74,4 +76,7 @@ const Index = () => (
   </App>
 );
 
-export default Index;
+Index
+  .getInitialProps = async ({ reduxStore, res, req }) => pageInitialData({ reduxStore, res, req });
+
+export default connect()(Index);

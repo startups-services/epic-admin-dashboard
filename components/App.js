@@ -3,10 +3,12 @@ import Cookies from 'js-cookie';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { css, Global } from '@emotion/core';
+import { ToastContainer, toast } from 'react-toastify';
 import Layout from './Layout/Layout';
 import COLORS, { COOKIE_TOKEN_NAME } from './constants';
 import { checkCurrUser } from '../redux/activeUser/actions';
 import { getAllUsers } from '../redux/users/actions';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Grid = css`
@@ -19,6 +21,7 @@ const Grid = css`
 const App = ({ children }) => {
   const dispatch = useDispatch();
   const users = useSelector((store) => store.users);
+  const notify = () => toast('Wow so easy !');
 
   useEffect(() => {
     dispatch(checkCurrUser(Cookies.get(COOKIE_TOKEN_NAME)));
@@ -41,8 +44,10 @@ const App = ({ children }) => {
         }
       `}
       />
-
+      <ToastContainer />
       <Layout css={Grid}>
+        <button onClick={notify}>Notify !</button>
+
         {children}
       </Layout>
     </div>

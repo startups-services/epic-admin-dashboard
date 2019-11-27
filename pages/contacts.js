@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import App from '../components/App';
 import pageInitialData from '../components/_Utility/pageInitialData';
 
@@ -10,4 +11,4 @@ const Index = () => (
 Index
   .getInitialProps = async ({ reduxStore, res, req }) => pageInitialData({ reduxStore, res, req });
 
-export default Index;
+export default connect()(Index);

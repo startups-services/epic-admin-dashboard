@@ -8,7 +8,11 @@ export const setAllUsers = (users) => ({
 });
 
 export const getAllUsers = () => async (dispatch) => {
-  const { allUsers } = await execQuery(getAllUsersQ);
-  dispatch(setAllUsers(allUsers));
-  return allUsers;
+  try {
+    const { allUsers } = await execQuery(getAllUsersQ);
+    dispatch(setAllUsers(allUsers));
+    return allUsers;
+  } catch (e) {
+    console.log(e);
+  }
 };

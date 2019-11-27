@@ -8,7 +8,8 @@ export const getInitialUserData = (userData) => ({
   userData,
 });
 
-export const checkCurrUser = (token) => async (dispatch) => {
+export const checkCurrUser = (token) => async (dispatch, getState) => {
+  const state = getState();
   if (token) {
     Token.checkAndUpdateToken(token);
     const data = await execQuery(getActiveUser);
@@ -16,10 +17,13 @@ export const checkCurrUser = (token) => async (dispatch) => {
       dispatch(getInitialUserData(data.user));
     } else {
       await Router.push('/login');
+      return false;
     }
   } else {
     await Router.push('/login');
+    return false;
   }
+  return true;
 };
 
 export const setUserFieldRedux = (field, value) => ({

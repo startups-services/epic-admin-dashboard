@@ -10,7 +10,7 @@ const AssigneeEditor = ({ projectId, projectUsers }) => {
   const users = useSelector((store) => store.users.items);
   const dispatch = useDispatch();
 
-  const userOptions = (projUserKey) => {
+  const userOptions = (projUserKey, deletable = true) => {
     const unusedUsers = users
       .filter((elem) => !projectUsers
         .find((prjUser) => elem.id === prjUser.id));
@@ -23,7 +23,10 @@ const AssigneeEditor = ({ projectId, projectUsers }) => {
       }
 
     ));
-    options.unshift({ value: false, label: 'unset assignee', projUserKey });
+    if (deletable) {
+      options.unshift({ value: false, label: 'unset assignee', projUserKey });
+    }
+
 
     return options;
   };
@@ -62,7 +65,7 @@ const AssigneeEditor = ({ projectId, projectUsers }) => {
       <AssigneeForm
         key={Date()}
         size="48px"
-        options={userOptions(projectUsers.length)}
+        options={userOptions(projectUsers.length, false)}
         onChange={updateExistingAssignee}
         controlShouldRenderValue
       />

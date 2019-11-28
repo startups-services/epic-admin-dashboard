@@ -3,7 +3,6 @@ import Cookies from 'js-cookie';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { css, Global } from '@emotion/core';
-import { ToastContainer, toast } from 'react-toastify';
 import Layout from './Layout/Layout';
 import COLORS, { COOKIE_TOKEN_NAME } from './constants';
 import { checkCurrUser } from '../redux/activeUser/actions';
@@ -21,7 +20,6 @@ const Grid = css`
 const App = ({ children }) => {
   const dispatch = useDispatch();
   const users = useSelector((store) => store.users);
-  const notify = () => toast('Wow so easy !');
   const token = useSelector((store) => store.activeUser.token);
 
   useEffect(() => {
@@ -47,10 +45,7 @@ const App = ({ children }) => {
         }
       `}
       />
-      <ToastContainer />
       <Layout css={Grid}>
-        <button onClick={notify}>Notify !</button>
-
         {children}
       </Layout>
     </div>

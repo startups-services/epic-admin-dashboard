@@ -2,7 +2,6 @@ import React from 'react';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-import { toast } from 'react-toastify';
 import Card, { cardBoardRadius, cardPadding } from './Card';
 import Button from '../Buttons/Button';
 import ProjectStatus from '../Statuses/ProjectStatus';
@@ -10,8 +9,7 @@ import UsersAvatarsGroup from '../Avatars/UsersAvatarsGroup';
 import Label from '../Labels/Label';
 import Tags from '../Tags/Tags';
 import COLORS from '../constants';
-import { showToast } from '../App';
-// import img from '../Icons/Screenshot_20191013_104148.png';
+import { htmlOnlyMsg } from '../../utils/toastActions';
 
 const IntegrationCardStyled = styled.div`
   display: flex;
@@ -79,7 +77,7 @@ const ProjectCard = ({
         <Tags tags={tags} />
       </div>
       <ButtonBox>
-        <Button bordered={false} background={COLORS.orange1} onClick={() => { toast('bebebe'); }}>
+        <Button bordered={false} background={COLORS.orange1} onClick={htmlOnlyMsg}>
           Level up
         </Button>
       </ButtonBox>

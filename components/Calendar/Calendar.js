@@ -6,6 +6,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import CustomizedEvent from './CustomizedEvent';
 import CustomizedCalendarStyled from './CustomizedCalendarStyled';
 import UserAvatar from '../Avatars/UserAvatar';
+import { htmlOnlyMsg } from '../../utils/toastActions';
 
 const localizer = momentLocalizer(moment);
 
@@ -32,7 +33,7 @@ const CustomizedCalendar = ({ users, events }) => (
 
       resources={users.map(({ name, id, email }) => ({
         resourceId: id,
-        resourceTitle: <UserAvatar email={email} name={name} />,
+        resourceTitle: <UserAvatar email={email} name={name} onClick={htmlOnlyMsg} />,
       }))}
       resourceIdAccessor="resourceId"
       resourceTitleAccessor="resourceTitle"

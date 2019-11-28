@@ -70,7 +70,7 @@ const LiveInput = ({
           {showLabel && <InputLabel>{label}</InputLabel>}
           <LiveInputLabel>
             {children}
-            <EditButton onClick={toggleLiveInput}>
+            <EditButton onClick={toggleLiveInput} tabIndex={0} onKeyPress={toggleLiveInput}>
               <Icon height="16px" iconName="edit" />
             </EditButton>
           </LiveInputLabel>

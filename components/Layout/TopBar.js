@@ -7,6 +7,7 @@ import Icon from '../Icons/Icon';
 import UserAvatar from '../Avatars/UserAvatar';
 import StatusIcon from '../Statuses/StatusIcon';
 import { topDocumentPadding } from '../_Utility/constants';
+import { htmlOnlyMsg } from '../../utils/toastActions';
 
 const TopBarStyled = styled.div`
   background-color: ${COLORS.white};
@@ -22,6 +23,7 @@ const TopBarStyled = styled.div`
 const Logotype = styled.div`
   display: inline-flex;
   padding-top: ${topDocumentPadding};
+  cursor: pointer;
 `;
 
 const LogoLabel = styled.div`
@@ -48,25 +50,27 @@ const AvaBox = styled.div`
 const IconBox = styled.div`
   margin-right: 26px;
   position: relative;
+  cursor: pointer;
 `;
+
 
 const TopBar = () => {
   const users = useSelector((store) => store.users.items);
   return (
     <TopBarStyled>
-      <Logotype>
+      <Logotype onClick={htmlOnlyMsg}>
         <Icon iconName="logo" height="16px" />
         <LogoLabel>
           Epic Admin Dashboard
         </LogoLabel>
       </Logotype>
       <TopLeftMenu>
-        <IconBox>
+        <IconBox onClick={htmlOnlyMsg}>
           <Icon iconName="bell" />
           <StatusIcon color={COLORS.red} />
         </IconBox>
         {users.length && users.map((elem) => (
-          <AvaBox key={elem.email}>
+          <AvaBox key={elem.email} onClick={htmlOnlyMsg}>
             <UserAvatar
               email={elem.email}
               square

@@ -7,6 +7,7 @@ import UserAvatar from '../Avatars/UserAvatar';
 import SubLabel from '../Labels/SubLabel';
 import MessageButton from '../Buttons/MessageButton';
 import Icon from '../Icons/Icon';
+import { htmlOnlyMsg } from '../../utils/toastActions';
 
 const MessageCardStyled = styled.div`
   display: flex;
@@ -46,17 +47,32 @@ const MessageCard = ({ email }) => (
           email={email}
           name="Adam Smith"
           size="26px"
+          onClick={htmlOnlyMsg}
         />
         <ButtonsBox>
-          <MessageButton background={COLORS.green1} textColor={COLORS.green2}>
+          <MessageButton
+            background={COLORS.green1}
+            textColor={COLORS.green2}
+            onClick={htmlOnlyMsg}
+          >
             2
             {' '}
             <Icon iconName="attachmentGreen" />
           </MessageButton>
-          <MessageButton dateString="17 Apr" background={COLORS.orange1} textColor={COLORS.orange2}>
+          <MessageButton
+            dateString="17 Apr"
+            background={COLORS.orange1}
+            textColor={COLORS.orange2}
+            onClick={htmlOnlyMsg}
+          >
             17 replies
           </MessageButton>
-          <MessageButton dateString="17 Apr" background={COLORS.purple} textColor={COLORS.gray}>
+          <MessageButton
+            dateString="17 Apr"
+            background={COLORS.purple}
+            textColor={COLORS.gray}
+            onClick={htmlOnlyMsg}
+          >
             17 Apr
           </MessageButton>
         </ButtonsBox>

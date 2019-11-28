@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { action } from '@storybook/addon-actions';
+import { connect } from 'react-redux';
 import App from '../components/App';
 import IntegrationCard from '../components/Cards/IntegrationCard';
 import integrationsIndex from '../components/Icons/_integrationsIndex';
 import Button from '../components/Buttons/Button';
 import pageInitialData from '../components/_Utility/pageInitialData';
-import {connect} from 'react-redux';
+import { htmlOnlyMsg } from '../utils/toastActions';
 
 const IntegrationsContainer = styled.div`
   width: 260px;
@@ -32,7 +32,7 @@ const Index = () => (
           label="Slack"
           src={integrationsIndex.slack}
           status="connected"
-          onClick={() => {}}
+          onClick={htmlOnlyMsg}
           key={1}
         />
       </IntegrationsContainer>
@@ -41,7 +41,7 @@ const Index = () => (
           label="Trello"
           src={integrationsIndex.trello}
           status="auth"
-          onClick={() => {}}
+          onClick={htmlOnlyMsg}
           key={2}
         />
       </IntegrationsContainer>
@@ -50,7 +50,7 @@ const Index = () => (
           label="Google Analytics"
           src={integrationsIndex.googleAnalytics}
           status="disconnected"
-          onClick={() => {}}
+          onClick={htmlOnlyMsg}
           key={3}
         />
       </IntegrationsContainer>
@@ -59,13 +59,13 @@ const Index = () => (
           label="Google Sheets"
           src={integrationsIndex.googleSheets}
           status="connected"
-          onClick={() => {}}
+          onClick={htmlOnlyMsg}
           key={4}
         />
       </IntegrationsContainer>
     </CardsBox>
     <ButtonBox>
-      <Button onClick={action('clicked')}>Add new integrations</Button>
+      <Button onClick={htmlOnlyMsg}>Add new integrations</Button>
     </ButtonBox>
   </App>
 );

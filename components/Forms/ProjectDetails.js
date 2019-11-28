@@ -15,6 +15,7 @@ import findProjectIndex from '../../redux/_lib/findProjById';
 import Label from '../Labels/Label';
 import TagsLiveEdit from '../Tags/TagsLiveEdit';
 import AssigneeEditor from './AssigneeEditor';
+import { htmlOnlyMsg } from '../../utils/toastActions';
 
 const Columns = styled.div`
   display: flex;
@@ -153,21 +154,21 @@ const ProjectDetails = () => {
 
         <Column>
           <ButtonsBox>
-            <div>
+            <div onClick={htmlOnlyMsg} role="button" onKeyPress={htmlOnlyMsg} tabIndex={0}>
               <Icon iconName="attachment" />
-            Add attachments
+              Add attachments
             </div>
-            <div>
+            <div onClick={htmlOnlyMsg} role="button" onKeyPress={htmlOnlyMsg} tabIndex={0}>
               <Icon iconName="arrow" />
-            Move up
+              Move up
             </div>
-            <div>
+            <div onClick={htmlOnlyMsg} role="button" onKeyPress={htmlOnlyMsg} tabIndex={0}>
               <Icon iconName="subscribe" />
-            Subscribe
+              Subscribe
             </div>
-            <div>
+            <div onClick={htmlOnlyMsg} role="button" onKeyPress={htmlOnlyMsg} tabIndex={0}>
               <Icon iconName="archive" />
-            Archive
+              Archive
             </div>
           </ButtonsBox>
           <MessageBox>

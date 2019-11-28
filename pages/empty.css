@@ -1,1 +1,8 @@
+.toast__info {
+  color: #272626;
+}
 
+.toast__real-data {
+  background-color: #DCFAF0;
+  color: black;
+}

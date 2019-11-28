@@ -2,10 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import Icon from '../Icons/Icon';
+import { tableActionsMsg } from '../../utils/toastActions';
 
 const Label = styled.span`
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
 
 const IconBox = styled.div`
@@ -13,7 +15,7 @@ const IconBox = styled.div`
 `;
 
 const ThLabel = ({ label = '', sortable = false }) => (
-  <Label>
+  <Label onClick={tableActionsMsg}>
     <span>{label}</span>
     {sortable && (
       <IconBox>

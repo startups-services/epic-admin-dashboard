@@ -1,12 +1,14 @@
 import React from 'react';
 import { toast } from 'react-toastify';
+import Icon from '../components/Icons/Icon';
 
 export const htmlOnlyMsg = () => {
   toast(
     <>
-      {'</> It\'s clicked !'}
+      <Icon iconName="code" height="12px" />
+      {' It\'s clicked!'}
       <br />
-      But it only html now
+      But it&apos;s only html now
     </>,
     {
       bodyClassName: 'toast__info',
@@ -23,12 +25,14 @@ export const tableActionsMsg = () => {
 export const realDataMsg = () => {
   toast.success(
     <>
-      {'It\'s real data.'}
+      {'It\'s a real data.'}
       <br />
-       Your changes was saved in Graph.cool
+      Your changes have been saved successfully
     </>,
     {
-
+      bodyClassName: 'toast__real-data',
+      className: 'toast__real-data',
+      progressClassName: 'real-data__progressbar',
     },
   );
 };

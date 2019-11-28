@@ -13,6 +13,7 @@ import bell from './svg/bell.svg';
 import check from './svg/check.svg';
 import close from './svg/close.svg';
 import closeRed from './svg/close_red.svg';
+import code from './svg/code.svg';
 import collapseUp from './svg/collapse_up.svg';
 import dashboard from './svg/dashboard.svg';
 import details from './svg/details.svg';
@@ -27,6 +28,7 @@ import left from './svg/left.svg';
 import logo from './svg/logo.svg';
 import market from './svg/market.svg';
 import menu from './svg/menu.svg';
+import preloader from './svg/preloader.svg';
 import project from './svg/projects.svg';
 import refresh from './svg/refresh.svg';
 import right from './svg/right.svg';
@@ -56,6 +58,7 @@ const iconsIndex = {
   check,
   close,
   closeRed,
+  code,
   collapseUp,
   dashboard,
   details,
@@ -70,6 +73,7 @@ const iconsIndex = {
   logo,
   market,
   menu,
+  preloader,
   project,
   refresh,
   settings,

@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { useSelector } from 'react-redux';
 import LeftBarLink from './LeftBarLink';
 import COLORS from '../constants';
 
@@ -15,7 +14,6 @@ const LeftBarNavMenuStyled = styled.div`
 `;
 
 export default function LeftBarNavMenu() {
-  const projects = useSelector((state) => state.projects.items);
   return (
     <LeftBarNavMenuStyled>
       <LeftBarLink href="/" iconName="dashboard" label="Dash Home" dropDown />
@@ -23,10 +21,7 @@ export default function LeftBarNavMenu() {
       <LeftBarLink href="/integrations" iconName="integrations" label="Integrations" />
       <LeftBarLink href="/table" iconName="table" label="Table" />
       <LeftBarLink href="/calendar" iconName="calendar" label="Calendar" />
-      <LeftBarLink href="/user-edit" iconName="user" label="User edit page" />
-      {projects && projects[0] && (
-        <LeftBarLink href={`/project/${projects[0].id}`} iconName="edit" label="Project edit page" />
-      )}
+      <LeftBarLink href="/user-edit" iconName="user" label="User edit" />
     </LeftBarNavMenuStyled>
   );
 }

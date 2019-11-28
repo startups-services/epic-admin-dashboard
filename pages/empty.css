@@ -3,6 +3,14 @@
 }
 
 .toast__real-data {
-  background-color: #DCFAF0;
-  color: black;
+  background-color: #DCFAF0!important;
+  color: #272626;
+}
+
+.toast__real-data .Toastify__close-button {
+  color: #272626;
+}
+
+.real-data__progressbar {
+  background-color: #4EDC32!important;
 }

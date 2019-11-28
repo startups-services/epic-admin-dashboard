@@ -8,6 +8,7 @@ import COLORS, { COOKIE_TOKEN_NAME } from './constants';
 import { checkCurrUser } from '../redux/activeUser/actions';
 import { getAllUsers } from '../redux/users/actions';
 import 'react-toastify/dist/ReactToastify.css';
+import Preloader from './PagePreloader/PagePreloader';
 
 
 const Grid = css`
@@ -28,6 +29,7 @@ const App = ({ children }) => {
       dispatch(getAllUsers());
     }
   }, []);
+  debugger;
   return (
     <div>
       <Global
@@ -46,7 +48,11 @@ const App = ({ children }) => {
       `}
       />
       <Layout css={Grid}>
-        {children}
+        {users.items.length ? (
+          children
+        ) : (
+          <Preloader />
+        )}
       </Layout>
     </div>
   );

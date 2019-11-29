@@ -6,13 +6,15 @@ import COLORS from '../constants';
 export const contentPadding = '65px';
 
 const ContentStyled = styled.div`
-  padding: ${contentPadding};
+  padding-left: ${contentPadding};
+  padding-right: ${contentPadding};
+  padding-top: 30px;
   background: ${COLORS.purple};
 `;
 
-const Content = (props) => (
+const Content = ({ children }) => (
   <ContentStyled>
-    {props.children}
+    {children}
   </ContentStyled>
 );
 

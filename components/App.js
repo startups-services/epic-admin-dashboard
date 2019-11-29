@@ -29,7 +29,7 @@ const App = ({ children }) => {
       dispatch(getAllUsers());
     }
   }, []);
-  debugger;
+
   return (
     <div>
       <Global

@@ -13,14 +13,18 @@ if (typeof window !== 'undefined') {
   ReactQuill = styled.div``;
 }
 
+const DescriptionFormContainer = styled.div`
+  box-shadow: none;
+`;
+
 
 const DescriptionForm = ({ ...props }) => (
-  <>
+  <DescriptionFormContainer>
     <InputLabel>{props.label}</InputLabel>
     <ReactQuill
       {...props}
     />
-  </>
+  </DescriptionFormContainer>
 );
 
 DescriptionForm.propTypes = ReactQuill.propTypes;

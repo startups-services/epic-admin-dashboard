@@ -5,7 +5,7 @@ import COLORS from '../constants';
 
 const ButtonStyled = styled.button`
   background: ${({ background }) => background};
-  border: ${({ bordered }) => (bordered ? `1px dotted ${COLORS.black}` : 'none')};
+  border: ${({ bordered }) => (bordered ? `1px solid ${COLORS.black}` : 'none')};
   box-sizing: border-box;
   border-radius: 5px;
   cursor: pointer;

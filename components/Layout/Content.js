@@ -6,10 +6,10 @@ import COLORS from '../constants';
 export const contentPadding = '65px';
 
 const ContentStyled = styled.div`
-  padding-left: ${contentPadding};
-  padding-right: ${contentPadding};
-  padding-top: 30px;
+  padding: 30px ${contentPadding} ${contentPadding} ${contentPadding};
   background: ${COLORS.purple};
+  display: flex;
+  flex-direction: column;
 `;
 
 const Content = ({ children }) => (

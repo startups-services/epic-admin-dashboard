@@ -14,8 +14,8 @@ import { setProjectField } from '../../redux/projects/actions';
 import findProjectIndex from '../../redux/_lib/findProjById';
 import Label from '../Labels/Label';
 import TagsLiveEdit from '../Tags/TagsLiveEdit';
-import AssigneeEditor from './AssigneeEditor';
 import { htmlOnlyMsg } from '../../utils/toastActions';
+import AssigneeEditorWithDB from './AssigneeEditorWithDB';
 
 const Columns = styled.div`
   display: flex;
@@ -143,7 +143,7 @@ const ProjectDetails = () => {
             <InputLabel>
               Members
             </InputLabel>
-            <AssigneeEditor projectUsers={users} projectId={id} />
+            <AssigneeEditorWithDB projectUsers={users} projectId={id} />
           </AssigneeBox>
           <DateBox>
             <Icon iconName="calendarGreen" />

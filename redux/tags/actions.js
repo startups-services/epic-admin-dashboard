@@ -3,6 +3,7 @@ import execQuery from '../../data/graphql/client';
 import { createNewTagQ, deleteTagQ, getAllTagsQ } from '../../data/graphql/Tag';
 // eslint-disable-next-line import/no-cycle
 import { addTagToProjectRedux } from '../projects/actions';
+import {realDataMsg} from '../../utils/toastActions';
 
 export const setAllTags = (tags) => ({
   type: SET_ALL_TAGS,
@@ -26,6 +27,7 @@ export const getAllTags = () => async (dispatch) => {
 };
 
 export const createNewTag = (projectId, name) => async (dispatch) => {
+  realDataMsg();
   const { createTag } = await execQuery(createNewTagQ, { projectId, name });
   dispatch(addTagToAllTags(createTag));
   return createTag;

@@ -12,12 +12,13 @@ const CardStyled = styled.div`
   background: #FFF;
   display: flex;
   flex-basis: 100%;
-  justify-content: center;
+  justify-content: ${({ justifyContent }) => (justifyContent || 'center')};
   flex-direction: column;
+  align-self: ${({ alignSelf }) => (alignSelf || 'stretch')};
 `;
 
-const Card = ({ children }) => (
-  <CardStyled>
+const Card = ({ children, alignSelf, justifyContent }) => (
+  <CardStyled alignSelf={alignSelf} justifyContent={justifyContent}>
     {children}
   </CardStyled>
 );

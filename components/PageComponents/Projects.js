@@ -7,7 +7,6 @@ import Masonry from '../Layout/Masonry';
 import useWindowSize from '../../utils/hooks/useWindowSize';
 import COLORS from '../constants';
 import Icon from '../Icons/Icon';
-import Label from '../Labels/Label';
 
 const ItemBox = styled.div`
   display: inline-block;

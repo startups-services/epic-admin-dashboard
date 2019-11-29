@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { connect } from 'react-redux';
 import App from '../components/App';
 import OverviewCard from '../components/Cards/OverviewCard';
 import COLORS from '../components/constants';
@@ -8,11 +9,10 @@ import BigChart from '../components/Charts/BigChart';
 import Label from '../components/Labels/Label';
 import Table from '../components/Tables/Table';
 import pageInitialData from '../components/_Utility/pageInitialData';
-import {connect} from 'react-redux';
 
 const SpaceBetweenCards = 12;
 
-const LabelBox = styled.div`
+export const LabelBox = styled.div`
   margin-bottom: 30px;
 `;
 
@@ -39,43 +39,45 @@ const CardBox = styled.div`
 
 const Index = () => (
   <App>
-    <LabelBox>
-      <Label>
+    <>
+      <LabelBox>
+        <Label>
         Stats Overview
-      </Label>
-    </LabelBox>
-    <OverviewCardBox>
-      {[false, true, false, true].map((elem) => (
-        <CardBox>
-          <OverviewCard
-            number={`${Math.floor(Math.random() * 100) + 1}K`}
-            delta={`${Math.floor(Math.random() * 1000)}`}
-            label="month revenue"
-            increasing={elem}
-            iconName="user"
-            backgroundColor={COLORS.green1}
-          />
-        </CardBox>
-      ))}
-    </OverviewCardBox>
-    <LabelBox>
-      <Label>
+        </Label>
+      </LabelBox>
+      <OverviewCardBox>
+        {[false, true, false, true].map((elem) => (
+          <CardBox>
+            <OverviewCard
+              number={`${Math.floor(Math.random() * 100) + 1}K`}
+              delta={`${Math.floor(Math.random() * 1000)}`}
+              label="month revenue"
+              increasing={elem}
+              iconName="user"
+              backgroundColor={COLORS.green1}
+            />
+          </CardBox>
+        ))}
+      </OverviewCardBox>
+      <LabelBox>
+        <Label>
         Charts
-      </Label>
-    </LabelBox>
-    <ElemBox>
-      <Card>
-        <BigChart />
-      </Card>
-    </ElemBox>
-    <LabelBox>
-      <Label>
+        </Label>
+      </LabelBox>
+      <ElemBox>
+        <Card>
+          <BigChart />
+        </Card>
+      </ElemBox>
+      <LabelBox>
+        <Label>
         Management
-      </Label>
-    </LabelBox>
-    <Card>
-      <Table />
-    </Card>
+        </Label>
+      </LabelBox>
+      <Card>
+        <Table />
+      </Card>
+    </>
   </App>
 );
 Index

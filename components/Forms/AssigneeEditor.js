@@ -1,14 +1,12 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import AssigneeForm from './AssigneeForm';
 import AssigneeItem from './AssigneeItem';
-import { addUserToProject, deleteUserFromProject, setProjectField } from '../../redux/projects/actions';
 
 
-const AssigneeEditor = ({ projectId, projectUsers }) => {
+const AssigneeEditor = ({ projectUsers, onChange }) => {
   const users = useSelector((store) => store.users.items);
-  const dispatch = useDispatch();
 
   const userOptions = (projUserKey, deletable = true) => {
     const unusedUsers = users
@@ -21,31 +19,11 @@ const AssigneeEditor = ({ projectId, projectUsers }) => {
         user,
         projUserKey,
       }
-
     ));
     if (deletable) {
       options.unshift({ value: false, label: 'unset assignee', projUserKey });
     }
-
-
     return options;
-  };
-
-  const updateExistingAssignee = (val) => {
-    if (val.value) {
-      const newUsers = [...projectUsers];
-      newUsers[val.projUserKey] = val.user;
-      dispatch(setProjectField(projectId, 'users', newUsers));
-      dispatch(addUserToProject(projectId, val.user.id));
-      if (projectUsers[val.projUserKey]) {
-        dispatch(deleteUserFromProject(projectId, projectUsers[val.projUserKey].id));
-      }
-    } else {
-      const newUsers = [...projectUsers];
-      newUsers.splice(val.projUserKey, 1);
-      dispatch(setProjectField(projectId, 'users', newUsers));
-      dispatch(deleteUserFromProject(projectId, projectUsers[val.projUserKey].id));
-    }
   };
 
   return (
@@ -55,7 +33,7 @@ const AssigneeEditor = ({ projectId, projectUsers }) => {
           key={projUser.email}
           size="48px"
           options={userOptions(key)}
-          onChange={updateExistingAssignee}
+          onChange={onChange}
           value={{
             value: projUser.id,
             label: <AssigneeItem email={projUser.email} name={projUser.name} />,
@@ -66,7 +44,7 @@ const AssigneeEditor = ({ projectId, projectUsers }) => {
         key={Date()}
         size="48px"
         options={userOptions(projectUsers.length, false)}
-        onChange={updateExistingAssignee}
+        onChange={onChange}
         controlShouldRenderValue
       />
     </>
@@ -74,7 +52,6 @@ const AssigneeEditor = ({ projectId, projectUsers }) => {
 };
 
 AssigneeEditor.propTypes = {
-  projectId: PropTypes.string.isRequired,
   projectUsers: PropTypes.array.isRequired,
 };
 

@@ -25,7 +25,7 @@ const LiveEditTextArea = ({
   const sendWithDebounce = debounce(sendDataToBd, 600);
 
   return (
-    <div style={{ boxShadow: 'none' }}>
+    <>
       <DescriptionForm
         placeholder="Set project description..."
         defaultValue={defaultValue}
@@ -35,7 +35,7 @@ const LiveEditTextArea = ({
           }
         }}
       />
-    </div>
+    </>
   );
 };
 

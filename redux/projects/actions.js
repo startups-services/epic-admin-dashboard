@@ -68,6 +68,7 @@ export const deleteTagFromProject = (projectId, tagId) => async (dispatch) => {
 };
 
 export const addTagToProject = (projectId, tag) => async (dispatch) => {
+  realDataMsg();
   dispatch(addTagToProjectRedux(projectId, tag));
   await execQuery(addTagToProjectQ, { projectId, tagId: tag.id });
 };

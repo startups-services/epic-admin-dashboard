@@ -3,62 +3,11 @@ import CreatableSelect from 'react-select/creatable';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import COLORS from '../constants';
 import { createTag, getAllTags } from '../../redux/tags/actions';
 import { addTagToProject, deleteTagFromProject } from '../../redux/projects/actions';
+import tagsEditorStyles from './TagsEditorStyles';
+import convertToSelectFormat from '../_Utility/convertToSelectFormat';
 
-
-const tagStyles = {
-  control: (styles) => ({ ...styles, backgroundColor: 'white', borderColor: COLORS.gray2 }),
-  placeholder: (styles) => ({
-    ...styles,
-  }),
-  multiValue: (styles) => ({
-    ...styles,
-    backgroundColor: 'none',
-    border: `1px solid ${COLORS.orange2}`,
-  }),
-  clearIndicator: (styles) => ({
-    ...styles,
-    display: 'none',
-  }),
-  valueContainer: (styles) => ({
-    ...styles,
-    paddingRight: '80px',
-  }),
-  multiValueLabel: (styles) => ({
-    ...styles,
-    fontSize: '10px',
-    lineHeight: '12px',
-    textAlign: 'center',
-    letterSpacing: '1.5px',
-    color: COLORS.orange2,
-    padding: '8px 7px 7px 10px',
-    paddingLeft: '10px',
-  }),
-  multiValueRemove: (styles) => ({
-    ...styles,
-    color: COLORS.orange2,
-    cursor: 'pointer',
-    ':hover': {
-      backgroundColor: COLORS.red,
-      color: 'white',
-    },
-  }),
-};
-
-const convertToSelectFormat = (arr) => (arr.map((elem) => {
-  const translatedElem = { ...elem };
-  if (!translatedElem.value) {
-    translatedElem.value = elem.name;
-  }
-  if (!translatedElem.label) {
-    translatedElem.label = elem.name;
-  }
-
-  return translatedElem;
-})
-);
 const TagsEditor = ({ tags, projectId }) => {
   const [value, setValue] = useState(tags);
   const dispatch = useDispatch();
@@ -108,7 +57,7 @@ const TagsEditor = ({ tags, projectId }) => {
         onChange={onChange}
         value={convertToSelectFormat(value || [])}
         options={convertToSelectFormat(allTags || [])}
-        styles={tagStyles}
+        styles={tagsEditorStyles}
       />
     </>
   );

@@ -105,6 +105,8 @@ export const getProjectsQuery = `
       subLabel
       description
       costs
+      startDate
+      dueDate
       tags {
         id
         name

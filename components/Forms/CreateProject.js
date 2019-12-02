@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import CreatableSelect from 'react-select/creatable';
 import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 import InputLabel from '../Labels/InputLabel';
 import InputField from '../Inputs/InputField';
 import tagsEditorStyles from '../Tags/TagsEditorStyles';
@@ -13,7 +14,12 @@ import Button from '../Buttons/Button';
 import COLORS from '../constants';
 import { htmlOnlyMsg } from '../../utils/toastActions';
 import AssigneeEditor from './AssigneeEditor';
-import {addUserToProject, deleteUserFromProject, setProjectField} from '../../redux/projects/actions';
+import {
+  addUserToProject, createProject, deleteUserFromProject, setProjectField,
+} from '../../redux/projects/actions';
+import Icon from '../Icons/Icon';
+import DateInput from '../Inputs/DatePicker';
+import Dates from './Dates';
 
 const FieldBox = styled.div`
   margin-bottom: 20px;
@@ -32,28 +38,30 @@ const ButtonBox = styled.div`
 `;
 
 const CreateProject = () => {
+  const router = useRouter();
   const dispatch = useDispatch();
+  const [name, setName] = useState('');
+  const [subLabel, setSubLabel] = useState('');
+  const [costs, setCosts] = useState('');
   const [tags, setTags] = useState([]);
   const [description, setDescription] = useState('');
   const [users, setUsers] = useState([]);
-  
-  const updateAssignee = (val) => {
-    if (val.value) {
-      const newUsers = [...projectUsers];
-      newUsers[val.projUserKey] = val.user;
-      dispatch(setProjectField(projectId, 'users', newUsers));
-      dispatch(addUserToProject(projectId, val.user.id));
-      if (projectUsers[val.projUserKey]) {
-        dispatch(deleteUserFromProject(projectId, projectUsers[val.projUserKey].id));
-      }
-    } else {
-      const newUsers = [...projectUsers];
-      newUsers.splice(val.projUserKey, 1);
-      dispatch(setProjectField(projectId, 'users', newUsers));
-      dispatch(deleteUserFromProject(projectId, projectUsers[val.projUserKey].id));
-    }
+  const [startDate, setStartDate] = useState(new Date());
+  const [dueDate, setDueDate] = useState(new Date());
+
+  console.log(users);
+  const addAssignee = (val) => {
+    setUsers(((prevState) => ([...prevState, val.user])));
   };
-  
+
+  const removeAssignee = (val) => {
+    setUsers((prevState) => {
+      const newUsers = [...prevState];
+      newUsers.splice(val.projUserKey, 1);
+      return newUsers;
+    });
+  };
+
   const allTags = useSelector((state) => state.tags.items);
 
   useEffect(() => {
@@ -62,63 +70,93 @@ const CreateProject = () => {
 
   return (
     <CreateProjectContainer>
-      <div>
-        <FieldBox>
-          <InputLabel>Name</InputLabel>
-          <InputField
-            name="project name"
-            type="text"
-          />
-        </FieldBox>
-        <FieldBox>
-          <InputLabel>Sublabel</InputLabel>
-          <InputField
-            name="project name"
-            type="text"
-          />
-        </FieldBox>
-        <FieldBox>
-          <InputLabel>Tags</InputLabel>
-          <CreatableSelect
-            isClearable
-            isMulti
-            onChange={setTags}
-            value={tags}
-            options={convertToSelectFormat(allTags || [])}
-            styles={tagsEditorStyles}
-          />
-        </FieldBox>
-        <FieldBox>
-          <InputLabel>Description</InputLabel>
-          <DescriptionForm
-            placeholder="Set project description..."
-            defaultValue=""
-            onChange={(val, delta, source) => {
-              if (source === 'user') {
-                debounce(setDescription, 600)(val);
-              }
-            }}
-          />
-        </FieldBox>
-        <FieldBox>
-          <InputLabel>Costs</InputLabel>
-          <InputField
-            name="project name"
-            type="text"
-          />
-        </FieldBox>
-        <FieldBox>
-          <InputLabel>Assignee</InputLabel>
-          <AssigneeEditor projectUsers={users} onChange={setUsers} />
-        </FieldBox>
-      </div>
-      <ButtonBox>
-        <form onSubmit={(e) => { e.preventDefault(); e.stopPropagation(); }}>
-          <Button onClick={htmlOnlyMsg} bordered={false} background={COLORS.green1}>
+
+      <form onSubmit={async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        await dispatch(createProject({
+          name, description, tags, subLabel, costs, users, startDate, dueDate,
+        }));
+        await router.push('/projects');
+      }}
+      >
+        <div>
+          <FieldBox>
+            <InputLabel>Name</InputLabel>
+            <InputField
+              name="project name"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </FieldBox>
+          <FieldBox>
+            <InputLabel>Sublabel</InputLabel>
+            <InputField
+              name="subLabel"
+              type="text"
+              value={subLabel}
+              onChange={(e) => setSubLabel(e.target.value)}
+            />
+          </FieldBox>
+          <FieldBox>
+            <InputLabel>Tags</InputLabel>
+            <CreatableSelect
+              isClearable
+              isMulti
+              onChange={setTags}
+              value={tags}
+              options={convertToSelectFormat(allTags || [])}
+              styles={tagsEditorStyles}
+            />
+          </FieldBox>
+          <FieldBox>
+            <InputLabel>Description</InputLabel>
+            <DescriptionForm
+              required
+              placeholder="Set project description..."
+              defaultValue=""
+              onChange={(val, delta, source) => {
+                if (source === 'user') {
+                  debounce(setDescription, 600)(val);
+                }
+              }}
+            />
+          </FieldBox>
+          <FieldBox>
+            <InputLabel>Costs</InputLabel>
+            <InputField
+              name="project name"
+              type="text"
+              value={costs}
+              onChange={(e) => setCosts(e.target.value)}
+            />
+          </FieldBox>
+          <FieldBox>
+            <InputLabel>Assignee</InputLabel>
+            <AssigneeEditor
+              projectUsers={users}
+              addAssignee={addAssignee}
+              removeAssignee={removeAssignee}
+            />
+          </FieldBox>
+          <FieldBox>
+            <InputLabel>Dates</InputLabel>
+            <Dates
+              firstDate={startDate}
+              secondDate={dueDate}
+              setFirstDate={setStartDate}
+              setSecondDate={setDueDate}
+            />
+          </FieldBox>
+        </div>
+        <ButtonBox>
+          <Button onClick={() => {}} bordered={false} background={COLORS.green1}>
             Create project
           </Button>
-        </form>
-      </ButtonBox>
+        </ButtonBox>
+      </form>
     </CreateProjectContainer>
   );
 };

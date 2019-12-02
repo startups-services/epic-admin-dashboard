@@ -5,8 +5,16 @@ import AssigneeForm from './AssigneeForm';
 import AssigneeItem from './AssigneeItem';
 
 
-const AssigneeEditor = ({ projectUsers, onChange }) => {
+const AssigneeEditor = ({ projectUsers, addAssignee, removeAssignee }) => {
   const users = useSelector((store) => store.users.items);
+
+  const onChange = (val) => {
+    if (val.value) {
+      addAssignee(val);
+    } else {
+      removeAssignee(val);
+    }
+  };
 
   const userOptions = (projUserKey, deletable = true) => {
     const unusedUsers = users

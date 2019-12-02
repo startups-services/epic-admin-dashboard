@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import SubLabel from '../Labels/SubLabel';
 import LiveEditTextArea from '../Inputs/TextArea';
-import DateInput from '../Inputs/DatePicker';
 import InputLabel from '../Labels/InputLabel';
 import Icon from '../Icons/Icon';
 import MessageCard from '../Cards/MessageCard';
@@ -16,6 +15,7 @@ import Label from '../Labels/Label';
 import TagsLiveEdit from '../Tags/TagsLiveEdit';
 import { htmlOnlyMsg } from '../../utils/toastActions';
 import AssigneeEditorWithDB from './AssigneeEditorWithDB';
+import Dates from './Dates';
 
 const Columns = styled.div`
   display: flex;
@@ -54,14 +54,6 @@ const TextAreaBox = styled.div`
   margin-bottom: 34px;
 `;
 
-const DateBox = styled.div`
-  display: flex;
-  align-items: center;
-  & div[class*="-IconBox"] {
-    margin-right: 10px;
-  }
-`;
-
 const ButtonsBox = styled.div`
   display: flex;
   justify-content: space-between;
@@ -91,19 +83,20 @@ const ProjectDetails = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const {
-    id, name, description, tags, subLabel, users, costs,
+    id, name, description, tags, subLabel, users, costs, startDate, dueDate,
   } = useSelector((store) => {
     if (store.projects.items.length > 0) {
       return (store.projects.items[findProjectIndex(router.query.id, store.projects.items)]);
     }
     return {
-      id: '', subLabel: '', name: '', description: '', tags: [],
+      id: '', subLabel: '', name: '', description: '', tags: [], startDate, dueDate,
     };
   });
 
   const updateField = (fieldName, fieldValue) => {
     dispatch(setProjectField(id, fieldName, fieldValue));
   };
+
   return (
     <>
       <HeadersBelt>
@@ -145,11 +138,12 @@ const ProjectDetails = () => {
             </InputLabel>
             <AssigneeEditorWithDB projectUsers={users} projectId={id} />
           </AssigneeBox>
-          <DateBox>
-            <Icon iconName="calendarGreen" />
-            <DateInput />
-            <DateInput />
-          </DateBox>
+          <Dates
+            firstDate={startDate || undefined}
+            secondDate={dueDate || undefined}
+            setFirstDate={(val) => { dispatch(setProjectField(id, 'startDate', val)); }}
+            setSecondDate={(val) => { dispatch(setProjectField(id, 'dueDate', val)); }}
+          />
         </Column>
 
         <Column>

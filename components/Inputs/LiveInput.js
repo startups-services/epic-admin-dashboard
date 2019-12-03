@@ -5,6 +5,7 @@ import Icon from '../Icons/Icon';
 import InputLabel from '../Labels/InputLabel';
 import COLORS from '../constants';
 import InputContainer from './InputContainer';
+import InputField from './InputField';
 
 const EditButton = styled.div`
   cursor: pointer;
@@ -15,17 +16,6 @@ const LiveInputLabel = styled.div`
   display: flex;
   align-items: center;
 `;
-
-const InputField = styled.input`
-  background: ${COLORS.white};
-  border: 1px solid #E2E0E6;
-  box-sizing: border-box;
-  border-radius: 5px;
-  height: 42px;
-  padding: 13px 11px;
-  width: 100%;
-`;
-
 
 const LiveInput = ({
   value = '', label = 'input label', onSubmit, type, disabled, name, children, showLabel = false,

@@ -25,6 +25,17 @@ export const createNewTagQ = `
   }
 `;
 
+export const createNewTagWithoutProjectQ = `
+  mutation (
+    $name: String!
+  ) {
+    createTag(name: $name) {
+      id
+      name
+    }
+  }
+`;
+
 export const deleteTagQ = `
   mutation (
     $id: ID!

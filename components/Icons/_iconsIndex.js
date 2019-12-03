@@ -28,6 +28,7 @@ import left from './svg/left.svg';
 import logo from './svg/logo.svg';
 import market from './svg/market.svg';
 import menu from './svg/menu.svg';
+import plus from './svg/plus.svg';
 import preloader from './svg/preloader.svg';
 import project from './svg/projects.svg';
 import refresh from './svg/refresh.svg';
@@ -73,6 +74,7 @@ const iconsIndex = {
   logo,
   market,
   menu,
+  plus,
   preloader,
   project,
   refresh,

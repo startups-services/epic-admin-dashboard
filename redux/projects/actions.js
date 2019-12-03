@@ -7,9 +7,10 @@ import {
   deleteUserFromProjectQ,
   getProjectsQuery,
 } from '../../data/graphql';
-import { updateProjectQueries } from '../../data/graphql/Project';
-import { deleteTag } from '../tags/actions';
+import { createProjectQ, updateProjectQueries } from '../../data/graphql/Project';
+import { addTagToAllTags, deleteTag } from '../tags/actions';
 import { realDataMsg } from '../../utils/toastActions';
+import { createNewTagQ, createNewTagWithoutProjectQ } from '../../data/graphql/Tag';
 
 export const setInitialProjects = (projects) => ({
   type: SET_INITIAL_PROJECTS,
@@ -68,6 +69,7 @@ export const deleteTagFromProject = (projectId, tagId) => async (dispatch) => {
 };
 
 export const addTagToProject = (projectId, tag) => async (dispatch) => {
+  realDataMsg();
   dispatch(addTagToProjectRedux(projectId, tag));
   await execQuery(addTagToProjectQ, { projectId, tagId: tag.id });
 };
@@ -78,4 +80,31 @@ export const addUserToProject = (projectId, userId) => async () => {
 
 export const deleteUserFromProject = (projectId, userId) => async () => {
   await execQuery(deleteUserFromProjectQ, { projectId, userId });
+};
+
+export const createProject = ({
+  name, description, tags, subLabel, costs, users, startDate, dueDate,
+}) => async () => {
+  const tagsWithNewElems = await Promise.all(tags.map(async (elem) => {
+    if (elem.id) {
+      return elem;
+    }
+    const { createTag } = await execQuery(
+      createNewTagWithoutProjectQ,
+      { name: elem.label },
+    );
+    return { id: createTag.id };
+  }));
+
+  realDataMsg();
+  await execQuery(createProjectQ, {
+    name,
+    description,
+    tagsIds: tagsWithNewElems.map((e) => e.id),
+    subLabel,
+    costs,
+    usersIds: users.map((e) => e.id),
+    startDate,
+    dueDate,
+  });
 };

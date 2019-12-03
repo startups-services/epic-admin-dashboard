@@ -4,6 +4,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import styled from '@emotion/styled';
 import COLORS from '../constants';
+import { htmlOnlyMsg } from '../../utils/toastActions';
 
 const DatePickerStyled = styled.div`
   & .react-datepicker {
@@ -46,12 +47,12 @@ const DatePickerStyled = styled.div`
 
 const DateInput = () => {
   const [state, setState] = useState(new Date());
-
+  const onChangeWithToast = (val) => { setState(val); htmlOnlyMsg(); };
   return (
     <DatePickerStyled>
       <DatePicker
         selected={state}
-        onChange={setState}
+        onChange={onChangeWithToast}
         locale="en"
         dateFormat="dd/MM/yyyy"
       />

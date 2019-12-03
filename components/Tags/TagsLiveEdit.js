@@ -47,7 +47,7 @@ const TagsLiveEdit = ({ tags, projectId }) => {
       {isEdited && (
         <>
           <TagsEditor tags={tags} projectId={projectId} />
-          <ConfirmContainer onClick={toggleLiveEdit}>
+          <ConfirmContainer onClick={toggleLiveEdit} onKeyPress={toggleLiveEdit} tabIndex={0}>
             <Icon iconName="check" />
           </ConfirmContainer>
         </>
@@ -57,7 +57,7 @@ const TagsLiveEdit = ({ tags, projectId }) => {
           <div>
             <Tags tags={tags} color={COLORS.orange2} />
           </div>
-          <ButtonContainer onClick={toggleLiveEdit}>
+          <ButtonContainer onClick={toggleLiveEdit} onKeyPress={toggleLiveEdit} tabIndex={0}>
             <Icon iconName="addTag" />
           </ButtonContainer>
         </>

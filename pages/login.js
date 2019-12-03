@@ -3,7 +3,7 @@ import { useCookies } from 'react-cookie';
 import { css, Global } from '@emotion/core';
 import styled from '@emotion/styled';
 import Router from 'next/router';
-import execQuery, {createUserQ, execQueryWithNoToken, signInUserQ} from '../data/graphql/client';
+import { createUserQ, execQueryWithNoToken, signInUserQ } from '../data/graphql/client';
 import COLORS, { COOKIE_TOKEN_NAME } from '../components/constants';
 import Card from '../components/Cards/Card';
 import Input from '../components/Inputs/Input';
@@ -71,7 +71,6 @@ const Index = () => {
   };
 
   const trySignInUser = async (email, password) => {
-    debugger;
     const data = await execQueryWithNoToken(signInUserQ, { email, password });
     if (data) {
       setErrors('');

@@ -2,6 +2,7 @@ import React from 'react';
 import Select from 'react-select';
 import styled from '@emotion/styled';
 import Icon from '../Icons/Icon';
+import { htmlOnlyMsg } from '../../utils/toastActions';
 
 const ActionContainer = styled.div`
   display: flex;
@@ -83,26 +84,9 @@ const ProjectActions = () => (
         value: 0,
         label: <Icon iconName="details" />,
       }}
-      selectOption={() => {}}
+      onChange={htmlOnlyMsg}
       styles={customStyles}
     />
   </ProjectActionsContainer>
 );
 export default ProjectActions;
-
-// <div>
-//   <Icon iconName="attachment" />
-// Add attachments
-// </div>;
-// <div>
-// <Icon iconName="arrow" />
-//   Move up
-// </div>
-// <div>
-//   <Icon iconName="subscribe" />
-//   Subscribe
-// </div>
-// <div>
-// <Icon iconName="archive" />
-//   Archive
-//   </div>

@@ -9,7 +9,7 @@ import UsersAvatarsGroup from '../Avatars/UsersAvatarsGroup';
 import Label from '../Labels/Label';
 import Tags from '../Tags/Tags';
 import COLORS from '../constants';
-// import img from '../Icons/Screenshot_20191013_104148.png';
+import { htmlOnlyMsg } from '../../utils/toastActions';
 
 const IntegrationCardStyled = styled.div`
   display: flex;
@@ -77,7 +77,7 @@ const ProjectCard = ({
         <Tags tags={tags} />
       </div>
       <ButtonBox>
-        <Button bordered={false} background={COLORS.orange1} onClick={() => {}}>
+        <Button bordered={false} background={COLORS.orange1} onClick={htmlOnlyMsg}>
           Level up
         </Button>
       </ButtonBox>

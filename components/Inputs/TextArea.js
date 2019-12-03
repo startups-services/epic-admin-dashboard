@@ -6,12 +6,14 @@ import DescriptionForm from './DescriptionForm';
 import debounce from '../_Utility/debounce';
 import { updateProjectDescription } from '../../data/graphql';
 import execQuery from '../../data/graphql/client';
+import { realDataMsg } from '../../utils/toastActions';
 
 const LiveEditTextArea = ({
   defaultValue, id,
 }) => {
   const sendDataToBd = useCallback(async (val) => {
     try {
+      realDataMsg();
       console.log(`Data was sent ${val}`);
       const result = await execQuery(updateProjectDescription, { id, description: val });
       console.log(result);

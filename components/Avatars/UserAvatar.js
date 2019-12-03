@@ -7,6 +7,7 @@ const UserAvatarContainer = styled.div`
   display: inline-flex;
   justify-content: left;
   align-items: center;
+  cursor: pointer;
 `;
 
 const UserAvatarStyled = styled.img`
@@ -24,9 +25,9 @@ const UserName = styled.div`
 `;
 
 const UserAvatar = ({
-  square = false, size = '16px', name, borderRadius = '16px', email = '',
+  square = false, size = '16px', name, borderRadius = '16px', email = '', onClick = () => {},
 }) => (
-  <UserAvatarContainer>
+  <UserAvatarContainer onClick={onClick}>
     <UserAvatarStyled
       borderRadius={borderRadius}
       size={size}
@@ -37,9 +38,9 @@ const UserAvatar = ({
       }?s=120&d=retro`}
     />
     {(name) && (
-      <UserName>
-        {name}
-      </UserName>
+    <UserName>
+      {name}
+    </UserName>
     )}
   </UserAvatarContainer>
 );
@@ -50,6 +51,7 @@ UserAvatar.propTypes = {
   size: PropTypes.string,
   borderRadius: PropTypes.string,
   email: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
 };
 
 UserAvatar.defaultProps = {
@@ -57,6 +59,7 @@ UserAvatar.defaultProps = {
   size: '16px',
   borderRadius: '16px',
   name: undefined,
+  onClick: () => {},
 };
 
 export default UserAvatar;

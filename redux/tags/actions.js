@@ -1,6 +1,7 @@
 import { ADD_TAG_TO_ALL_TAGS, DELETE_TAG_FROM_ALL_TAGS, SET_ALL_TAGS } from './constants';
 import execQuery from '../../data/graphql/client';
 import { createNewTagQ, deleteTagQ, getAllTagsQ } from '../../data/graphql/Tag';
+// eslint-disable-next-line import/no-cycle
 import { addTagToProjectRedux } from '../projects/actions';
 
 export const setAllTags = (tags) => ({

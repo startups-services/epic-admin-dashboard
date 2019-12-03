@@ -10,6 +10,7 @@ const IconBox = styled.div`
 const Image = styled.img`
   display: flex;
   height: ${({ height }) => height || '16px'};
+  width: ${({ height }) => height || '16px'};
 `;
 
 const Icon = ({ iconName = 'close', height = '16px' }) => (

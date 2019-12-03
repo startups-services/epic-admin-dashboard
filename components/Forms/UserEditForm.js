@@ -12,6 +12,7 @@ import Select from '../Inputs/Select';
 import Label from '../Labels/Label';
 import SubLabel from '../Labels/SubLabel';
 import SubscriptionToggle from './SubscriptionToggle';
+import { htmlOnlyMsg } from '../../utils/toastActions';
 
 const PADDING_BETWEEN_PASS_INPUTS = '10px';
 
@@ -89,6 +90,8 @@ const UserEditForm = () => {
   const updateToggler = (eName, eValue) => { dispatch(setUserField(eName, eValue)); };
   const onChange = (e) => updateString(e.target.name, e.target.value);
 
+  const htmlOnlyDebounce = debounce(htmlOnlyMsg, 600);
+
   return (
     <>
       <Row>
@@ -115,7 +118,7 @@ const UserEditForm = () => {
             <InputBox>
               <Input
                 label="email"
-                onChange={() => { }}
+                onChange={htmlOnlyDebounce}
                 value={email}
                 name="email"
               />
@@ -138,27 +141,27 @@ const UserEditForm = () => {
         <PasswordForm>
           <Input
             label="Current Password"
-            onChange={() => {}}
+            onChange={htmlOnlyDebounce}
             value=""
             type="password"
             name=""
           />
           <Input
             label="New Password"
-            onChange={() => {}}
+            onChange={htmlOnlyDebounce}
             value=""
             type="password"
             name="newPass"
           />
           <Input
             label="Confirm Password"
-            onChange={() => {}}
+            onChange={htmlOnlyDebounce}
             value=""
             type="password"
             name="confirmPass"
           />
           {/* eslint-disable-next-line no-alert,no-undef */}
-          <Button onClick={() => { alert('mock password changes'); }} background={COLORS.green1} bordered={false}>
+          <Button onClick={htmlOnlyDebounce} background={COLORS.green1} bordered={false}>
             Change Password
           </Button>
         </PasswordForm>

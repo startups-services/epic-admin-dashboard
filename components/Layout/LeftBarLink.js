@@ -18,6 +18,7 @@ const StyledLink = styled.a`
 const IconBoxBefore = styled.div`
   display: inline-block;
   margin-right: 20px;
+  width: 16px;
 `;
 
 const IconBoxAfter = styled.div`

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 import COLORS from '../constants';
+import { htmlOnlyMsg } from '../../utils/toastActions';
 
 
 const TagStyled = styled.button`
@@ -32,7 +33,7 @@ const Tag = (
     color = COLORS.green3,
   },
 ) => (
-  <TagStyled onClick={onClick} color={color}>
+  <TagStyled onClick={htmlOnlyMsg} color={color}>
     <Label color={color}>
       {label}
     </Label>

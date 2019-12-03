@@ -9,6 +9,7 @@ import {
 } from '../../data/graphql';
 import { updateProjectQueries } from '../../data/graphql/Project';
 import { deleteTag } from '../tags/actions';
+import { realDataMsg } from '../../utils/toastActions';
 
 export const setInitialProjects = (projects) => ({
   type: SET_INITIAL_PROJECTS,
@@ -48,6 +49,7 @@ export const getInitialProjects = (token, res) => async (dispatch) => {
 };
 
 export const setProjectField = (projectId, name, value) => async (dispatch) => {
+  realDataMsg();
   if (value || value === false || value === 0) {
     dispatch(setProjectFieldRedux(projectId, name, value));
     await execQuery(updateProjectQueries[name], { id: projectId, value });
@@ -55,6 +57,7 @@ export const setProjectField = (projectId, name, value) => async (dispatch) => {
 };
 
 export const deleteTagFromProject = (projectId, tagId) => async (dispatch) => {
+  realDataMsg();
   const { removeFromProjectOnTag: { projectsProject, tagsTag } } = await execQuery(
     deleteTagFromProjectQ, { projectId, tagId },
   );
@@ -74,6 +77,5 @@ export const addUserToProject = (projectId, userId) => async () => {
 };
 
 export const deleteUserFromProject = (projectId, userId) => async () => {
-  
   await execQuery(deleteUserFromProjectQ, { projectId, userId });
 };

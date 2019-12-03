@@ -7,9 +7,11 @@ import pageInitialData from '../components/_Utility/pageInitialData';
 
 const Index = () => (
   <App>
-    <Card>
-      <Table />
-    </Card>
+    <div>
+      <Card>
+        <Table />
+      </Card>
+    </div>
   </App>
 );
 

@@ -1,12 +1,11 @@
 /* eslint-disable no-console */
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-
 import DescriptionForm from './DescriptionForm';
 import debounce from '../_Utility/debounce';
-import { updateProjectDescription } from '../../data/graphql';
 import execQuery from '../../data/graphql/client';
 import { realDataMsg } from '../../utils/toastActions';
+import { updateProjectDescriptionQ } from '../../data/graphql/Project';
 
 const LiveEditTextArea = ({
   defaultValue, id,
@@ -15,7 +14,7 @@ const LiveEditTextArea = ({
     try {
       realDataMsg();
       console.log(`Data was sent ${val}`);
-      const result = await execQuery(updateProjectDescription, { id, description: val });
+      const result = await execQuery(updateProjectDescriptionQ, { id, description: val });
       console.log(result);
     } catch (e) {
       console.error(e); // eslint-disable-line no-console

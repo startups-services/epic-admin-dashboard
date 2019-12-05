@@ -3,7 +3,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
 import Icon from '../Icons/Icon';
 import InputLabel from '../Labels/InputLabel';
-import COLORS from '../constants';
 import InputContainer from './InputContainer';
 import InputField from './InputField';
 

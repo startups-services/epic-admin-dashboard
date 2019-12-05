@@ -28,6 +28,7 @@ Input.propTypes = {
   type: PropTypes.string,
   disabled: PropTypes.string,
   name: PropTypes.string.isRequired,
+  ref: PropTypes.object.isRequired,
 };
 
 Input.defaultProps = {

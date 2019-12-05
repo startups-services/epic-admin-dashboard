@@ -5,7 +5,7 @@ import Card from '../components/Cards/Card';
 import pageInitialData from '../components/_Utility/pageInitialData';
 import CreateProject from '../components/Forms/CreateProject';
 import Label from '../components/Labels/Label';
-import {LabelBox} from './index';
+import { LabelBox } from './index';
 
 const Index = () => (
   <App>

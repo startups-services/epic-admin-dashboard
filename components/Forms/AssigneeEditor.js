@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import AssigneeForm from './AssigneeForm';
 import AssigneeItem from './AssigneeItem';
 
-
 const AssigneeEditor = ({ projectUsers, addAssignee, removeAssignee }) => {
   const users = useSelector((store) => store.users.items);
 
@@ -61,6 +60,8 @@ const AssigneeEditor = ({ projectUsers, addAssignee, removeAssignee }) => {
 
 AssigneeEditor.propTypes = {
   projectUsers: PropTypes.array.isRequired,
+  addAssignee: PropTypes.func.isRequired,
+  removeAssignee: PropTypes.func.isRequired,
 };
 
 export default AssigneeEditor;

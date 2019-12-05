@@ -99,3 +99,43 @@ export const createProjectQ = `
     }
   }
 `;
+
+export const getProjectsQ = `
+  query {
+    allProjects {
+      id
+      name
+      subLabel
+      description
+      costs
+      startDate
+      dueDate
+      tags {
+        id
+        name
+        projects {
+          id
+        }
+      }
+      users {
+        id
+        name
+        ava
+        email
+      }
+      picture
+      status
+    }
+  }
+`;
+
+export const updateProjectDescriptionQ = `
+  mutation updateProject (
+    $id: ID!
+    $description: String
+  ) {
+    updateProject(id: $id, description: $description) {
+      id
+    }
+  }
+`;

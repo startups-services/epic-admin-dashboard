@@ -25,6 +25,13 @@ const Card = ({ children, alignSelf, justifyContent }) => (
 
 Card.propTypes = {
   children: PropTypes.node.isRequired,
+  alignSelf: PropTypes.string,
+  justifyContent: PropTypes.string,
+};
+
+Card.defaultProps = {
+  alignSelf: undefined,
+  justifyContent: undefined,
 };
 
 export default Card;

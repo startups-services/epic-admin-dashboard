@@ -12,13 +12,8 @@ import DescriptionForm from '../Inputs/DescriptionForm';
 import debounce from '../_Utility/debounce';
 import Button from '../Buttons/Button';
 import COLORS from '../constants';
-import { htmlOnlyMsg } from '../../utils/toastActions';
 import AssigneeEditor from './AssigneeEditor';
-import {
-  addUserToProject, createProject, deleteUserFromProject, setProjectField,
-} from '../../redux/projects/actions';
-import Icon from '../Icons/Icon';
-import DateInput from '../Inputs/DatePicker';
+import { createProject } from '../../redux/projects/actions';
 import Dates from './Dates';
 
 const FieldBox = styled.div`
@@ -49,7 +44,6 @@ const CreateProject = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [dueDate, setDueDate] = useState(new Date());
 
-  console.log(users);
   const addAssignee = (val) => {
     setUsers(((prevState) => ([...prevState, val.user])));
   };

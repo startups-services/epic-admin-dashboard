@@ -5,6 +5,7 @@ import Select, { components } from 'react-select';
 import Icon from '../Icons/Icon';
 import customStyles from './selectCustomStyles';
 
+// eslint-disable-next-line react/jsx-props-no-spreading
 const Placeholder = (props) => <components.Placeholder {...props} />;
 
 const AssigneeFormStyled = styled.div`
@@ -33,7 +34,6 @@ const AssigneeFormStyled = styled.div`
 const AssigneeForm = ({ size = '48px', ...rest }) => (
   <AssigneeFormStyled>
     <Select
-      // defaultMenuIsOpen
       isSearchable={false}
       defaultValue={null}
       isClearable
@@ -42,7 +42,7 @@ const AssigneeForm = ({ size = '48px', ...rest }) => (
         <Icon iconName="addNewUser" height={size} />
       }
       styles={customStyles}
-      {...rest}
+      {...rest} // eslint-disable-line react/jsx-props-no-spreading
     />
 
   </AssigneeFormStyled>

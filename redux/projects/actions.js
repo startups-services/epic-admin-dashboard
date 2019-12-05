@@ -1,16 +1,11 @@
 import execQuery, { isomorphicRedirectToLogin } from '../../data/graphql/client';
 import { ADD_TAG_TO_PROJECT, SET_INITIAL_PROJECTS, SET_PROJECT_FIELD } from './constants';
-import {
-  addTagToProjectQ,
-  addUserToProjectQ,
-  deleteTagFromProjectQ,
-  deleteUserFromProjectQ,
-  getProjectsQuery,
-} from '../../data/graphql';
-import { createProjectQ, updateProjectQueries } from '../../data/graphql/Project';
-import { addTagToAllTags, deleteTag } from '../tags/actions';
+import { createProjectQ, getProjectsQ, updateProjectQueries } from '../../data/graphql/Project';
+// eslint-disable-next-line import/no-cycle
+import { deleteTag } from '../tags/actions';
 import { realDataMsg } from '../../utils/toastActions';
-import { createNewTagQ, createNewTagWithoutProjectQ } from '../../data/graphql/Tag';
+import { addTagToProjectQ, createNewTagWithoutProjectQ, deleteTagFromProjectQ } from '../../data/graphql/Tag';
+import { addUserToProjectQ, deleteUserFromProjectQ } from '../../data/graphql/User';
 
 export const setInitialProjects = (projects) => ({
   type: SET_INITIAL_PROJECTS,
@@ -38,7 +33,7 @@ export const setProjectFieldRedux = (id, field, value) => ({
 
 export const getInitialProjects = (token, res) => async (dispatch) => {
   if (token) {
-    const projects = await execQuery(getProjectsQuery);
+    const projects = await execQuery(getProjectsQ);
     if (!projects) {
       isomorphicRedirectToLogin(res);
     } else {

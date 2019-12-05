@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import execQuery from '../../data/graphql/client';
 import Icon from '../Icons/Icon';
-import { createTag, updateTag } from '../../data/graphql';
+import { createTag, updateTag } from '../../data/graphql/Tag';
 
 const EditButtonBox = styled.div`
   //height: 100%;
@@ -68,6 +69,11 @@ const TagsInput = ({ setTagsState, projectId }) => {
       )}
     </>
   );
+};
+
+TagsInput.propTypes = {
+  setTagsState: PropTypes.func.isRequired,
+  projectId: PropTypes.string.isRequired,
 };
 
 export default TagsInput;

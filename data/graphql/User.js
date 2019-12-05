@@ -129,3 +129,41 @@ export const getAllUsersQ = `
   }
 }
 `;
+
+export const addUserToProjectQ = `
+   mutation (
+    $userId: ID!
+    $projectId: ID!
+  ) {
+    addToProjectOnUser(
+      usersUserId: $userId
+      projectsProjectId: $projectId
+    ) {
+      projectsProject {
+        id
+      }
+      usersUser {
+        id
+      }
+    }
+  }
+`;
+
+export const deleteUserFromProjectQ = `
+   mutation (
+    $userId: ID!
+    $projectId: ID!
+  ) {
+    removeFromProjectOnUser(
+      usersUserId: $userId
+      projectsProjectId: $projectId
+    ) {
+      projectsProject {
+        id
+      }
+      usersUser {
+        id
+      }
+    }
+  }
+`;

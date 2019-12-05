@@ -33,7 +33,7 @@ const Tag = (
     color = COLORS.green3,
   },
 ) => (
-  <TagStyled onClick={htmlOnlyMsg} color={color}>
+  <TagStyled onClick={onClick || htmlOnlyMsg} color={color}>
     <Label color={color}>
       {label}
     </Label>

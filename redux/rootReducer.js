@@ -5,4 +5,6 @@ import activeUser from './activeUser/reducer';
 import projects from './projects/reducer';
 import users from './users/reducer';
 
-export default combineReducers({ tags, projects, activeUser, users });
+export default combineReducers({
+  tags, projects, activeUser, users,
+});

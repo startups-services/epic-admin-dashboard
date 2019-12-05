@@ -20,9 +20,9 @@ const DescriptionFormContainer = styled.div`
 
 const DescriptionForm = ({ ...props }) => (
   <DescriptionFormContainer>
-    <InputLabel>{props.label}</InputLabel>
+    <InputLabel>{props.label}</InputLabel>  {/* eslint-disable-line */}
     <ReactQuill
-      {...props}
+      {...props} // eslint-disable-line
     />
   </DescriptionFormContainer>
 );

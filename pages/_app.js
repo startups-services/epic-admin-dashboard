@@ -2,14 +2,25 @@ import App from 'next/app';
 import React from 'react';
 import { toast } from 'react-toastify';
 import { Provider } from 'react-redux';
+import { Router } from 'next/router';
 import withReduxStore from '../redux/_lib/with-redux-store';
 import './empty.css';
-
 import 'react-toastify/dist/ReactToastify.css';
+import { Auth0Provider } from '../Auth0/react-auth0-spa';
+import config from '../auth_config';
 
 toast.configure(
   { position: toast.POSITION.BOTTOM_RIGHT },
 );
+
+const onRedirectCallback = (appState) => {
+  Router.push(
+    appState && appState.targetUrl
+      ? appState.targetUrl
+      : 'http://localhost:3000/',
+
+  );
+};
 
 class MyApp extends App {
   // Only uncomment this method if you have blocking data requirements for
@@ -27,10 +38,17 @@ class MyApp extends App {
   render() {
     const { Component, pageProps, reduxStore } = this.props;
     return (
-      <Provider store={reduxStore}>
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-        <Component {...pageProps} />
-      </Provider>
+      <Auth0Provider
+        domain={config.domain}
+        client_id={config.clientId}
+        redirect_uri={(typeof window === 'object') && 'http://localhost:3000/'}
+        onRedirectCallback={onRedirectCallback}
+      >
+        <Provider store={reduxStore}>
+          {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+          <Component {...pageProps} />
+        </Provider>
+      </Auth0Provider>
     );
   }
 }

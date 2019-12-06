@@ -4,19 +4,19 @@ import { getAllUsers } from '../../redux/users/actions';
 import { checkCurrUser } from '../../redux/activeUser/actions';
 
 const pageInitialData = async ({ reduxStore, req, res }) => {
-  const tokenCookie = isomorphicGetTokenFromCookie(req);
-  const { dispatch } = reduxStore;
+  // const tokenCookie = isomorphicGetTokenFromCookie(req);
+  // const { dispatch } = reduxStore;
 
-  if (tokenCookie) {
-    const token = Token.checkAndUpdateToken(tokenCookie);
-    dispatch(checkCurrUser(token));
-    if (token) {
-      await dispatch(getInitialProjects(token, res));
-      await dispatch(getAllUsers());
-    }
-  } else {
-    isomorphicRedirectToLogin(res);
-  }
+  // if (tokenCookie) {
+  //   const token = Token.checkAndUpdateToken(tokenCookie);
+  //   dispatch(checkCurrUser(token));
+  //   if (token) {
+  //     await dispatch(getInitialProjects(token, res));
+  //     await dispatch(getAllUsers());
+  //   }
+  // } else {
+  //   isomorphicRedirectToLogin(res);
+  // }
   return {};
 };
 

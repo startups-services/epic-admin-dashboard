@@ -71,6 +71,7 @@ const CreateProject = () => {
         await dispatch(createProject({
           name, description, tags, subLabel, costs, users, startDate, dueDate,
         }));
+        debugger;
         await router.push('/projects');
       }}
       >

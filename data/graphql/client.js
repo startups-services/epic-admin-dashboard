@@ -28,6 +28,7 @@ Token.getToken = () => {
   }
 
   if (Router) {
+    debugger;
     Router.push('/login');
   } else {
     // eslint-disable-next-line no-console
@@ -99,6 +100,7 @@ export const isomorphicRedirectToLogin = (res) => {
     });
     res.end();
   } else {
+    debugger;
     Router.push('/login');
   }
   return {};

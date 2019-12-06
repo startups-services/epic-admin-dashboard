@@ -75,6 +75,7 @@ const Index = () => {
     if (data) {
       setErrors('');
       setCookie(COOKIE_TOKEN_NAME, data.signinUser.token, { maxAge: 2592000 });
+      debugger;
       await Router.push('/');
     } else {
       setErrors('Sorry, but you have error in login or password');

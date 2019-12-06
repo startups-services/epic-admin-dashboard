@@ -8,6 +8,7 @@ import UserAvatar from '../Avatars/UserAvatar';
 import StatusIcon from '../Statuses/StatusIcon';
 import { topDocumentPadding } from '../_Utility/constants';
 import { htmlOnlyMsg } from '../../utils/toastActions';
+import { useAuth0 } from '../../Auth0/react-auth0-spa';
 
 const TopBarStyled = styled.div`
   background-color: ${COLORS.white};
@@ -56,6 +57,7 @@ const IconBox = styled.div`
 
 const TopBar = () => {
   const users = useSelector((store) => store.users.items);
+  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
   return (
     <TopBarStyled>
       <Logotype onClick={htmlOnlyMsg}>
@@ -81,6 +83,12 @@ const TopBar = () => {
           </AvaBox>
 
         ))}
+
+        {!isAuthenticated && (
+          <button onClick={() => loginWithRedirect({})}>Log in</button>
+        )}
+
+        {isAuthenticated && <button onClick={() => logout()}>Log out</button>}
       </TopLeftMenu>
     </TopBarStyled>
   );

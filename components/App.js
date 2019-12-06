@@ -9,6 +9,7 @@ import { checkCurrUser } from '../redux/activeUser/actions';
 import { getAllUsers } from '../redux/users/actions';
 import 'react-toastify/dist/ReactToastify.css';
 import Preloader from './PagePreloader/PagePreloader';
+import { useAuth0 } from '../Auth0/react-auth0-spa';
 
 
 const Grid = css`
@@ -23,12 +24,20 @@ const App = ({ children }) => {
   const users = useSelector((store) => store.users);
   const token = useSelector((store) => store.activeUser.token);
 
+  const { isAuthenticated, loginWithRedirect, loading, user } = useAuth0();
+
   useEffect(() => {
-    dispatch(checkCurrUser(Cookies.get(COOKIE_TOKEN_NAME)));
+    // dispatch(checkCurrUser(Cookies.get(COOKIE_TOKEN_NAME)));
     if (token && users.items.length === 0) {
       dispatch(getAllUsers());
     }
   }, []);
+  debugger;
+  if (loading || !isAuthenticated) {
+    
+    // loginWithRedirect({});
+    return <Preloader />;
+  }
 
   return (
     <div>
@@ -48,11 +57,11 @@ const App = ({ children }) => {
       `}
       />
       <Layout css={Grid}>
-        {users.items.length ? (
-          children
-        ) : (
-          <Preloader />
-        )}
+        {/* {users.items.length ? ( */}
+        {children}
+        {/* ) : ( */}
+        {/*  <Preloader /> */}
+        {/* )} */}
       </Layout>
     </div>
   );

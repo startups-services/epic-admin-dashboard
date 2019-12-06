@@ -16,10 +16,12 @@ export const checkCurrUser = (token) => async (dispatch) => {
     if (data) {
       dispatch(getInitialUserData(data.user));
     } else {
+      debugger;
       await Router.push('/login');
       return false;
     }
   } else {
+    debugger;
     await Router.push('/login');
     return false;
   }

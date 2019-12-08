@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react';
-import Cookies from 'js-cookie';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { css, Global } from '@emotion/core';
 import Layout from './Layout/Layout';
-import COLORS, { COOKIE_TOKEN_NAME } from './constants';
-import { checkCurrUser } from '../redux/activeUser/actions';
+import COLORS from './constants';
 import { getAllUsers } from '../redux/users/actions';
 import 'react-toastify/dist/ReactToastify.css';
 import Preloader from './PagePreloader/PagePreloader';
@@ -24,7 +22,7 @@ const App = ({ children }) => {
   const token = useSelector((store) => store.activeUser.token);
 
   useEffect(() => {
-    dispatch(checkCurrUser(Cookies.get(COOKIE_TOKEN_NAME)));
+    // dispatch(checkCurrUser(Cookies.get(COOKIE_TOKEN_NAME)));
     if (token && users.items.length === 0) {
       dispatch(getAllUsers());
     }

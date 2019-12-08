@@ -1,7 +1,6 @@
-import Router from 'next/router';
 import { GET_INITIAL_USER_DATA, SET_USER_FIELD } from './constants';
-import execQuery, { Token } from '../../data/graphql/client';
-import { getActiveUser, updateUserQueries } from '../../data/graphql/User';
+import execQuery from '../../data/graphql/client';
+import { updateUserQueries } from '../../data/graphql/User';
 import { realDataMsg } from '../../utils/toastActions';
 
 export const getInitialUserData = (userData) => ({
@@ -9,22 +8,6 @@ export const getInitialUserData = (userData) => ({
   userData,
 });
 
-export const checkCurrUser = (token) => async (dispatch) => {
-  if (token) {
-    Token.checkAndUpdateToken(token);
-    const data = await execQuery(getActiveUser);
-    if (data) {
-      dispatch(getInitialUserData(data.user));
-    } else {
-      await Router.push('/login');
-      return false;
-    }
-  } else {
-    await Router.push('/login');
-    return false;
-  }
-  return true;
-};
 
 export const setUserFieldRedux = (field, value) => ({
   type: SET_USER_FIELD,

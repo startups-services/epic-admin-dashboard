@@ -1,4 +1,4 @@
-import execQuery, { isomorphicRedirectToLogin } from '../../data/graphql/client';
+import execQuery from '../../data/graphql/client';
 import { ADD_TAG_TO_PROJECT, SET_INITIAL_PROJECTS, SET_PROJECT_FIELD } from './constants';
 import { createProjectQ, getProjectsQ, updateProjectQueries } from '../../data/graphql/Project';
 // eslint-disable-next-line import/no-cycle
@@ -31,12 +31,10 @@ export const setProjectFieldRedux = (id, field, value) => ({
   value,
 });
 
-export const getInitialProjects = (token, res) => async (dispatch) => {
+export const getInitialProjects = (token) => async (dispatch) => {
   if (token) {
     const projects = await execQuery(getProjectsQ);
-    if (!projects) {
-      isomorphicRedirectToLogin(res);
-    } else {
+    if (projects) {
       const result = await dispatch(setInitialProjects(projects.allProjects));
       return result;
     }

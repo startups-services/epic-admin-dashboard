@@ -1,3 +1,5 @@
+// TODO remove this page if it's not necessary
+
 import React, { useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { css, Global } from '@emotion/core';
@@ -126,12 +128,14 @@ const Index = () => {
                 <LoginForm>
                   <Label>Epic Admin Dashboard</Label>
                   <Input
+                    ref={{}}
                     value=""
                     onChange={() => {}}
                     label="email"
                     name="email"
                   />
                   <Input
+                    ref={{}}
                     value=""
                     onChange={() => {}}
                     label="password"

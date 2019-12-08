@@ -1,23 +1,21 @@
-import { isomorphicGetTokenFromCookie, isomorphicRedirectToLogin, Token } from '../../data/graphql/client';
 import { getInitialProjects } from '../../redux/projects/actions';
 import { getAllUsers } from '../../redux/users/actions';
-import { checkCurrUser } from '../../redux/activeUser/actions';
+import auth0 from '../../utils/auth0';
 
-const pageInitialData = async ({ reduxStore, req, res }) => {
-  const tokenCookie = isomorphicGetTokenFromCookie(req);
-  const { dispatch } = reduxStore;
-
-  if (tokenCookie) {
-    const token = Token.checkAndUpdateToken(tokenCookie);
-    dispatch(checkCurrUser(token));
-    if (token) {
-      await dispatch(getInitialProjects(token, res));
-      await dispatch(getAllUsers());
+const pageInitialData = async ({ req, res, reduxStore }) => {
+  if (typeof window === 'undefined') {
+    const result = await auth0.getSession(req);
+    if (!result) {
+      res.writeHead(302, {
+        Location: '/api/login',
+      });
+      res.end();
+      return;
     }
-  } else {
-    isomorphicRedirectToLogin(res);
+    const { dispatch } = reduxStore;
+    await dispatch(getInitialProjects(res));
+    await dispatch(getAllUsers());
   }
-  return {};
 };
 
 export default pageInitialData;

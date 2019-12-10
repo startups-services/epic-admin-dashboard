@@ -14,7 +14,7 @@ const LiveEditTextArea = ({
     try {
       realDataMsg();
       console.log(`Data was sent ${val}`);
-      const result = await execQuery(updateProjectDescriptionQ, { id, description: val });
+      const result = await execQuery(updateProjectDescriptionQ, { id, value: val });
       console.log(result);
     } catch (e) {
       console.error(e); // eslint-disable-line no-console

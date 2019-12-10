@@ -6,7 +6,6 @@ import { getInitialUserData } from '../../redux/activeUser/actions';
 const pageInitialData = async ({ req, res, reduxStore }) => {
   if (typeof window === 'undefined') {
     const result = await auth0.getSession(req);
-    debugger;
     if (!result) {
       res.writeHead(302, {
         Location: '/api/login',

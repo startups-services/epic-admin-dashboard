@@ -5,19 +5,35 @@ updateProjectQueries.name = `
     $id: ID!
     $value: String!
   ) {
-    updateProject(id: $id, name: $value) {
+    updateProject(
+      data:{
+        name: $value
+      },
+      where: {
+        id: $id
+      }
+    )
+    {
       id
       name
     }
   }
 `;
 
+
 updateProjectQueries.subLabel = `
   mutation (
     $id: ID!
     $value: String!
   ) {
-    updateProject(id: $id, subLabel: $value) {
+     updateProject(
+      data:{
+        subLabel: $value
+      },
+      where: {
+        id: $id
+      }
+    ) {
       id
       subLabel
     }
@@ -29,7 +45,14 @@ updateProjectQueries.dueDate = `
     $id: ID!
     $value: String!
   ) {
-    updateProject(id: $id, dueDate: $value) {
+    updateProject(
+      data:{
+        dueDate: $value
+      },
+      where: {
+        id: $id
+      }
+    ) {
       id
       dueDate
     }
@@ -41,7 +64,14 @@ updateProjectQueries.startDate = `
     $id: ID!
     $value: String!
   ) {
-    updateProject(id: $id, startDate: $value) {
+    updateProject(
+      data:{
+        startDate: $value
+      },
+      where: {
+        id: $id
+      }
+    ) {
       id
       startDate
     }
@@ -53,13 +83,39 @@ updateProjectQueries.costs = `
     $id: ID!
     $value: String!
   ) {
-    updateProject(id: $id, costs: $value) {
+    updateProject(
+      data:{
+        costs: $value
+      },
+      where: {
+        id: $id
+      }
+    ) {
       id
       costs
     }
   }
 `;
 
+export const updateProjectDescriptionQ = `
+  mutation updateProject (
+    $id: ID!
+    $value: String
+  ) {
+    updateProject(
+      data:{
+        description: $value
+      },
+      where: {
+        id: $id
+      }
+    ) {
+      id
+      description
+    }
+  }
+`;
+// todo not wokk
 export const createProjectQ = `
   mutation (
     $name: String!
@@ -72,14 +128,19 @@ export const createProjectQ = `
     $dueDate: String
   ) {
     createProject (
-      name: $name
-      description: $description
-      tagsIds: $tagsIds
-      subLabel: $subLabel
-      costs: $costs
-      usersIds: $usersIds
-      startDate: $startDate
-      dueDate: $dueDate
+      data: {
+        name: $name
+        description: $description
+        tags: {
+        connect: {
+          id: $tagsIds
+        }
+        subLabel: $subLabel
+        costs: $costs
+        usersIds: $usersIds
+        startDate: $startDate
+        dueDate: $dueDate
+      }
     ) {
       name,
       costs,
@@ -102,7 +163,7 @@ export const createProjectQ = `
 
 export const getProjectsQ = `
   query {
-    allProjects {
+    projects {
       id
       name
       subLabel
@@ -117,25 +178,12 @@ export const getProjectsQ = `
           id
         }
       }
-      users {
+      projectUsers {
         id
         name
-        ava
         email
       }
-      picture
       status
-    }
-  }
-`;
-
-export const updateProjectDescriptionQ = `
-  mutation updateProject (
-    $id: ID!
-    $description: String
-  ) {
-    updateProject(id: $id, description: $description) {
-      id
     }
   }
 `;

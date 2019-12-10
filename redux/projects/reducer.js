@@ -14,7 +14,11 @@ export default produce((state = initialState, action) => {
       state.items[findProjectIndex(action.id, state.items)][action.field] = action.value;
       return;
     case 'ADD_TAG_TO_PROJECT':
-      state.items[findProjectIndex(action.id, state.items)].tags.push(action.tag);
+      if (state.items[findProjectIndex(action.id, state.items)].tags) {
+        state.items[findProjectIndex(action.id, state.items)].tags.push(action.tag);
+      } else {
+        state.items[findProjectIndex(action.id, state.items)].tags = [action.tag];
+      }
       return;
     case 'SET_INITIAL_PROJECTS':
       state.items = action.projects;

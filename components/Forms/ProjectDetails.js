@@ -83,7 +83,7 @@ const ProjectDetails = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const {
-    id, name, description, tags, subLabel, users, costs, startDate, dueDate,
+    id, name, description, tags, subLabel, projectUsers, costs, startDate, dueDate,
   } = useSelector((store) => {
     if (store.projects.items.length > 0) {
       return (store.projects.items[findProjectIndex(router.query.id, store.projects.items)]);
@@ -96,7 +96,6 @@ const ProjectDetails = () => {
   const updateField = (fieldName, fieldValue) => {
     dispatch(setProjectField(id, fieldName, fieldValue));
   };
-
   return (
     <>
       <HeadersBelt>
@@ -136,7 +135,7 @@ const ProjectDetails = () => {
             <InputLabel>
               Members
             </InputLabel>
-            <AssigneeEditorWithDB projectUsers={users} projectId={id} />
+            <AssigneeEditorWithDB projectUsers={projectUsers} projectId={id} />
           </AssigneeBox>
           <Dates
             firstDate={startDate || undefined}

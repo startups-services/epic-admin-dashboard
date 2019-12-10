@@ -74,7 +74,7 @@ LiveInput.propTypes = {
   label: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
   type: PropTypes.string,
-  disabled: PropTypes.string,
+  disabled: PropTypes.bool,
   name: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   showLabel: PropTypes.bool,

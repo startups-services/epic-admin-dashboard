@@ -9,9 +9,9 @@ export const setAllUsers = (users) => ({
 
 export const getAllUsers = () => async (dispatch) => {
   try {
-    const { allUsers } = await execQuery(getAllUsersQ);
-    dispatch(setAllUsers(allUsers));
-    return allUsers;
+    const { projectUsers } = await execQuery(getAllUsersQ);
+    dispatch(setAllUsers(projectUsers));
+    return projectUsers;
   } catch (e) {
     console.log(e); // eslint-disable-line no-console
     return null;

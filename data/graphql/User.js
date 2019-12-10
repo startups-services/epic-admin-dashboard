@@ -117,11 +117,10 @@ export const getActiveUser = `
 
 export const getAllUsersQ = `
   query{
-  allUsers{
+  projectUsers{
     id
     name
     email
-    ava
     company
     projects {
       id
@@ -135,14 +134,17 @@ export const addUserToProjectQ = `
     $userId: ID!
     $projectId: ID!
   ) {
-    addToProjectOnUser(
-      usersUserId: $userId
-      projectsProjectId: $projectId
+    updateProject(
+      where: {id: $projectId}
+      data: {projectUsers: {
+        connect: {
+          id : $userId
+        }
+      }}
     ) {
-      projectsProject {
-        id
-      }
-      usersUser {
+      id
+      name
+      projectUsers {
         id
       }
     }
@@ -154,16 +156,16 @@ export const deleteUserFromProjectQ = `
     $userId: ID!
     $projectId: ID!
   ) {
-    removeFromProjectOnUser(
-      usersUserId: $userId
-      projectsProjectId: $projectId
+    updateProject(
+      where: {id: $projectId}
+      data: {projectUsers: {
+        disconnect: {
+          id: $userId
+        }
+      }}
     ) {
-      projectsProject {
-        id
-      }
-      usersUser {
-        id
-      }
+      id
+      name
     }
   }
 `;

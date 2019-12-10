@@ -2,7 +2,7 @@ import execQuery from './client';
 
 export const getAllTagsQ = `
   query{
-    allTags {
+    tags {
       name
       id
       projects {
@@ -17,7 +17,7 @@ export const createNewTagQ = `
     $projectId: ID!
     $name: String!
   ) {
-    createTag(name: $name, projectsIds: [$projectId]) {
+    createTag(data:{name: $name,  projects: {connect: {id:$projectId }}  }) {
       id
       name
       projects{
@@ -31,7 +31,7 @@ export const createNewTagWithoutProjectQ = `
   mutation (
     $name: String!
   ) {
-    createTag(name: $name) {
+    createTag(data: {name: $name}) {
       id
       name
     }
@@ -42,7 +42,7 @@ export const deleteTagQ = `
   mutation (
     $id: ID!
   ) {
-    deleteTag(id:$id) {
+    deleteTag(where: {id:$id}) {
       id
     }
   }
@@ -54,8 +54,12 @@ export const updateTag = `
     $projectsIds: [ID!]!
   ) {
     updateTag(
-      id: $id,
-      projectsIds: $projectsIds
+      where: {
+        id: $id,
+      }
+      data: {
+        projectsIds: $projectsIds
+      }
     ) {
       id
       projects {
@@ -72,15 +76,17 @@ export const createTag = `
     $projectsIds: [ID!]!
   ) {
     createTag(
-      name: $name
-      projectsIds: $projectsIds
-      ) {
-        id
-        projects {
-          id
-          name
-        }
+      data: {
+        name: $name
+        projectsIds: $projectsIds
       }
+    ) {
+      id
+      projects {
+        id
+        name
+      }
+    }
   }
 `;
 

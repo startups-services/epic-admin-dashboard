@@ -10,7 +10,7 @@ const initialState = {
 export default produce((state = initialState, action) => {
   switch (action.type) {
     case 'SET_USERS':
-      state.items = action.users;
+      state.items = action.users || [];
       return;
     default:
       return state || null;

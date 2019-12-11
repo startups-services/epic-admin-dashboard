@@ -1,4 +1,4 @@
-export const allProjectFields = `
+export const mainProjectFields = `
   id
   name
   subLabel
@@ -19,4 +19,22 @@ export const allProjectFields = `
     email
   }
   projectStatus
+`;
+
+export const sharedUserFields = `
+  id
+  name
+  email
+  company
+  projects {
+    id
+  }
+`;
+
+export const mainTagFields = `
+  id
+  name
+  projects {
+    id
+  }
 `;

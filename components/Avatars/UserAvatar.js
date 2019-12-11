@@ -25,7 +25,7 @@ const UserName = styled.div`
 `;
 
 const UserAvatar = ({
-  square = false, size = '16px', name, borderRadius = '16px', email = '', onClick = () => {},
+  square = false, size = '16px', name, borderRadius = '16px', email = '', onClick = () => {}, title,
 }) => (
   <UserAvatarContainer onClick={onClick}>
     <UserAvatarStyled
@@ -36,11 +36,12 @@ const UserAvatar = ({
       src={`https://secure.gravatar.com/avatar/${
         md5(email.trim().toLocaleLowerCase())
       }?s=120&d=retro`}
+      title={title || email}
     />
     {(name) && (
-    <UserName>
-      {name}
-    </UserName>
+      <UserName>
+        {name}
+      </UserName>
     )}
   </UserAvatarContainer>
 );
@@ -52,6 +53,7 @@ UserAvatar.propTypes = {
   borderRadius: PropTypes.string,
   email: PropTypes.string.isRequired,
   onClick: PropTypes.func,
+  title: PropTypes.string,
 };
 
 UserAvatar.defaultProps = {
@@ -60,6 +62,7 @@ UserAvatar.defaultProps = {
   borderRadius: '16px',
   name: undefined,
   onClick: () => {},
+  title: '',
 };
 
 export default UserAvatar;

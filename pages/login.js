@@ -5,7 +5,6 @@ import { useCookies } from 'react-cookie';
 import { css, Global } from '@emotion/core';
 import styled from '@emotion/styled';
 import Router from 'next/router';
-import { createUserQ, execQueryWithNoToken, signInUserQ } from '../data/graphql/client';
 import COLORS, { COOKIE_TOKEN_NAME } from '../components/constants';
 import Card from '../components/Cards/Card';
 import Input from '../components/Inputs/Input';
@@ -73,7 +72,7 @@ const Index = () => {
   };
 
   const trySignInUser = async (email, password) => {
-    const data = await execQueryWithNoToken(signInUserQ, { email, password });
+    const data = undefined; // get user data
     if (data) {
       setErrors('');
       setCookie(COOKIE_TOKEN_NAME, data.signinUser.token, { maxAge: 2592000 });
@@ -84,7 +83,7 @@ const Index = () => {
   };
 
   const trySignUpUser = async (email, password) => {
-    const data = await execQueryWithNoToken(createUserQ, { email, password });
+    const data = undefined; // get user data
     if (data) {
       await trySignInUser(email, password);
     } else {

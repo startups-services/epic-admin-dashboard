@@ -76,6 +76,7 @@ const TopBar = () => {
               square
               borderRadius="10px"
               size="26px"
+              title={elem.name}
             />
             <StatusIcon color={COLORS.green2} />
           </AvaBox>

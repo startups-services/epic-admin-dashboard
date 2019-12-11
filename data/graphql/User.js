@@ -1,3 +1,5 @@
+import { sharedUserFields } from './fragments';
+
 export const updateUserQueries = {};
 
 updateUserQueries.name = `
@@ -5,7 +7,10 @@ updateUserQueries.name = `
     $id: ID!
     $value: String!
   ) {
-    updateUser(id: $id, name: $value) {
+    updateProjectUser(
+      where: { id: $id }
+      data: { name: $value }
+    ) {
       id
       name
     }
@@ -17,7 +22,10 @@ updateUserQueries.company = `
     $id: ID!
     $value: String!
   ) {
-    updateUser(id: $id, company: $value) {
+    updateProjectUser(
+      where: { id: $id }
+      data: { company: $value }
+    ) {
       id
       company
     }
@@ -29,7 +37,10 @@ updateUserQueries.dateFormat = `
     $id: ID!
     $value: String!
   ) {
-    updateUser(id: $id, dateFormat: $value) {
+    updateProjectUser(
+      where: { id: $id }
+      data: { dateFormat: $value }
+    ) {
       id
       dateFormat
     }
@@ -41,7 +52,10 @@ updateUserQueries.timeFormat = `
     $id: ID!
     $value: String
   ) {
-    updateUser(id: $id, timeFormat: $value) {
+    updateProjectUser(
+      where: { id: $id }
+      data: { timeFormat: $value }
+    ) {
       id
       timeFormat
     }
@@ -53,7 +67,10 @@ updateUserQueries.timeZone = `
     $id: ID!
     $value: String
   ) {
-    updateUser(id: $id, timeZone: $value) {
+    updateProjectUser(
+      where: { id: $id }
+      data: { timeZone: $value }
+    ) {
       id
       timeZone
     }
@@ -65,7 +82,10 @@ updateUserQueries.sendEmails = `
     $id: ID!
     $value: Boolean
   ) {
-    updateUser(id: $id, sendEmails: $value) {
+    updateProjectUser(
+      where: { id: $id }
+      data: { sendEmails: $value }
+    ) {
       id
       sendEmails
     }
@@ -77,7 +97,10 @@ updateUserQueries.sendNotifications = `
     $id: ID!
     $value: Boolean
   ) {
-    updateUser(id: $id, sendNotifications: $value) {
+    updateProjectUser(
+      where: { id: $id }
+      data: { sendNotifications: $value }
+    ) {
       id
       sendNotifications
     }
@@ -89,7 +112,10 @@ updateUserQueries.sendPushes = `
     $id: ID!
     $value: Boolean
   ) {
-    updateUser(id: $id, sendPushes: $value) {
+    updateProjectUser(
+      where: { id: $id }
+      data: { sendPushes: $value }
+    ) {
       id
       sendPushes
     }
@@ -99,12 +125,7 @@ updateUserQueries.sendPushes = `
 export const getActiveUser = `
   query {
     user {
-      id
-      password
-      name
-      email
-      ava
-      company
+      ${sharedUserFields}
       dateFormat
       timeFormat
       timeZone
@@ -118,13 +139,7 @@ export const getActiveUser = `
 export const getAllUsersQ = `
   query{
   projectUsers{
-    id
-    name
-    email
-    company
-    projects {
-      id
-    }
+    ${sharedUserFields}
   }
 }
 `;
@@ -135,8 +150,8 @@ export const addUserToProjectQ = `
     $projectId: ID!
   ) {
     updateProject(
-      where: {id: $projectId}
-      data: {projectUsers: {
+      where: { id: $projectId }
+      data: { projectUsers: {
         connect: {
           id : $userId
         }
@@ -157,8 +172,8 @@ export const deleteUserFromProjectQ = `
     $projectId: ID!
   ) {
     updateProject(
-      where: {id: $projectId}
-      data: {projectUsers: {
+      where: { id: $projectId }
+      data: { projectUsers: {
         disconnect: {
           id: $userId
         }
@@ -166,6 +181,27 @@ export const deleteUserFromProjectQ = `
     ) {
       id
       name
+    }
+  }
+`;
+
+export const upsertUserQ = `
+  mutation (
+    $email: String!
+    $name: String
+  ) {
+    upsertProjectUser(
+      where: { email: $email }
+      create: { email: $email, name: $name }
+      update: { }
+    ) {
+      ${sharedUserFields}
+      dateFormat
+      timeFormat
+      timeZone
+      sendEmails
+      sendNotifications
+      sendPushes
     }
   }
 `;

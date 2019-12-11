@@ -12,6 +12,24 @@ export const getAllTagsQ = `
   }
 `;
 
+export const getTagByIdQ = `
+  query getTagById (
+    $id: ID!
+  ){
+    tag (
+      where: {
+        id: $id
+      }
+    ) {
+      name
+      id
+      projects {
+        id
+      }
+    }
+  }
+`;
+
 export const createNewTagQ = `
   mutation (
     $projectId: ID!
@@ -85,64 +103,6 @@ export const createTag = `
       projects {
         id
         name
-      }
-    }
-  }
-`;
-
-export const deleteTagFromProjectQ = `
-  mutation (
-    $tagId: ID!
-    $projectId: ID!
-  ) {
-    removeFromProjectOnTag(
-      tagsTagId: $tagId
-      projectsProjectId: $projectId
-    ) {
-      projectsProject {
-        id
-        tags {
-          id
-          name
-          projects {
-            id
-          }
-        }
-      }
-      tagsTag {
-        id
-        projects {
-          id
-        }
-      }
-    }
-  }
-`;
-
-export const addTagToProjectQ = `
-   mutation (
-    $tagId: ID!
-    $projectId: ID!
-  ) {
-    addToProjectOnTag(
-      tagsTagId: $tagId
-      projectsProjectId: $projectId
-    ) {
-      projectsProject {
-        id
-        tags {
-          id
-          name
-          projects {
-            id
-          }
-        }
-      }
-      tagsTag {
-        id
-        projects {
-          id
-        }
       }
     }
   }

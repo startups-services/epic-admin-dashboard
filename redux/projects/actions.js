@@ -1,10 +1,16 @@
 import execQuery from '../../data/graphql/client';
 import { ADD_TAG_TO_PROJECT, SET_INITIAL_PROJECTS, SET_PROJECT_FIELD } from './constants';
-import { createProjectQFunc, getProjectsQ, updateProjectQueries } from '../../data/graphql/Project';
+import {
+  connectTagToProjQ,
+  createProjectQFunc,
+  disconnectTagFromProjQ,
+  getProjectsQ,
+  updateProjectQueries,
+} from '../../data/graphql/Project';
 // eslint-disable-next-line import/no-cycle
-import { deleteTag } from '../tags/actions';
+import { deleteTag, getTagByIdFromBD } from '../tags/actions';
 import { realDataMsg } from '../../utils/toastActions';
-import { addTagToProjectQ, createNewTagWithoutProjectQ, deleteTagFromProjectQ } from '../../data/graphql/Tag';
+import { createNewTagWithoutProjectQ } from '../../data/graphql/Tag';
 import { addUserToProjectQ, deleteUserFromProjectQ } from '../../data/graphql/User';
 
 export const setInitialProjects = (projects) => ({
@@ -52,19 +58,21 @@ export const setProjectField = (projectId, name, value) => async (dispatch) => {
 
 export const deleteTagFromProject = (projectId, tagId) => async (dispatch) => {
   realDataMsg();
-  const { removeFromProjectOnTag: { projectsProject, tagsTag } } = await execQuery(
-    deleteTagFromProjectQ, { projectId, tagId },
+  const { updateProject } = await execQuery(
+    disconnectTagFromProjQ, { projectId, tagId },
   );
-  dispatch(setProjectFieldRedux(projectId, 'tags', projectsProject.tags));
-  if (projectsProject && projectsProject.tags && projectsProject.tags.length === 0) {
-    dispatch(deleteTag(tagsTag.id));
+  await dispatch(setProjectFieldRedux(projectId, 'tags', updateProject.tags));
+  const tag = await dispatch(getTagByIdFromBD(tagId));
+  debugger;
+  if (tag && tag.tag.projects.length === 0) {
+    dispatch(deleteTag(tagId));
   }
 };
 
 export const addTagToProject = (projectId, tag) => async (dispatch) => {
   realDataMsg();
   dispatch(addTagToProjectRedux(projectId, tag));
-  await execQuery(addTagToProjectQ, { projectId, tagId: tag.id });
+  await execQuery(connectTagToProjQ, { projectId, tagId: tag.id });
 };
 
 export const addUserToProject = (projectId, userId) => async () => {

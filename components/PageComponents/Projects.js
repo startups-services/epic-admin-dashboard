@@ -7,6 +7,7 @@ import Masonry from '../Layout/Masonry';
 import useWindowSize from '../../utils/hooks/useWindowSize';
 import COLORS from '../constants';
 import Icon from '../Icons/Icon';
+import { imgRandomizer } from '../_Utility/dataFillers';
 
 const ItemBox = styled.div`
   display: inline-block;
@@ -48,7 +49,7 @@ const Projects = () => {
             <ProjectCard
               label={elem.name}
               tags={elem.tags}
-              src={elem.picture}
+              src={imgRandomizer()}
               description={elem.description}
               status={elem.status}
               users={elem.projectUsers}

@@ -130,8 +130,9 @@ const UserEditForm = () => {
             <UserAvatar
               size="100px"
               email={email}
+              onClick={htmlOnlyMsg}
             />
-            <UploadButton onClick={action('clicked')}>
+            <UploadButton onClick={htmlOnlyMsg}>
               upload image
             </UploadButton>
           </UserAvaBlock>

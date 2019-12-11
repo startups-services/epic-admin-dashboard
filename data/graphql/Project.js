@@ -1,4 +1,4 @@
-import { allProjectFields } from './fragments';
+import {mainProjectFields, mainTagFields} from './fragments';
 
 export const updateProjectQueries = {};
 
@@ -149,7 +149,7 @@ export const createProjectQFunc = (tagsIds, usersIds) => (`
         dueDate: $dueDate
       }
     ) {
-      ${allProjectFields}
+      ${mainProjectFields}
     }
   }
 `
@@ -158,7 +158,53 @@ export const createProjectQFunc = (tagsIds, usersIds) => (`
 export const getProjectsQ = `
   query {
     projects {
-      ${allProjectFields}
+      ${mainProjectFields}
+    }
+  }
+`;
+
+export const disconnectTagFromProjQ = `
+  mutation (
+    $tagId: ID!
+    $projectId: ID!
+  ) {
+    updateProject(
+      where: {id: $projectId}
+      data: {
+        tags: {
+          disconnect: {
+            id: $tagId
+          }
+        }
+      }
+    ) {
+      id
+      tags {
+        ${mainTagFields}
+      }
+    }
+  }
+`;
+
+export const connectTagToProjQ = `
+  mutation (
+    $tagId: ID!
+    $projectId: ID!
+  ) {
+    updateProject(
+      where: {id: $projectId}
+      data: {
+        tags: {
+          connect: {
+            id: $tagId
+          }
+        }
+      }
+    ) {
+      id
+      tags {
+        ${mainTagFields}
+      }
     }
   }
 `;

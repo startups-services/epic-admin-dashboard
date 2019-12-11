@@ -1,6 +1,8 @@
 import { ADD_TAG_TO_ALL_TAGS, DELETE_TAG_FROM_ALL_TAGS, SET_ALL_TAGS } from './constants';
 import execQuery from '../../data/graphql/client';
-import { createNewTagQ, deleteTagQ, getAllTagsQ } from '../../data/graphql/Tag';
+import {
+  createNewTagQ, deleteTagQ, getAllTagsQ, getTagByIdQ,
+} from '../../data/graphql/Tag';
 // eslint-disable-next-line import/no-cycle
 import { addTagToProjectRedux } from '../projects/actions';
 import { realDataMsg } from '../../utils/toastActions';
@@ -43,4 +45,10 @@ export const createTag = (projectId, newTag, currTags) => async (dispatch) => {
   const createdTag = await dispatch(createNewTag(projectId, newTag.value));
   dispatch(addTagToProjectRedux(projectId, createdTag));
   currTags[currTags.length - 1] = createdTag; // eslint-disable-line no-param-reassign
+};
+
+export const getTagByIdFromBD = (id) => async () => {
+  debugger;
+  const result = await execQuery(getTagByIdQ, { id });
+  return result;
 };

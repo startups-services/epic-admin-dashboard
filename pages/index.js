@@ -46,13 +46,13 @@ const Index = () => (
         </Label>
       </LabelBox>
       <OverviewCardBox>
-        {[false, true, false, true].map((elem) => (
-          <CardBox>
+        {[1, 2, 3, 4].map((elem) => (
+          <CardBox key={elem}>
             <OverviewCard
               number={`${Math.floor(Math.random() * 100) + 1}K`}
               delta={`${Math.floor(Math.random() * 1000)}`}
               label="month revenue"
-              increasing={elem}
+              increasing={elem % 2 === 0}
               iconName="user"
               backgroundColor={COLORS.green1}
             />

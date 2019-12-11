@@ -11,11 +11,13 @@ const pageInitialData = async ({ req, res, reduxStore }) => {
         Location: '/api/login',
       });
       res.end();
-      return;
+      return {};
     }
     const { dispatch } = reduxStore;
     await dispatch(getInitialProjects(res));
-    const { upsertProjectUser } = await dispatch(upsertLoggedUser({ email: result.user.email, name: result.user.name }));
+    const { upsertProjectUser } = await dispatch(
+      upsertLoggedUser({ email: result.user.email, name: result.user.name }),
+    );
     await dispatch(getAllUsers());
     await dispatch(getInitialUserData(upsertProjectUser));
 

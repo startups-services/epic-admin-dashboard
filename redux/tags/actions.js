@@ -24,7 +24,6 @@ export const deleteTagFromAllTags = (id) => ({
 
 export const getAllTags = () => async (dispatch) => {
   const { tags } = await execQuery(getAllTagsQ);
-  debugger;
   dispatch(setAllTags(tags));
   return tags;
 };
@@ -48,7 +47,6 @@ export const createTag = (projectId, newTag, currTags) => async (dispatch) => {
 };
 
 export const getTagByIdFromBD = (id) => async () => {
-  debugger;
   const result = await execQuery(getTagByIdQ, { id });
   return result;
 };

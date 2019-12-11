@@ -1,4 +1,4 @@
-import {mainProjectFields, mainTagFields} from './fragments';
+import { mainProjectFields, mainTagFields } from './fragments';
 
 export const updateProjectQueries = {};
 

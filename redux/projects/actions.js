@@ -63,7 +63,6 @@ export const deleteTagFromProject = (projectId, tagId) => async (dispatch) => {
   );
   await dispatch(setProjectFieldRedux(projectId, 'tags', updateProject.tags));
   const tag = await dispatch(getTagByIdFromBD(tagId));
-  debugger;
   if (tag && tag.tag.projects.length === 0) {
     dispatch(deleteTag(tagId));
   }

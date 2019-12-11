@@ -1,4 +1,4 @@
-// TODO remove this page if it's not necessary
+// remove this page if you use auth0
 
 import React, { useState } from 'react';
 import { useCookies } from 'react-cookie';
@@ -71,8 +71,9 @@ const Index = () => {
     setShowSignIn(!showSignIn);
   };
 
+  // eslint-disable-next-line no-unused-vars
   const trySignInUser = async (email, password) => {
-    const data = undefined; // get user data
+    const data = false; // get user data
     if (data) {
       setErrors('');
       setCookie(COOKIE_TOKEN_NAME, data.signinUser.token, { maxAge: 2592000 });
@@ -83,7 +84,7 @@ const Index = () => {
   };
 
   const trySignUpUser = async (email, password) => {
-    const data = undefined; // get user data
+    const data = false; // get user data
     if (data) {
       await trySignInUser(email, password);
     } else {

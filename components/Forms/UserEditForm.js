@@ -1,6 +1,5 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { action } from '@storybook/addon-actions';
 import styled from '@emotion/styled';
 import Input from '../Inputs/Input';
 import Button from '../Buttons/Button';

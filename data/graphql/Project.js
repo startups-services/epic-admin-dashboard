@@ -1,3 +1,5 @@
+import { allProjectFields } from './fragments';
+
 export const updateProjectQueries = {};
 
 updateProjectQueries.name = `
@@ -19,8 +21,6 @@ updateProjectQueries.name = `
     }
   }
 `;
-
-
 updateProjectQueries.subLabel = `
   mutation (
     $id: ID!
@@ -115,15 +115,13 @@ export const updateProjectDescriptionQ = `
     }
   }
 `;
-// todo not wokk
-export const createProjectQ = `
-  mutation (
+
+export const createProjectQFunc = (tagsIds, usersIds) => (`
+   mutation (
     $name: String!
     $description: String!
-    $tagsIds: [ID!]
     $subLabel: String
     $costs: String
-    $usersIds: [ID!]
     $startDate: String
     $dueDate: String
   ) {
@@ -131,59 +129,36 @@ export const createProjectQ = `
       data: {
         name: $name
         description: $description
-        tags: {
-        connect: {
-          id: $tagsIds
-        }
+        ${tagsIds && tagsIds.length && `
+          tags: {
+            connect: {
+              ${tagsIds.map((id) => (`id: "${id}"`))}
+            }
+          }
+        `}
+        ${usersIds && usersIds.length && `
+          projectUsers: {
+            connect: {
+              ${usersIds.map((id) => (`id: "${id}"`))}
+            }
+          }
+        `}
         subLabel: $subLabel
         costs: $costs
-        usersIds: $usersIds
         startDate: $startDate
         dueDate: $dueDate
       }
     ) {
-      name,
-      costs,
-      dueDate,
-      startDate,
-      description,
-      id,
-      status,
-      subLabel,
-      tags {
-        id
-      }
-      users {
-        id
-        name
-      }
+      ${allProjectFields}
     }
   }
-`;
+`
+);
 
 export const getProjectsQ = `
   query {
     projects {
-      id
-      name
-      subLabel
-      description
-      costs
-      startDate
-      dueDate
-      tags {
-        id
-        name
-        projects {
-          id
-        }
-      }
-      projectUsers {
-        id
-        name
-        email
-      }
-      status
+      ${allProjectFields}
     }
   }
 `;

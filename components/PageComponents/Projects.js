@@ -51,7 +51,7 @@ const Projects = () => {
               src={elem.picture}
               description={elem.description}
               status={elem.status}
-              users={elem.users}
+              users={elem.projectUsers}
               id={elem.id}
             />
           </ItemBox>

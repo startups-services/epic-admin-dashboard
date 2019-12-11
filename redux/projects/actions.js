@@ -1,6 +1,6 @@
 import execQuery from '../../data/graphql/client';
 import { ADD_TAG_TO_PROJECT, SET_INITIAL_PROJECTS, SET_PROJECT_FIELD } from './constants';
-import { createProjectQ, getProjectsQ, updateProjectQueries } from '../../data/graphql/Project';
+import { createProjectQFunc, getProjectsQ, updateProjectQueries } from '../../data/graphql/Project';
 // eslint-disable-next-line import/no-cycle
 import { deleteTag } from '../tags/actions';
 import { realDataMsg } from '../../utils/toastActions';
@@ -77,7 +77,7 @@ export const deleteUserFromProject = (projectId, userId) => async () => {
 
 export const createProject = ({
   name, description, tags, subLabel, costs, users, startDate, dueDate,
-}) => async () => {
+}) => async (dispatch, getState) => {
   const tagsWithNewElems = await Promise.all(tags.map(async (elem) => {
     if (elem.id) {
       return elem;
@@ -90,14 +90,16 @@ export const createProject = ({
   }));
 
   realDataMsg();
-  await execQuery(createProjectQ, {
+  const result = await execQuery(createProjectQFunc(tagsWithNewElems.map((e) => e.id), users.map((e) => e.id)), {
     name,
     description,
-    tagsIds: tagsWithNewElems.map((e) => e.id),
     subLabel,
     costs,
-    usersIds: users.map((e) => e.id),
     startDate,
     dueDate,
   });
+  if (result && result.createProject) {
+    const state = getState();
+    dispatch(setInitialProjects([...state.projects.items, result.createProject]));
+  }
 };

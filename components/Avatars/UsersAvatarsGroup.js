@@ -15,7 +15,7 @@ const UserAvaContainer = styled.div`
 
 const UsersAvatarsGroup = ({ userArray }) => (
   <UsersAvatarGroupStyled>
-    {userArray.map(((user) => (
+    {userArray && userArray.map(((user) => (
       <UserAvaContainer key={user.name ? user.name : user.email}>
         <UserAvatar email={user.email} onClick={htmlOnlyMsg} />
       </UserAvaContainer>

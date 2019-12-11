@@ -15,7 +15,7 @@ const Table = () => {
         {projects.map((project) => (
           <TableRow
             key={project.name}
-            userArray={project.users}
+            userArray={project.projectUsers}
             percent={(Math.random() * 100).toFixed(0)}
             avatarLabel={project.name.charAt(0)}
             costs={`${project.costs} $`}

@@ -1,6 +1,6 @@
 import { getInitialProjects } from '../../redux/projects/actions';
 import { getAllUsers } from '../../redux/users/actions';
-import auth0 from '../../utils/auth0';
+import auth0 from '../../auth0config';
 import { getInitialUserData, upsertLoggedUser } from '../../redux/activeUser/actions';
 
 const pageInitialData = async ({ req, res, reduxStore }) => {

@@ -8,6 +8,7 @@
   },
   "scripts": {
     "dev": "next",
+    "deb": "NODE_OPTIONS=--inspect next",
     "build": "next build",
     "start": "next start",
     "fetcherinstall": "cd packages/graphcmsfetcher/ && npm i",
@@ -15,7 +16,7 @@
     "fetcherdeb": "cd packages/graphcmsfetcher/ && npm run deb",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "deb": "NODE_OPTIONS=--inspect next"
+    "resetbasetodefaults": "cd packages/graphcmsfetcher/ && node ./utils/refreshGraphCMS.js"
   },
   "keywords": [],
   "author": "",

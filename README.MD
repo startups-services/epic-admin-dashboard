@@ -62,6 +62,11 @@ Go to settings page and create one Permanent Access Token(PAT) for Scope "OPEN"
 Copy yours **ENDPOINT** and **PAT** from this page to /packages/graphcmsfetcher/.env.example
 Then rename this file to .env
 
+if you want run script to add to default data to the base
+```sh
+npm run resetbasetodefaults
+```
+
 #### Run locally 
 
 we run little node.js app to hide your base credentials not visible from client:

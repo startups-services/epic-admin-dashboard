@@ -1,4 +1,4 @@
-import execQuery from './client';
+import fetchQuery from './client';
 
 export const getAllTagsQ = `
   query{
@@ -111,7 +111,7 @@ export const createTag = `
 export const removeTagFromProject = async ({ tagName, allTags, projectId }) => {
   const result = allTags.filter((elem) => (elem.name === tagName));
 
-  await execQuery(updateTag, {
+  await fetchQuery(updateTag, {
     id: result[0].id,
     projectsIds: [...result[0].projects
       .filter(({ id }) => (id !== projectId))

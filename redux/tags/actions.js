@@ -1,5 +1,5 @@
 import { ADD_TAG_TO_ALL_TAGS, DELETE_TAG_FROM_ALL_TAGS, SET_ALL_TAGS } from './constants';
-import execQuery from '../../data/graphql/client';
+import fetchQuery from '../../data/graphql/client';
 import {
   createNewTagQ, deleteTagQ, getAllTagsQ, getTagByIdQ,
 } from '../../data/graphql/Tag';
@@ -23,20 +23,20 @@ export const deleteTagFromAllTags = (id) => ({
 });
 
 export const getAllTags = () => async (dispatch) => {
-  const { tags } = await execQuery(getAllTagsQ);
+  const { tags } = await fetchQuery(getAllTagsQ);
   dispatch(setAllTags(tags));
   return tags;
 };
 
 export const createNewTag = (projectId, name) => async (dispatch) => {
   realDataMsg();
-  const { createTag } = await execQuery(createNewTagQ, { projectId, name });
+  const { createTag } = await fetchQuery(createNewTagQ, { projectId, name });
   dispatch(addTagToAllTags(createTag));
   return createTag;
 };
 
 export const deleteTag = (id) => async (dispatch) => {
-  await execQuery(deleteTagQ, { id });
+  await fetchQuery(deleteTagQ, { id });
   dispatch(deleteTagFromAllTags(id));
 };
 
@@ -47,6 +47,6 @@ export const createTag = (projectId, newTag, currTags) => async (dispatch) => {
 };
 
 export const getTagByIdFromBD = (id) => async () => {
-  const result = await execQuery(getTagByIdQ, { id });
+  const result = await fetchQuery(getTagByIdQ, { id });
   return result;
 };

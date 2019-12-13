@@ -1,5 +1,5 @@
 import { GET_INITIAL_USER_DATA, SET_USER_FIELD } from './constants';
-import execQuery from '../../data/graphql/client';
+import fetchQuery from '../../data/graphql/client';
 import { updateUserQueries, upsertUserQ } from '../../data/graphql/User';
 import { realDataMsg } from '../../utils/toastActions';
 
@@ -20,11 +20,11 @@ export const setUserField = (name, value) => async (dispatch, getState) => {
     realDataMsg();
     dispatch(setUserFieldRedux(name, value));
     const { activeUser: { data: { id } } } = getState();
-    await execQuery(updateUserQueries[name], { id, value });
+    await fetchQuery(updateUserQueries[name], { id, value });
   }
 };
 
 export const upsertLoggedUser = ({ email, name }) => async () => {
-  const result = await execQuery(upsertUserQ, { email, name });
+  const result = await fetchQuery(upsertUserQ, { email, name });
   return result;
 };

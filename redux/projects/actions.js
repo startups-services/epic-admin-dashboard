@@ -1,4 +1,4 @@
-import execQuery from '../../data/graphql/client';
+import fetchQuery from '../../data/graphql/client';
 import { ADD_TAG_TO_PROJECT, SET_INITIAL_PROJECTS, SET_PROJECT_FIELD } from './constants';
 import {
   connectTagToProjQ,
@@ -39,7 +39,7 @@ export const setProjectFieldRedux = (id, field, value) => ({
 
 export const getInitialProjects = (token) => async (dispatch) => {
   if (token) {
-    const { projects } = await execQuery(getProjectsQ);
+    const { projects } = await fetchQuery(getProjectsQ);
     if (projects) {
       const result = await dispatch(setInitialProjects(projects));
       return result;
@@ -52,13 +52,13 @@ export const setProjectField = (projectId, name, value) => async (dispatch) => {
   realDataMsg();
   if (value || value === false || value === 0) {
     dispatch(setProjectFieldRedux(projectId, name, value));
-    await execQuery(updateProjectQueries[name], { id: projectId, value });
+    await fetchQuery(updateProjectQueries[name], { id: projectId, value });
   }
 };
 
 export const deleteTagFromProject = (projectId, tagId) => async (dispatch) => {
   realDataMsg();
-  const { updateProject } = await execQuery(
+  const { updateProject } = await fetchQuery(
     disconnectTagFromProjQ, { projectId, tagId },
   );
   await dispatch(setProjectFieldRedux(projectId, 'tags', updateProject.tags));
@@ -71,15 +71,15 @@ export const deleteTagFromProject = (projectId, tagId) => async (dispatch) => {
 export const addTagToProject = (projectId, tag) => async (dispatch) => {
   realDataMsg();
   dispatch(addTagToProjectRedux(projectId, tag));
-  await execQuery(connectTagToProjQ, { projectId, tagId: tag.id });
+  await fetchQuery(connectTagToProjQ, { projectId, tagId: tag.id });
 };
 
 export const addUserToProject = (projectId, userId) => async () => {
-  await execQuery(addUserToProjectQ, { projectId, userId });
+  await fetchQuery(addUserToProjectQ, { projectId, userId });
 };
 
 export const deleteUserFromProject = (projectId, userId) => async () => {
-  await execQuery(deleteUserFromProjectQ, { projectId, userId });
+  await fetchQuery(deleteUserFromProjectQ, { projectId, userId });
 };
 
 export const createProject = ({
@@ -89,7 +89,7 @@ export const createProject = ({
     if (elem.id) {
       return elem;
     }
-    const { createTag } = await execQuery(
+    const { createTag } = await fetchQuery(
       createNewTagWithoutProjectQ,
       { name: elem.label },
     );
@@ -97,7 +97,7 @@ export const createProject = ({
   }));
 
   realDataMsg();
-  const result = await execQuery(createProjectQFunc(tagsWithNewElems.map((e) => e.id), users.map((e) => e.id)), {
+  const result = await fetchQuery(createProjectQFunc(tagsWithNewElems.map((e) => e.id), users.map((e) => e.id)), {
     name,
     description,
     subLabel,

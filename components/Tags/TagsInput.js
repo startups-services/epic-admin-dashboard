@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import execQuery from '../../data/graphql/client';
+import fetchQuery from '../../data/graphql/client';
 import Icon from '../Icons/Icon';
 import { createTag, updateTag } from '../../data/graphql/Tag';
 
@@ -34,13 +34,13 @@ const TagsInput = ({ setTagsState, projectId }) => {
     setShow(false);
     if (result.length > 0) {
       setTagsState((prev) => ([...prev, { id: result[0].id, name: newTagName }]));
-      await execQuery(updateTag, {
+      await fetchQuery(updateTag, {
         id: result[0].id,
         name: newTagName,
         projectsIds: [...result[0].projects.map((elem) => elem.id), projectId],
       });
     } else {
-      const { createTag: { id } } = await execQuery(createTag, { name: newTagName, projectsIds: [projectId] });
+      const { createTag: { id } } = await fetchQuery(createTag, { name: newTagName, projectsIds: [projectId] });
       setTagsState((prev) => ([...prev, { id, name: newTagName }]));
     }
   };

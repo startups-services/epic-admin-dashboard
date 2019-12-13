@@ -69,7 +69,7 @@ npm run resetbasetodefaults
 
 #### Run locally 
 
-we run little node.js app to hide your base credentials not visible from client:
+we run little node.js app to hide your base credentials from client:
 ```sh
   npm run fetcher
 ```

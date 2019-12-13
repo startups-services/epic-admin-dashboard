@@ -3,7 +3,7 @@ import fetch from 'isomorphic-unfetch';
 // const endpoint = 'http://api.graph.cool/simple/v1/ck2q05fg73scp016883ya67lw';
 const endpoint = 'http://localhost:4000';
 
-const execQuery = async (query, variables) => {
+const fetchQuery = async (query, variables) => {
   try {
     const response = await fetch(endpoint, {
       body: JSON.stringify({ query, variables }),
@@ -21,4 +21,4 @@ const execQuery = async (query, variables) => {
   }
 };
 
-export default execQuery;
+export default fetchQuery;

@@ -1,5 +1,5 @@
 import { SET_USERS } from './constatns';
-import execQuery from '../../data/graphql/client';
+import fetchQuery from '../../data/graphql/client';
 import { getAllUsersQ } from '../../data/graphql/User';
 
 export const setAllUsers = (users) => ({
@@ -9,7 +9,7 @@ export const setAllUsers = (users) => ({
 
 export const getAllUsers = () => async (dispatch) => {
   try {
-    const { projectUsers } = await execQuery(getAllUsersQ);
+    const { projectUsers } = await fetchQuery(getAllUsersQ);
     dispatch(setAllUsers(projectUsers));
     return projectUsers;
   } catch (e) {

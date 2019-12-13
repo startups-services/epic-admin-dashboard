@@ -29,7 +29,10 @@ const createProject = async (tags, users) => {
     const res = await execQuery(queryString, {
       name: faker.commerce.productName(),
       description: faker.lorem.text(),
-      costs: `${faker.random.number()}`, // TODO 100 - 10 000
+      costs: `${faker.random.number(10000)}`, // TODO 100 - 10 000
+      subLabel: faker.commerce.department(),
+      startDate: new Date(+new Date() - Math.random() * 100000000),
+      dueDate: new Date(+new Date() + Math.random() * 100000000),
     });
   } catch (e) {
     console.log(e);

@@ -29,11 +29,17 @@ const createProjectQF = (tags, users) => `
   $name: String!
   $description: String!
   $costs: String
+  $subLabel: String
+  $startDate: String
+  $dueDate: String
 ) {
   createProject(data:{
     name: $name
+    subLabel: $subLabel
     description: $description
     costs: $costs
+    startDate: $startDate
+    dueDate: $dueDate
     ${tags && tags.length && (`
       tags: {
         connect: [

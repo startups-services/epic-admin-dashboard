@@ -16,7 +16,7 @@
     "fetcherdeb": "cd packages/graphcmsfetcher/ && npm run deb",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "resetbasetodefaults": "cd packages/graphcmsfetcher/ && node ./utils/refreshGraphCMS.js"
+    "resetbasetodefaults": "node utils/refreshBaseData/refreshGraphCMS.js"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +27,7 @@
     "@emotion/babel-preset-css-prop": "^10.0.17",
     "@emotion/core": "^10.0.20",
     "@emotion/styled": "^10.0.17",
+    "@now/node": "^1.3.0",
     "@storybook/addon-actions": "^5.2.3",
     "@storybook/addon-links": "^5.2.3",
     "@storybook/react": "^5.2.3",
@@ -35,6 +36,9 @@
     "babel-plugin-emotion": "^10.0.20",
     "chart.js": "^2.8.0",
     "chartjs-plugin-style": "^0.5.0",
+    "dotenv": "^8.2.0",
+    "faker": "^4.1.0",
+    "graphql-request": "^1.8.2",
     "immer": "^5.0.0",
     "isomorphic-unfetch": "^3.0.0",
     "md5": "^2.2.1",

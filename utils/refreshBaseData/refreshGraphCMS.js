@@ -1,8 +1,8 @@
 const faker = require('faker');
 const {
   createTagQ, createUserQ, createProjectQF, deleteAllProjectsQ, deleteAllUsersQ, deleteAllTagsQ,
-} = require('../data/queries');
-const { execQuery } = require('../client/execQuery');
+} = require('./queries');
+const { execQuery } = require('./execQuery');
 
 require('dotenv').config();
 
@@ -54,6 +54,11 @@ const createProject = async (tags, users) => {
   tags.push(await createTag());
   tags.push(await createTag());
   tags.push(await createTag());
+  tags.push(await createTag());
+  tags.push(await createTag());
+  tags.push(await createTag());
+  tags.push(await createTag());
+  tags.push(await createTag());
 
   const users = [];
   users.push(await createUser());
@@ -68,6 +73,12 @@ const createProject = async (tags, users) => {
   projects.push(await createProject(tags, users));
   projects.push(await createProject(tags, users));
   projects.push(await createProject(tags, users));
+  projects.push(await createProject(tags, users));
+  projects.push(await createProject(tags, users));
+  projects.push(await createProject(tags, users));
+  projects.push(await createProject(tags, users));
+  projects.push(await createProject(tags, users));
+
 
   console.log('database reset !');
 })();

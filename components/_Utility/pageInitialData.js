@@ -2,8 +2,11 @@ import { getInitialProjects } from '../../redux/projects/actions';
 import { getAllUsers } from '../../redux/users/actions';
 import auth0 from '../../auth0config';
 import { getInitialUserData, upsertLoggedUser } from '../../redux/activeUser/actions';
+import { setBaseUrl } from '../../data/graphql/client';
 
 const pageInitialData = async ({ req, res, reduxStore }) => {
+  await setBaseUrl(req && req.headers.host);
+
   if (typeof window === 'undefined') {
     const result = await auth0.getSession(req);
     if (!result) {

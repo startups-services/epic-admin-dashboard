@@ -1,11 +1,14 @@
 import fetch from 'isomorphic-unfetch';
 
-// const endpoint = 'http://api.graph.cool/simple/v1/ck2q05fg73scp016883ya67lw';
-const endpoint = 'http://localhost:4000';
+let baseUrl = '';
+export const setBaseUrl = (url) => {
+  baseUrl = url;
+};
 
+const endpoint = '/api/exec';
 const fetchQuery = async (query, variables) => {
   try {
-    const response = await fetch(endpoint, {
+    const response = await fetch(`http://${baseUrl}${endpoint}`, {
       body: JSON.stringify({ query, variables }),
       method: 'POST',
       headers: {

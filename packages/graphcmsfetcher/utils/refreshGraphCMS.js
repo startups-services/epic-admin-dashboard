@@ -6,6 +6,8 @@ const { execQuery } = require('../client/execQuery');
 
 require('dotenv').config();
 
+const statuses = ['completed', 'progress', 'pending', 'canceled'];
+
 const createTag = async () => {
   const tag = await execQuery(createTagQ, { name: faker.random.word() });
   console.log('create tag');
@@ -33,6 +35,7 @@ const createProject = async (tags, users) => {
       subLabel: faker.commerce.department(),
       startDate: new Date(+new Date() - Math.random() * 100000000),
       dueDate: new Date(+new Date() + Math.random() * 100000000),
+      projectStatus: statuses[+(Math.random() * 3).toFixed(0)],
     });
   } catch (e) {
     console.log(e);

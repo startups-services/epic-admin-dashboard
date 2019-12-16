@@ -51,7 +51,7 @@ const Projects = () => {
               tags={elem.tags}
               src={imgRandomizer()}
               description={elem.description}
-              status={elem.status}
+              status={elem.projectStatus}
               users={elem.projectUsers}
               id={elem.id}
             />

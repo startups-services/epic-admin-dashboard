@@ -1,9 +1,9 @@
 import { initAuth0 } from '@auth0/nextjs-auth0';
 
 export default initAuth0({
-  domain: 'epic-admin-dash.eu.auth0.com',
-  clientId: '7m4KNAD0oT7S45EP5uGSCCOxScVsWX3k',
-  clientSecret: '<YOUR_CLIENT_SECRET>',
+  domain: 'epic-admin-dash.eu.auth0.com', // change to yours DOMAIN
+  clientId: '7m4KNAD0oT7S45EP5uGSCCOxScVsWX3k', // change to yours CLIENT_ID
+  clientSecret: 'MD6FJVqZCHvNZwlq-MaI_69fqAkaUDWbiIGUJY-eWIMGt-Fnmi9jP_iCj9xNFcnA', // change to yours CLIENT_SECRET
   scope: 'openid profile email',
   redirectUri: 'http://localhost:3000/api/callback',
   postLogoutRedirectUri: 'http://localhost:3000/',

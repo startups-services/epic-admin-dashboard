@@ -7,6 +7,9 @@ export const setBaseUrl = (url) => {
 
 const endpoint = '/api/exec';
 const fetchQuery = async (query, variables) => {
+  if (typeof window !== 'undefined') {
+    setBaseUrl(window.location.host);
+  }
   try {
     const response = await fetch(`http://${baseUrl}${endpoint}`, {
       body: JSON.stringify({ query, variables }),

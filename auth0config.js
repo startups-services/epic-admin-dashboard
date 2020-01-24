@@ -1,12 +1,12 @@
 import { initAuth0 } from '@auth0/nextjs-auth0';
 
 export default initAuth0({
-  domain: 'epic-admin-dash.eu.auth0.com', // change to yours DOMAIN
-  clientId: '7m4KNAD0oT7S45EP5uGSCCOxScVsWX3k', // change to yours CLIENT_ID
-  clientSecret: 'MD6FJVqZCHvNZwlq-MaI_69fqAkaUDWbiIGUJY-eWIMGt-Fnmi9jP_iCj9xNFcnA', // change to yours CLIENT_SECRET
+  domain: 'epic-admin-dashboard.eu.auth0.com', // change to yours DOMAIN
+  clientId: 'Rk9WltnijeKG86KlsJrGUQtl8HzUduEp', // change to yours CLIENT_ID
+  clientSecret: '1GUtR3qLb9J9BkAPL00XIPRaQuf09gdip_H8K5DYUYUe9pZigzcNvM98S6dAfkhz', // change to yours CLIENT_SECRET
   scope: 'openid profile email',
-  redirectUri: 'http://localhost:3000/api/callback',
-  postLogoutRedirectUri: 'http://localhost:3000/',
+  redirectUri: 'https://epic-admin-dashboard.startups-services.now.sh/api/callback',
+  postLogoutRedirectUri: 'https://epic-admin-dashboard.startups-services.now.sh/',
   session: {
     // The secret used to encrypt the cookie.
     cookieSecret: 'some-very-very-very-very-very-very-very-very-long-secret',

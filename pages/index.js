@@ -36,7 +36,6 @@ const CardBox = styled.div`
   margin: ${SpaceBetweenCards}px;
 `;
 
-
 const Index = () => (
   <App>
     <>

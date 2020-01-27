@@ -11,7 +11,7 @@ const pageInitialData = async ({ req, res, reduxStore }) => {
     const result = await auth0.getSession(req);
     if (!result) {
       res.writeHead(302, {
-        Location: '/api/login',
+        Location: 'https://epic-admin-dashboard.startups-services.now.sh/api/login',
       });
       res.end();
       return {};

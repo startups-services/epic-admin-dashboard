@@ -1,0 +1,8 @@
+{
+  "build": {
+    "env": {
+      "graphcms_pat": "@graphcms_pat",
+      "graphcms_endpoint": "@graphcms_endpoint"
+    }
+  }
+}

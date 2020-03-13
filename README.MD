@@ -11,7 +11,7 @@ SignUp or SignIn with your Auth0, or use test user:
 
 * Ready for production after 5 minutes setup
 * Large library of ready components cataloged by [StoryBook](https://storybook.js.org/)
-* Server-rendering by [Next.js](https://nextjs.org/) 
+* Server-Side Rendering by [Next.js](https://nextjs.org/) 
 * Beautiful design by [EpicPxls](https://www.epicpxls.com/)
 * Stable and predicable data flow with [redux](https://redux.js.org/), [redux-thunk](https://github.com/reduxjs/redux-thunk), [immer](https://github.com/immerjs/immer) and few more
 * Built-in authentication by [Auth0](https://auth0.com/) 

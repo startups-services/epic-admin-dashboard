@@ -39,7 +39,7 @@
     "dotenv": "^8.2.0",
     "faker": "^4.1.0",
     "graphql-request": "^1.8.2",
-    "immer": "^5.0.0",
+    "immer": "^9.0.6",
     "isomorphic-unfetch": "^3.0.0",
     "md5": "^2.2.1",
     "moment": "^2.24.0",
